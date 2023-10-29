@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce", "Ecommerce\Ecom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{10A76EF6-4A07-4851-8C65-4AE2D6B11EFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{FB5D6CF2-B473-4ABE-91EB-4CB0646F4DCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{10A76EF6-4A07-4851-8C65-4AE2D6B11EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10A76EF6-4A07-4851-8C65-4AE2D6B11EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10A76EF6-4A07-4851-8C65-4AE2D6B11EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5D6CF2-B473-4ABE-91EB-4CB0646F4DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5D6CF2-B473-4ABE-91EB-4CB0646F4DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5D6CF2-B473-4ABE-91EB-4CB0646F4DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5D6CF2-B473-4ABE-91EB-4CB0646F4DCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
