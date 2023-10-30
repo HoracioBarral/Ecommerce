@@ -8,19 +8,20 @@ namespace dominio
 {
     public class Articulo
     {
-        int idArticulo { get; set; }
+        public  long idArticulo { get; set; }
 
-        string nombreArticulo { set; get; }
+        public string nombreArticulo { set; get; }
+        public string descripcion { get; set; }
 
-        Categoria categoria { get; set; }
+        public Categoria categoria { get; set; }
 
-        Marca marca { get; set; }
+        public Marca marca { get; set; }
 
-        decimal precio { get; set; }
+        public decimal precio { get; set; }
 
-        int stock { get; set; }
+        public short stock { get; set; }
 
-        bool Estado { get; set; }
+        public bool Estado { get; set; }
 
         List<Imagen> listaImagenes { get; set; }
  
