@@ -8,7 +8,7 @@ namespace dominio
 {
     public class Articulo
     {
-        public  long idArticulo { get; set; }
+        public int idArticulo { get; set; }
 
         public string nombreArticulo { set; get; }
         public string descripcion { get; set; }
@@ -19,7 +19,7 @@ namespace dominio
 
         public decimal precio { get; set; }
 
-        public short stock { get; set; }
+        public int stock { get; set; }
 
         public bool Estado { get; set; }
 

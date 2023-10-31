@@ -46,10 +46,10 @@ create table Articulos(
 	NombreArticulo varchar(50) not null,
 	Descripcion varchar(100) null,
 	Precio money not null check(Precio>0),
-	Stock smallint not null check(Stock>=0),
+	Stock int not null check(Stock>=0),
 	Estado bit not null default 1,
-	ID_Categoria bigint not null,
-	ID_Marca bigint not null,
+	ID_Categoria int not null,
+	ID_Marca int not null,
 	foreign key(ID_Categoria) references Categorias(ID_Categoria),
 	foreign key(ID_Marca) references Marcas(ID_Marca)
 )
@@ -59,7 +59,7 @@ go
 create table Imagenes(
 	ID_Imagen int not null primary key identity(1,1),
 	Url_Imagen varchar(1500) not null,
-	ID_Articulo bigint not null,
+	ID_Articulo int not null,
 	foreign key(ID_Articulo) references Articulos(ID_Articulo)
 )
 go
