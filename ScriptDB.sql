@@ -6,14 +6,14 @@ go
 
 
 create Table Roles(
-	ID_Rol int not null primary key identity(1,1),
+	ID_Rol int not null primary key CLUSTERED identity(1,1),
 	TipoDeRol varchar(30) unique not null,
 )
 go
 
 
 create table Usuarios(
-	ID_Usuario int not null primary key identity(1,1),
+	ID_Usuario int not null primary key CLUSTERED identity(1,1),
 	NombreUsuario varchar(30) not null unique,
 	Nombre varchar(30) not null,
 	Apellido varchar(30) not null,
@@ -29,20 +29,20 @@ go
 
 
 create table Marcas(
-	ID_Marca int not null primary key identity(1,1),
+	ID_Marca int not null primary key CLUSTERED identity(1,1),
 	NombreMarca varchar(30) unique not null
 )
 go
 
 
 create table Categorias(
-	ID_Categoria int not null primary key identity(1,1),
+	ID_Categoria int not null primary key CLUSTERED identity(1,1),
 	NombreCategoria varchar(30) unique not null
 )
-
+go
 
 create table Articulos(
-	ID_Articulo int not null primary key identity(1,1),
+	ID_Articulo int not null primary key CLUSTERED identity(1,1),
 	NombreArticulo varchar(50) not null,
 	Descripcion varchar(100) null,
 	Precio money not null check(Precio>0),
@@ -57,11 +57,25 @@ go
 
 
 create table Imagenes(
-	ID_Imagen int not null primary key identity(1,1),
+	ID_Imagen int not null primary key CLUSTERED identity(1,1),
 	Url_Imagen varchar(1500) not null,
 	ID_Articulo int not null,
 	foreign key(ID_Articulo) references Articulos(ID_Articulo)
 )
 go
+
+
+
+
+--Se insertan valores a la tabla de Categorias
+
+INSERT INTO Categorias (NombreCategoria)
+VALUES('Remeras'),('Pantalones'),('Bermudas'),('Buzos'),('Chombas'),('Gorras'),('Jeans'),('Polleras');
+
+
+--Se insertan valores a la tabla Marcas
+
+INSERT INTO Marcas (NombreMarca)
+VALUES('Nike'),('Adidas'),('Levis'),('Topper'),('Wrangler'),('Umbro'),('Puma'),('Reebok'),('Kappa');
 
 

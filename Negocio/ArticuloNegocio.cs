@@ -25,11 +25,11 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Articulo articulo = new Articulo();
-                    articulo.idArticulo = (long)datos.Lector["ID_Articulo"];
+                    articulo.idArticulo = (int)datos.Lector["ID_Articulo"];
                     articulo.nombreArticulo = (string)datos.Lector["NombreArticulo"];
                     articulo.descripcion = (string)datos.Lector["Descripcion"];
                     articulo.precio = (decimal)datos.Lector["Precio"];
-                    articulo.stock = (short)datos.Lector["stock"];
+                    articulo.stock = (int)datos.Lector["stock"];
                     lista.Add(articulo);
                 }
                 return lista;
