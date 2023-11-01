@@ -79,3 +79,5 @@ INSERT INTO Marcas (NombreMarca)
 VALUES('Nike'),('Adidas'),('Levis'),('Topper'),('Wrangler'),('Umbro'),('Puma'),('Reebok'),('Kappa');
 
 
+create view vw_listarCategorias as
+select * from Categorias

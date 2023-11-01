@@ -8,12 +8,12 @@ namespace dominio
 {
     public class Usuario
     {
-        int idUsuario { get; set; }
+        public int idUsuario { get; set; }
 
-        RolUsuario rolUsuario { get; set; }
+        public RolUsuario rolUsuario { get; set; }
 
-        string nombreUsuario { set; get; }
+        public string nombreUsuario { set; get; }
 
-        string clave { get; set; }
+        public string clave { get; set; }
     }
 }

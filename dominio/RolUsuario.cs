@@ -8,8 +8,8 @@ namespace dominio
 {
     public class RolUsuario
     {
-        int idRol { get; set; }
+        public int idRol { get; set; }
 
-        string tipoDeRol { get; set; }
+        public string tipoDeRol { get; set; }
     }
 }

@@ -13,11 +13,17 @@ namespace Negocio
         public List<Categoria> listarCategorias()
         {
             List<Categoria> listaCategorias=new List<Categoria>();
-            datos.setConexion("");
+            datos.setConexion("select * from vw_listarCategorias");
             try
             {
                 datos.abrirConexion();
-                Categoria categoria=new Categoria();
+                while(datos.Lector.Read())
+                {
+                    Categoria categoria = new Categoria();
+                    categoria.idCategoria = (int)datos.Lector["ID_Categoria"];
+                    categoria.nombreCategoria = (string)datos.Lector["NombreCategoria"];
+                    listaCategorias.Add(categoria);
+                }
                 return listaCategorias;
             }
             catch (Exception ex)
