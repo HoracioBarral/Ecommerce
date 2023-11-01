@@ -71,13 +71,15 @@ go
 
 INSERT INTO Categorias (NombreCategoria)
 VALUES('Remeras'),('Pantalones'),('Bermudas'),('Buzos'),('Chombas'),('Gorras'),('Jeans'),('Polleras');
-
+go
 
 --Se insertan valores a la tabla Marcas
 
 INSERT INTO Marcas (NombreMarca)
 VALUES('Nike'),('Adidas'),('Levis'),('Topper'),('Wrangler'),('Umbro'),('Puma'),('Reebok'),('Kappa');
+go
 
 
 create view vw_listarCategorias as
 select * from Categorias
+go
