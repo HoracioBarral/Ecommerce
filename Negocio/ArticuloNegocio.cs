@@ -19,7 +19,7 @@ namespace Negocio
 
             try
             {
-                datos.setConexion("SELECT A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.NombreCategoria AS Categoria, A.Precio, A.stock \r\nFROM Articulos A, Categorias C\r\nWHERE C.ID_Categoria = A.ID_Categoria");
+                datos.setConexion("SELECT A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.NombreCategoria AS Categoria, M.NombreMarca AS Marca , A.Precio, A.stock \r\nFROM Articulos A, Categorias C, Marcas M\r\nWHERE C.ID_Categoria = A.ID_Categoria AND M.ID_Marca= A.ID_Marca");
                 datos.abrirConexion();
 
                 while (datos.Lector.Read())
@@ -30,6 +30,8 @@ namespace Negocio
                     articulo.descripcion = (string)datos.Lector["Descripcion"];
                     articulo.categoria = new Categoria();
                     articulo.categoria.nombreCategoria = (string)datos.Lector["Categoria"];
+                    articulo.marca = new Marca();
+                    articulo.marca.nombreMarca = (string)datos.Lector["Marca"];
                     articulo.precio = (decimal)datos.Lector["Precio"];
                     articulo.stock = (int)datos.Lector["stock"];
                     lista.Add(articulo);
