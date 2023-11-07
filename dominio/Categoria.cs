@@ -10,5 +10,9 @@ namespace dominio
     {
         public int idCategoria { get; set; }
         public string nombreCategoria { get; set; }
+        public override string ToString()
+        {
+            return nombreCategoria;
+        }
     }
 }
