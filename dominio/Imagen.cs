@@ -12,6 +12,7 @@ namespace dominio
 
         public int idArticulo { get; set; }
 
-        public string urlImagen { get; set; }
+        public string UrlImagen { get; set; }
+        public bool IsFirst { get; set; }
     }
 }

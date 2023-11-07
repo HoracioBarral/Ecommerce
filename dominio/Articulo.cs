@@ -23,7 +23,7 @@ namespace dominio
 
         public bool Estado { get; set; }
 
-        List<Imagen> listaImagenes { get; set; }
+        public List<Imagen> listaImagenes { get; set; }
  
     }
 }

@@ -9,7 +9,7 @@
                 <div class="card mb-4" style="max-width: 300px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="..." class="img-fluid rounded-start" alt="...">
+                            <img src='<%# Eval("listaImagenes[0].UrlImagen") %>' class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
