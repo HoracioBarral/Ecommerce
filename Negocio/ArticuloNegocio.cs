@@ -1,5 +1,6 @@
 ﻿using dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,6 +55,50 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public Articulo buscarPorID(int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            MarcaNegocio marca = new MarcaNegocio();
+            CategoriaNegocio categoria = new CategoriaNegocio();
+            try
+            {
+                datos.setConexion("select * from Articulos where ID_Articulo= @ID");
+                datos.setearParametro("@Id", Id);
+                datos.abrirConexion();
+                Articulo articulo;
+
+                while (datos.Lector.Read())
+                {
+                   articulo = new Articulo();
+                    articulo.idArticulo = (int)datos.Lector["ID_Articulo"];
+                    articulo.nombreArticulo = (string)datos.Lector["NombreArticulo"];
+                    articulo.descripcion = (string)datos.Lector["Descripcion"];
+                    articulo.categoria = new Categoria();
+                    articulo.categoria.nombreCategoria = (string)datos.Lector["Categoria"];
+                    articulo.marca = new Marca();
+                    articulo.marca.nombreMarca = (string)datos.Lector["Marca"];
+                    articulo.precio = (decimal)datos.Lector["Precio"];
+                    articulo.stock = (int)datos.Lector["stock"];
+                    articulo.listaImagenes = new List<Imagen>();
+                    if (articulo.idArticulo == Id)
+                    {
+                        return articulo;
+                    }
+
+                }
+                return articulo = null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
     }
 }

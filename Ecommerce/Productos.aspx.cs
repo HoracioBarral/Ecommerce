@@ -6,42 +6,67 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using System.Reflection.Emit;
 
 namespace Ecommerce
 {
     public partial class Productos : System.Web.UI.Page
     {
         public List<Articulo> listaarticulos = new List<Articulo>();
+        Articulo articulo = new Articulo();
+        private ArticuloNegocio articulonegocio = new ArticuloNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Articulo articulo = new Articulo();
+            
             ArticuloNegocio negocio = new ArticuloNegocio();
             listaarticulos = negocio.listar();
             Repeater1.DataSource = listaarticulos;
             Repeater1.DataBind();
         }
 
-        protected string RenderImages(object dataItem)
+        protected string GetImageUrl(object dataItem)
         {
-            if (dataItem is Articulo articulo)
+            if (dataItem is Articulo articulo && articulo.listaImagenes.Count > 0)
             {
-                string carouselItems = string.Empty;
+                return articulo.listaImagenes[0].UrlImagen;
+            }
+            return string.Empty;
+        }
 
-                for (int i = 0; i < articulo.listaImagenes.Count; i++)
-                {
-                    string activeClass = (i == 0) ? "active" : string.Empty;
-                    string imageSource = articulo.listaImagenes[i].UrlImagen;
+        protected void btnCarrito_Click(object sender, EventArgs e)
+        {
 
-                    carouselItems += $@"
-             <div class='carousel-item {activeClass}'>
-             <img src='{imageSource}' class='d-block w-100' alt='Image {i + 1}'>
-              </div>";
-                }
-
-                return carouselItems;
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Articulo articulo = new Articulo();
+            articulo = articulonegocio.buscarPorID(id);
+            if (!estaEnCarrito(articulo))
+            {
+                Label1.Text = articulo.nombreArticulo + " añadido al carrito";
+                Label1.CssClass = "alert alert-success";
+                List<Articulo> carrito = new List<Articulo>();
+                carrito = (List<Articulo>)Session["Carrito"];
+                carrito.Add(articulo);
+            }
+            else
+            {
+                Label1.Text = articulo.nombreArticulo + " ya añadido en carrito";
+                Label1.CssClass = "alert alert-danger";
             }
 
-            return string.Empty;
+        }
+        private bool estaEnCarrito(Articulo articulo)
+        {
+            List<Articulo> carrito = new List<Articulo>();
+            carrito = (List<Articulo>)Session["Carrito"];
+
+            foreach (Articulo a in carrito)
+            {
+                if (a.idArticulo == articulo.idArticulo)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

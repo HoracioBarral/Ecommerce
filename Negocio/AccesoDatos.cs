@@ -28,6 +28,10 @@ namespace Negocio
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
         }
+        public string getConsulta()
+        {
+            return comando.CommandText;
+        }
 
         public void abrirConexion()
         {
@@ -43,6 +47,25 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void ejecutarAccion()
+        {
+            comando.Connection = conexion;
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public void setearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
 
         public void cerrarConexion()
         {
@@ -50,5 +73,7 @@ namespace Negocio
                 lector.Close();
             conexion.Close();
         }
+
+
     }
 }
