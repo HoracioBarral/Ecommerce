@@ -17,7 +17,7 @@
                     <p class="card-text"><%# Eval("Descripcion") %></p>
                     <p class="card-text"><%# Eval("Categoria") %></p>
                     <p class="card-text"><%# Eval("Marca") %></p>
-                    <p> <a class="nav-link" style="text-decoration: none; color: darkblue; transition: transform 0.3s" " href="DetalleArticulo.aspx">Detalles</a></p>
+                    <p> <a class="nav-link" style="text-decoration: none; color: darkblue; transition: transform 0.3s" " href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalles</a></p>
                     <asp:Button ID="btnCarrito" runat="server" Text="Agregar al carrito 🛒" onclick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
                 </div>
             </div>
