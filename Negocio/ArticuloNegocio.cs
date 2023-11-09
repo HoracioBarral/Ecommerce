@@ -78,7 +78,7 @@ namespace Negocio
                     articulo.marca.nombreMarca = (string)datos.Lector["Marca"];
                     articulo.precio = (decimal)datos.Lector["Precio"];
                     articulo.stock = (int)datos.Lector["Stock"];
-                    articulo.listaImagenes = new List<Imagen>();
+                    articulo.listaImagenes = new List<Imagen>();;
 
                     return articulo;
                 }

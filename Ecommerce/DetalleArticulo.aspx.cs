@@ -21,6 +21,7 @@ namespace Ecommerce
                 {
                     // ID válido en la URL.
                 }
+
             }
             return idArticulo;
         }
@@ -37,13 +38,18 @@ namespace Ecommerce
                     Articulo articulo = articulonegocio.buscarPorID(idArticulo);
                     if (articulo != null)
                     {
-                        // Ahora puedes mostrar los detalles del artículo en la interfaz gráfica
+                       
                         lblNombreArticulo.Text = articulo.nombreArticulo;
                         lblDescripcion.Text = articulo.descripcion;
                         lblCategoria.Text = articulo.categoria.nombreCategoria;
                         lblMarca.Text = articulo.marca.nombreMarca;
                         lblPrecio.Text = articulo.precio.ToString("C"); // Formatear el precio como moneda
                         lblStock.Text = articulo.stock.ToString();
+                        
+                        ImagenNegocio imagenNegocio = new ImagenNegocio();
+                        List<Imagen> imagenes = imagenNegocio.Listar(idArticulo);
+                        articulo.listaImagenes.AddRange(imagenes);
+                        MostrarImagenes(articulo.listaImagenes);
 
                     }
                 }
@@ -52,6 +58,27 @@ namespace Ecommerce
                    
                     
                 }
+            }
+        }
+
+
+
+
+        private void MostrarImagenes(List<Imagen> imagenes)
+        {
+            foreach (Imagen imagen in imagenes)
+            {
+                string imageUrl = imagen.UrlImagen;
+
+                
+                Image img = new Image();
+                img.ImageUrl = imageUrl;
+                img.CssClass = "img-fluid"; 
+                img.AlternateText = "Imagen del artículo";
+
+                
+                divImagenes.Controls.Add(img);
+                
             }
         }
 

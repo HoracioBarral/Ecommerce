@@ -35,4 +35,11 @@
         <asp:Label ID="lblStock" runat="server" Text=""></asp:Label>
     </div>
 
+      <div>
+      
+    <asp:Panel ID="divImagenes" runat="server" CssClass="image-container">
+    <!-- Las imágenes se agregarán dinámicamente aquí -->
+</asp:Panel>
+  </div>
+
 </asp:Content>
