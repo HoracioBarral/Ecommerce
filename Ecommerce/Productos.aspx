@@ -3,6 +3,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Productos</h1>
+    <style>
+       
+    .card:hover {
+        box-shadow: -1px 9px 40px 2px #020202;
+    }
+
+    .card-text.clase2:hover {
+        transform: scale(1.2);
+    }
+
+    .botonCarrito::after {
+        content: none;
+    }
+
+    .botonCarrito::before {
+        content: none;
+    }
+
+</style>
 
       <div>
         <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
@@ -21,7 +40,8 @@
                     <p class="card-text"><%# Eval("Descripcion") %></p>
                     <p class="card-text"><%# Eval("Categoria") %></p>
                     <p class="card-text"><%# Eval("Marca") %></p>
-                    <p> <a class="nav-link" style="text-decoration: none; color: darkblue; transition: transform 0.3s" " href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalles</a></p>
+                    <div style="display: flex; justify-content: space-evenly;">
+                    <p> <a class="card-text clase2" style="text-decoration: none; color: dodgerblue; transition: transform 0.3s" " href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalles</a></p> </div>
                     <asp:Button ID="btnCarrito" runat="server" Text="Agregar al carrito 🛒" onclick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
                 </div>
             </div>
@@ -30,4 +50,20 @@
             </ItemTemplate>
         </asp:Repeater>
 </div>
+    <script type="text/javascript">
+        $('.card').hover(
+            function () {
+                $(this).animate({
+                    marginTop: "-=1%",
+                    marginBottom: "+=1%"
+                }, 200)
+            },
+            function () {
+                $(this).animate({
+                    marginTop: "+=1%",
+                    marginBottom: "-=1%"
+                })
+            }
+        )
+    </script>
 </asp:Content>
