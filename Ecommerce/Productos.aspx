@@ -3,16 +3,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Productos</h1>
-    <div>
+
+      <div>
         <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
         <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
-</div>
+</div></div>
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
         <asp:Repeater ID="Repeater1" runat="server">
             <ItemTemplate>
-                <div class="card-group" style="max-width: 300px;">
+               <div class="col">
             <div class="card">
+                    <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>'  AlternateText="Imagen del artículo" />
                 <div class="card-body">
-                    <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>' CssClass="img-fluid rounded-start" AlternateText="Imagen del artículo" />
                     <h5 class="card-title"><%# Eval("NombreArticulo") %></h5>
                     <p class="card-text"><%# Eval("Descripcion") %></p>
                     <p class="card-text"><%# Eval("Categoria") %></p>
@@ -22,7 +26,8 @@
                 </div>
             </div>
         </div>
+
             </ItemTemplate>
         </asp:Repeater>
-    </div>
+</div>
 </asp:Content>
