@@ -86,6 +86,28 @@ select * from Categorias
 go
 
 
+--Se crea el procedimiento almacenado para que a partir de un IDArticulo traiga todas las imagenes de dicho articulo
+
+create procedure sp_verImagenes(@idArticulo int) as
+begin
+	declare @cantidad int
+	begin try
+		select @cantidad=COUNT(Url_Imagen) from Imagenes
+		if(@cantidad<0) begin
+			raiserror('El articulo no tiene imagenes',16,1)
+		end
+		else begin
+			select Url_Imagen from Imagenes where ID_Articulo=@idArticulo
+		end
+	end try
+	begin catch
+		raiserror('No hay imagenes',16,1)
+	end catch
+end
+
+go
+
+
 --Se insertan datos a las tablas Categorias, Articulos e Imagenes
 
 INSERT INTO Categorias (NombreCategoria)
