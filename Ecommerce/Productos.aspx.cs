@@ -12,16 +12,19 @@ namespace Ecommerce
 {
     public partial class Productos : System.Web.UI.Page
     {
-        public List<Articulo> listaarticulos = new List<Articulo>();
-        Articulo articulo = new Articulo();
-        private ArticuloNegocio articulonegocio = new ArticuloNegocio();
+        List<Articulo> listadoArticulos;
+        //public List<Articulo> listaarticulos = new List<Articulo>();
+        //Articulo articulo = new Articulo();
+        //private ArticuloNegocio articulonegocio = new ArticuloNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaarticulos = negocio.listar();
-            Repeater1.DataSource = listaarticulos;
-            Repeater1.DataBind();
+            if (!IsPostBack)
+            {
+                ArticuloNegocio articulonegocio = new ArticuloNegocio();
+                Session.Add("listadoArticulos",articulonegocio.listar());
+                Repeater1.DataSource = articulonegocio.listar();
+                Repeater1.DataBind();
+            }
         }
 
         protected string GetImageUrl(object dataItem)
@@ -35,7 +38,7 @@ namespace Ecommerce
 
         protected void btnCarrito_Click(object sender, EventArgs e)
         {
-
+            /*
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo articulo = new Articulo();
             articulo = articulonegocio.buscarPorID(id);
@@ -51,7 +54,18 @@ namespace Ecommerce
             {
                 Label1.Text = articulo.nombreArticulo + " ya añadido en carrito";
                 Label1.CssClass = "alert alert-danger";
+            }*/
+            List<Articulo> artAgregados;
+            if (Session["artAgregados"] == null)
+            {
+                artAgregados = new List<Articulo>();
+                Session.Add("artAgregados", artAgregados);
             }
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Articulo agregado = new Articulo();
+            listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
+            agregado = listadoArticulos.Find(x => x.idArticulo == id);
+            ((List<Articulo>)Session["artAgregados"]).Add(agregado);
 
         }
         private bool estaEnCarrito(Articulo articulo)
