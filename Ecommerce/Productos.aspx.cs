@@ -66,6 +66,8 @@ namespace Ecommerce
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.idArticulo == id);
             ((List<Articulo>)Session["artAgregados"]).Add(agregado);
+            Label1.Text = agregado.nombreArticulo + " añadido al carrito";
+            Label1.CssClass = "alert alert-success";
 
         }
         private bool estaEnCarrito(Articulo articulo)
