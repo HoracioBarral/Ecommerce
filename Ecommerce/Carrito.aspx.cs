@@ -12,20 +12,7 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Articulo> carrito;
-            if (Session["artAgregados"] == null)
-            {
-                carrito = new List<Articulo>();
-                Session.Add("carrito", carrito);
-                return;
-            }
-            carrito = (List<Articulo>)Session["artAgregados"];
-            Session.Add("carrito", carrito);
-            if (!IsPostBack)
-            {
-                repeaterCarrito.DataSource = Session["artAgregados"];
-                repeaterCarrito.DataBind();
-            }
+        
         }
     }
 }
