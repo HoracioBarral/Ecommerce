@@ -60,7 +60,7 @@ namespace Ecommerce
                 Repeater1.DataSource = articulonegocio.listar();
                 Repeater1.DataBind();
             }
-            
+            updateContador();
         }
 
         protected string GetImageUrl(object dataItem)

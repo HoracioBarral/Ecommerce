@@ -27,7 +27,6 @@ namespace Ecommerce
             carrito = (List<Articulo>)Session["Carrito"];
 
             cargarLista(carrito);
-
             updateContador();
 
         }
