@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using System.Reflection.Emit;
+using System.Net;
 
 namespace Ecommerce
 {
@@ -15,7 +16,36 @@ namespace Ecommerce
         List<Articulo> listadoArticulos;
         //public List<Articulo> listaarticulos = new List<Articulo>();
         //Articulo articulo = new Articulo();
-        //private ArticuloNegocio articulonegocio = new ArticuloNegocio();
+        private ArticuloNegocio articulonegocio = new ArticuloNegocio();
+        public bool EvaluarEstadoDelEnlace(string url)
+        {
+            try
+            {
+                // Crea una instancia de HttpWebRequest para la URL proporcionada.
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+                // Evitar la redirección automática.
+                request.AllowAutoRedirect = false;
+
+                // Realiza la solicitud GET.
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    // Verifica el estado de la respuesta.
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (WebException ex)
+            {
+                return false;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,7 +68,7 @@ namespace Ecommerce
 
         protected void btnCarrito_Click(object sender, EventArgs e)
         {
-            /*
+            
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo articulo = new Articulo();
             articulo = articulonegocio.buscarPorID(id);
@@ -54,7 +84,7 @@ namespace Ecommerce
             {
                 Label1.Text = articulo.nombreArticulo + " ya añadido en carrito";
                 Label1.CssClass = "alert alert-danger";
-            }*/
+            }/*
             List<Articulo> artAgregados;
             if (Session["artAgregados"] == null)
             {
@@ -67,7 +97,7 @@ namespace Ecommerce
             agregado = listadoArticulos.Find(x => x.idArticulo == id);
             ((List<Articulo>)Session["artAgregados"]).Add(agregado);
             Label1.Text = agregado.nombreArticulo + " añadido al carrito";
-            Label1.CssClass = "alert alert-success";
+            Label1.CssClass = "alert alert-success";*/
 
         }
         private bool estaEnCarrito(Articulo articulo)
