@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
-using System.Reflection.Emit;
 using System.Net;
 
 namespace Ecommerce
@@ -14,7 +13,7 @@ namespace Ecommerce
     public partial class Productos : System.Web.UI.Page
     {
         List<Articulo> listadoArticulos;
-        //public List<Articulo> listaarticulos = new List<Articulo>();
+        public List<Articulo> listaarticulos = new List<Articulo>();
         //Articulo articulo = new Articulo();
         private ArticuloNegocio articulonegocio = new ArticuloNegocio();
         public bool EvaluarEstadoDelEnlace(string url)
@@ -48,6 +47,12 @@ namespace Ecommerce
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            listaarticulos = articulonegocio.listar();
+            if (Session["Carrito"] == null)
+            {
+                List<Articulo> carrito = new List<Articulo>();
+                Session.Add("Carrito", carrito);
+            }
             if (!IsPostBack)
             {
                 ArticuloNegocio articulonegocio = new ArticuloNegocio();
@@ -55,6 +60,7 @@ namespace Ecommerce
                 Repeater1.DataSource = articulonegocio.listar();
                 Repeater1.DataBind();
             }
+            
         }
 
         protected string GetImageUrl(object dataItem)
@@ -113,6 +119,16 @@ namespace Ecommerce
                 }
             }
             return false;
+        }
+        private void updateContador()
+        {
+            Label tamCarrito = Master.FindControl("tamCarrito") as Label;
+            if (tamCarrito != null)
+            {
+                List<Articulo> carrito = new List<Articulo>();
+                carrito = (List<Articulo>)Session["Carrito"];
+                tamCarrito.Text = carrito.Count.ToString();
+            }
         }
 
     }
