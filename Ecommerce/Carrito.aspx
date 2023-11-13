@@ -32,7 +32,7 @@
                     <td><%# Eval("Categoria") %></td>
                     <td><%# Eval("Precio") %></td>
                     <td><a href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalle</a></td>
-                    <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-primary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# Eval("idArticulo") %>' /></td>
+                    <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-secondary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# Eval("idArticulo") %>' /></td>
                     </tr>
             </ItemTemplate>
         </asp:Repeater>
@@ -44,4 +44,5 @@
             
     </tfoot>
 </table>
+                    <td><asp:Button ID="btnComprar" runat="server" CssClass="btn btn-primary" OnClick="btnComprar_Click" CommandName="Comprar" Text="Realizar Compra" /></td>
 </asp:Content>

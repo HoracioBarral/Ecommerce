@@ -81,5 +81,10 @@ namespace Ecommerce
             // Actualizar la presentación y otros elementos según sea necesario
             cargarLista((List<Articulo>)Session["Carrito"]);
         }
+
+        protected void btnComprar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
