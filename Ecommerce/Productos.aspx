@@ -2,9 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <h1>Productos</h1>
     <style>
-       
+    <%--   
     .card {
             width: 300px; 
             height: 700px; 
@@ -18,7 +19,7 @@
             max-height: 100%; 
             
         }
-
+    --%>
     .card:hover {
         box-shadow: -1px 9px 40px 2px #020202;
     }
@@ -37,12 +38,14 @@
 
 </style>
 
-      <div>
-        <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
-        <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
-</div></div>
-
-
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+        
+ <div>
+     <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
+      <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
+     </div>
+</div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         <asp:Repeater ID="Repeater1" runat="server">
             <ItemTemplate>
@@ -55,7 +58,8 @@
                     <p class="card-text"><%# Eval("Categoria") %></p>
                     <p class="card-text"><%# Eval("Marca") %></p>
                     <div style="display: flex; justify-content: space-evenly;">
-                    <p> <a class="card-text clase2" style="text-decoration: none; color: dodgerblue; transition: transform 0.3s" " href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalles</a></p> </div>
+                    <p> <a class="card-text clase2" style="text-decoration: none; color: dodgerblue; transition: transform 0.3s" " href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalles</a></p> 
+                    </div>
                     <asp:Button ID="btnCarrito" runat="server" Text="Agregar al carrito 🛒" onclick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
                 </div>
             </div>
@@ -63,7 +67,11 @@
 
             </ItemTemplate>
         </asp:Repeater>
-</div>
+        </div>
+       </ContentTemplate>
+    </asp:UpdatePanel>
+
+      
     <script type="text/javascript">
         $('.card').hover(
             function () {

@@ -74,7 +74,6 @@ namespace Ecommerce
 
         protected void btnCarrito_Click(object sender, EventArgs e)
         {
-            
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo articulo = new Articulo();
             articulo = articulonegocio.buscarPorID(id);
@@ -90,7 +89,9 @@ namespace Ecommerce
             {
                 Label1.Text = articulo.nombreArticulo + " ya añadido en carrito";
                 Label1.CssClass = "alert alert-danger";
-            }/*
+            }
+            
+            /*
             List<Articulo> artAgregados;
             if (Session["artAgregados"] == null)
             {
