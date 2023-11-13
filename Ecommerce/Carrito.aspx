@@ -22,6 +22,12 @@
     </tr>
 </thead>
 <tbody>
+    <% if (((List<dominio.Articulo>)(Session["carrito"])).Count == 0)
+            { %>
+    <asp:Image ID="imgMostrar" runat="server" ImageUrl="Imagen/carritoVacio.png" AlternateText="Carrito Vacio" />
+      <% }
+        else
+        { %>
     <asp:Repeater ID="repeaterCarrito" runat="server">
             <ItemTemplate>
                 <tr>
@@ -36,6 +42,7 @@
                     </tr>
             </ItemTemplate>
         </asp:Repeater>
+     <% } %>
     </tbody>
     <tfoot>
         <tr>

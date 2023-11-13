@@ -84,12 +84,14 @@ namespace Ecommerce
                 List<Articulo> carrito = new List<Articulo>();
                 carrito = (List<Articulo>)Session["Carrito"];
                 carrito.Add(articulo);
+                Response.Redirect("Carrito.aspx", false);
             }
             else
             {
                 Label1.Text = articulo.nombreArticulo + " ya añadido en carrito";
                 Label1.CssClass = "alert alert-danger";
             }
+
             
             /*
             List<Articulo> artAgregados;
