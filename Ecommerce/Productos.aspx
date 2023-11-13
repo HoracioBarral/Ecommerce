@@ -38,7 +38,7 @@
 
 </style>
 
-    <asp:UpdatePanel runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="updatePanelProductos">
         <ContentTemplate>
         
  <div>
