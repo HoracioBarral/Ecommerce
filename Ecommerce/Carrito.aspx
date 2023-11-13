@@ -25,7 +25,10 @@
     <% if (((List<dominio.Articulo>)(Session["carrito"])).Count == 0)
             { %>
     <asp:Image ID="imgMostrar" runat="server" ImageUrl="Imagen/carritoVacio.png" AlternateText="Carrito Vacio" />
-      <% }
+     <div class="texto">
+        <asp:Label ID="carritoVacio" runat="server" Text="Tu Carrito esta  Vacio"></asp:Label>
+    </div>
+    <% }
         else
         { %>
     <asp:Repeater ID="repeaterCarrito" runat="server">
