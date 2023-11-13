@@ -1,16 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="Ecommerce.Carrito" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="Ecommerce.Carrito"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Tu carrito</h1>
-    <%
-    List<dominio.Articulo> carrito = new List<dominio.Articulo>();
-    carrito = (List<dominio.Articulo>)Session["Carrito"];
-    if(carrito.Count == 0)
-    {
-        Response.Redirect("Default.aspx");
-    }
-    %>
+
 
 <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
         <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
@@ -32,14 +25,15 @@
     <asp:Repeater ID="repeaterCarrito" runat="server">
             <ItemTemplate>
                 <tr>
+                    <td class="d-none" name="id"<%# Eval("idArticulo") %></td>
                     <td><%# Eval("NombreArticulo") %></td>
                     <td><%# Eval("Descripcion") %></td>
                     <td><%# Eval("Marca") %></td>
                     <td><%# Eval("Categoria") %></td>
                     <td><%# Eval("Precio") %></td>
                     <td><a href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalle</a></td>
-                    <td><asp:Button ID="btnQuitar" runat="server" Text="X" OnClick="btnQuitar_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo"/></td>
-                </tr>
+                    <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-primary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# Eval("idArticulo") %>' /></td>
+                    </tr>
             </ItemTemplate>
         </asp:Repeater>
     </tbody>
