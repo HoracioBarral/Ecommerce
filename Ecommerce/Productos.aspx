@@ -5,6 +5,20 @@
     <h1>Productos</h1>
     <style>
        
+    .card {
+            width: 300px; 
+            height: 700px; 
+            margin: 10px; 
+            float: left; 
+        }
+
+
+    .card-img {
+            max-width: 100%; 
+            max-height: 100%; 
+            
+        }
+
     .card:hover {
         box-shadow: -1px 9px 40px 2px #020202;
     }
