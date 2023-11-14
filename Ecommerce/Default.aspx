@@ -27,7 +27,7 @@
                 Loguearse con usuario y contraseña
             </p>
             <p>
-                <a class="btn btn-default purple">Acceder &raquo;</a>
+                <asp:Button ID="btnLogin" runat="server" Text="Loguearse" />
             </p>
         </div>
     </div>
