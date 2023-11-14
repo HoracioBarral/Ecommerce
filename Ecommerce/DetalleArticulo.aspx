@@ -61,10 +61,6 @@
         <!-- Las imágenes se agregarán dinámicamente aquí -->
         <!--</asp:Panel>-->
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#carouselImagenes').carousel();
-        });
-    </script>
+    
 
 </asp:Content>
