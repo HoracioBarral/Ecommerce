@@ -51,7 +51,9 @@
             <ItemTemplate>
                <div class="col">
             <div class="card">
-                    <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>'  AlternateText="Imagen del artículo" />
+                    <asp:HyperLink ID="hlImagen" runat="server" NavigateUrl='DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>'>
+                    <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>'  AlternateText="Imagen del artículo" Width="300" Height="250" />
+                    </asp:HyperLink>
                 <div class="card-body">
                     <h5 class="card-title"><%# Eval("NombreArticulo") %></h5>
                     <p class="card-text"><%# Eval("Descripcion") %></p>
