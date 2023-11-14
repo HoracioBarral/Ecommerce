@@ -13,6 +13,11 @@ namespace dominio
         public int idArticulo { get; set; }
 
         public string UrlImagen { get; set; }
+
+        public override string ToString()
+        {
+            return UrlImagen;
+        }
         public bool IsFirst { get; set; }
     }
 }
