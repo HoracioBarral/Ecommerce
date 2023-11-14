@@ -86,5 +86,10 @@ namespace Ecommerce
         {
 
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Productos.aspx", false);
+        }
     }
 }

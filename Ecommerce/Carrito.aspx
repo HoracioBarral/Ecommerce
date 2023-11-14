@@ -55,4 +55,5 @@
     </tfoot>
 </table>
                     <td><asp:Button ID="btnComprar" runat="server" CssClass="btn btn-primary" OnClick="btnComprar_Click" CommandName="Comprar" Text="Realizar Compra" /></td>
+                    <td><asp:Button ID="btnVolver" runat="server" CssClass="btn btn-primary" OnClick="btnVolver_Click" CommandName="Volver" Text="Volver" /></td>
 </asp:Content>
