@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Ecommerce.Default" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -12,11 +13,22 @@
                 </div>
                 <div class="col s12 l3">
                     <div class="splash-image-container">
-                        <img src="Imagen/Showroom1.jpg" class="splash-image" Width="800" Height="800">
+                        <img src="Imagen/Showroom1.jpg" class="splash-image" width="800" height="800">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-5">
+            <h4>Acceso</h4>
+            <p>
+                Loguearse con usuario y contraseña
+            </p>
+            <p>
+                <a class="btn btn-default purple">Acceder &raquo;</a>
+            </p>
+        </div>
+    </div>
 </asp:Content>
