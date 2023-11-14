@@ -44,7 +44,7 @@
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="<%#Container.DataItem %>" alt="First slide">
+                                <img class="d-block w-100" src="<%#Eval("UrlImagen") %>" alt="First slide">
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>

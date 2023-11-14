@@ -50,12 +50,7 @@ namespace Ecommerce
                         List<Imagen> imagenes = imagenNegocio.Listar(idArticulo);
                         articulo.listaImagenes.AddRange(imagenes);
                         MostrarImagenes(articulo.listaImagenes);
-                        List<string> urlImagenes = new List<string>();
-                        foreach (Imagen img in imagenes)
-                        {
-                            urlImagenes.Add(img.UrlImagen);
-                        }
-                        Repeater1.DataSource= urlImagenes;
+                        Repeater1.DataSource= imagenes;
                         Repeater1.DataBind();
                     }
                 }
