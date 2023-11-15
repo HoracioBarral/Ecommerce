@@ -33,31 +33,22 @@ namespace Ecommerce
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control LblVacio.
+        /// Control BtnAcesso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblVacio;
+        protected global::System.Web.UI.WebControls.Button BtnAcesso;
 
         /// <summary>
-        /// Control btncarrito.
+        /// Control BtnCarrito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btncarrito;
-
-        /// <summary>
-        /// Control tamCarrito.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tamCarrito;
+        protected global::System.Web.UI.WebControls.Button BtnCarrito;
 
         /// <summary>
         /// Control ContentPlaceHolder1.

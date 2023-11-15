@@ -20,15 +20,4 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-5">
-            <h4>Acceso</h4>
-            <p>
-                Loguearse con usuario y contraseña
-            </p>
-            <p>
-                <asp:Button ID="btnLogin" runat="server" Text="Loguearse" />
-            </p>
-        </div>
-    </div>
 </asp:Content>
