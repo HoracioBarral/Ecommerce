@@ -21,9 +21,18 @@ namespace Negocio
                 datos.abrirConexion();
                 while (datos.Lector.Read())
                 {
-                    usuario.idUsuario = (int)datos.Lector["ID_usuario"];
+                    if (usuario.rolUsuario == null)
+                    {
+                        usuario.rolUsuario = new RolUsuario();
+                    }
+
                     usuario.rolUsuario.idRol = (int)datos.Lector["ID_Rol"];
-                    if(usuario.rolUsuario.idRol== 2) return true;
+
+                    // Comprobar el rol aquí, ajusta según tus necesidades
+                    if (usuario.rolUsuario.idRol == 2)
+                    {
+                        return true;
+                    }
                 }
                 return false;
             }

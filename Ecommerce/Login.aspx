@@ -13,5 +13,6 @@
                <asp:TextBox ID="Txtpass" runat="server" placeholder="*****" CssClass="form-control"> </asp:TextBox>
            </div>
            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
+            <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje" EnableViewState="False"></asp:Label>
        </div>
 </asp:Content>

@@ -18,7 +18,29 @@ namespace Ecommerce
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-           
+           Usuario usuario = new Usuario();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            try
+            {
+                usuario.nombreUsuario = Txtusuario.Text;
+                usuario.Pass = Txtpass.Text;
+                if(usuarioNegocio.Logearse(usuario))
+                {
+                    Session.Add("usuario", usuario);
+                    lblMensaje.CssClass = "logueo exitoso";
+                    Response.Redirect("Default.aspx");
+                    
+                }
+                else
+                {
+                    lblMensaje.CssClass = "Datos incorrectos";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.ToString());
+            }
         }
     }
 }
