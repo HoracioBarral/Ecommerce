@@ -28,7 +28,7 @@ namespace Ecommerce
                 {
                     Session.Add("usuario", usuario);
                     lblMensaje.CssClass = "logueo exitoso";
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("Administrador.aspx");
                     
                 }
                 else
