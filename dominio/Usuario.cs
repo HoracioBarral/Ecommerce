@@ -10,9 +10,7 @@ namespace dominio
     {
         public int idUsuario { get; set; }
 
-
         public string nombreUsuario { set; get; }
-
         public string Pass { get; set; }
         public RolUsuario rolUsuario { get; set; }
     }
