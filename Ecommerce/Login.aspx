@@ -14,5 +14,9 @@
            </div>
            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
             <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje" EnableViewState="False"></asp:Label>
+           
+           <asp:Button ID="btnRegistrarse" runat="server" Text="Registrarse" OnClick="btnRegistrarse_Click" />
+            <asp:Label ID="Label1" runat="server" CssClass="mensaje" EnableViewState="False"></asp:Label>
+       
        </div>
 </asp:Content>

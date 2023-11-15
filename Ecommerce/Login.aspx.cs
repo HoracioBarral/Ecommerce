@@ -42,5 +42,10 @@ namespace Ecommerce
                 Session.Add("error", ex.ToString());
             }
         }
+
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
