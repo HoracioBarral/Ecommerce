@@ -69,7 +69,7 @@
 
                     </div>
                     <div class="col" style="text-align: right; position: center">
-                        <asp:Button ID="BtnAcesso" runat="server" Text="👤" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" />
+                        <asp:Button ID="BtnAcesso" runat="server" Text="👤" onclick="BtnAcesso_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" />
                         <asp:Button ID="BtnCarrito" runat="server" Text="🛒" OnClick="BtnCarrito_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" />
                     </div>
                 </div>

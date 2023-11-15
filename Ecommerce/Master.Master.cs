@@ -18,5 +18,10 @@ namespace Ecommerce
         {
             Response.Redirect("Carrito.aspx", false);
         }
+
+        protected void BtnAcesso_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx", false);
+        }
     }
 }
