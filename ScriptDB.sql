@@ -15,12 +15,12 @@ go
 create table Usuarios(
 	ID_Usuario int not null primary key CLUSTERED identity(1,1),
 	NombreUsuario varchar(30) not null unique,
-	Nombre varchar(30) not null,
-	Apellido varchar(30) not null,
-	Mail varchar(50) not null,
-	Telefono varchar(50) not null,
-	FechaNacimiento date check (FechaNacimiento<getdate()) not null,
-	Clave int not null,
+	Nombre varchar(30) null,
+	Apellido varchar(30) null,
+	Mail varchar(50) null,
+	Telefono varchar(50) null,
+	FechaNacimiento date check (FechaNacimiento<getdate()) null,
+	Pass varchar(50) not null,
 	ID_Rol int not null,
 	Estado bit not null default 1,
 	foreign key(ID_Rol) references Roles(ID_Rol)
@@ -126,3 +126,8 @@ VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=6382296
        ('https://levisarg.vtexassets.com/arquivos/ids/593707/272_6310356e0eb94.jpg?v=637976702233070000', 3),
        ('https://sporting.vtexassets.com/arquivos/ids/300847-1200-1200?width=1200&height=1200&aspect=true', 4),
        ('https://www.stockcenter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwd6185bf0/products/UBU11L187-1841/UBU11L187-1841-1.JPG', 5);
+
+
+--Se insertan valores a la tabla Roles
+
+insert into Roles values ('1'),('2')

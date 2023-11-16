@@ -40,12 +40,13 @@ namespace Ecommerce
             {
 
                 Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Registro.aspx", false);
         }
     }
 }
