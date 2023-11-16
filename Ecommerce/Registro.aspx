@@ -5,8 +5,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label">Registro</label>
-
+            <label class="form-label">Nombre de Usuario</label>
+            <asp:TextBox ID="TxtNombreUser" runat="server" placeholder="nombreUsuario" CssClass="form-control"> </asp:TextBox>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <asp:TextBox ID="Txtpass" runat="server" placeholder="*****" CssClass="form-control"> </asp:TextBox>
+        </div>
+        <asp:Button ID="btnRegistro" runat="server" Text="Registrarse" OnClick="btnRegistro_Click" />
+        <asp:Label ID="Label1" runat="server" CssClass="mensaje" EnableViewState="False"></asp:Label>
     </div>
 </asp:Content>
