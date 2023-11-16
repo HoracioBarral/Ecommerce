@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-        public bool Logearse(Usuario usuario )
+        public bool Logearse(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -43,6 +43,39 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
 
+        }
+
+
+        public bool Registrarse(string nombreUsuario, string pass, int idRol)
+        {
+            Usuario usuarioNuevo = new Usuario();
+            usuarioNuevo.nombreUsuario = nombreUsuario;
+            usuarioNuevo.Pass = pass;
+            usuarioNuevo.rolUsuario=new RolUsuario();
+            usuarioNuevo.rolUsuario.idRol = idRol;
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("insert into Usuarios(NombreUsuario,Pass,ID_Rol) output inserted.ID_Usuario values(@usuarionuevo,@pass,2)");
+                datos.setearParametro("@usuarionuevo", usuarioNuevo.nombreUsuario);
+                datos.setearParametro("@pass", usuarioNuevo.Pass);
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    usuarioNuevo.idUsuario = (int)datos.Lector["ID_Usuario"];
+                }
+                if (usuarioNuevo.idUsuario >0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 }

@@ -13,6 +13,8 @@
             <asp:TextBox ID="Txtpass" runat="server" placeholder="*****" CssClass="form-control"> </asp:TextBox>
         </div>
         <asp:Button ID="btnRegistro" runat="server" Text="Registrarse" OnClick="btnRegistro_Click" />
-        <asp:Label ID="Label1" runat="server" CssClass="mensaje" EnableViewState="False"></asp:Label>
+        <div>
+            <asp:Label ID="Label1" runat="server" CssClass="mensaje" Visible="false"></asp:Label>
+        </div>
     </div>
 </asp:Content>
