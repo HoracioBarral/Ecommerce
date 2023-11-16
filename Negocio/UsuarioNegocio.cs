@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-        public bool Logearse(Usuario usuario)
+        public int Logearse(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -29,12 +29,14 @@ namespace Negocio
                     usuario.rolUsuario.idRol = (int)datos.Lector["ID_Rol"];
 
                     // Comprobar el rol aquí, ajusta según tus necesidades
-                    if (usuario.rolUsuario.idRol == 2)
+                    if (usuario.rolUsuario.idRol > 0)
                     {
-                        return true;
+                        if (usuario.rolUsuario.idRol == 1)
+                        { return 1; }
+                        else { return 2; }
                     }
                 }
-                return false;
+                return -1;
             }
             catch (Exception ex)
             {

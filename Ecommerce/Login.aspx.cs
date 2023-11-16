@@ -24,22 +24,29 @@ namespace Ecommerce
             {
                 usuario.nombreUsuario = Txtusuario.Text;
                 usuario.Pass = Txtpass.Text;
-                if(usuarioNegocio.Logearse(usuario))
+                if(usuarioNegocio.Logearse(usuario)==2)
+                {
+                    
+                    lblMensaje.CssClass = "logueo exitoso";
+                    Response.Redirect("Default.aspx");
+                }
+                if(usuarioNegocio.Logearse(usuario) == 1)
                 {
                     Session.Add("usuario", usuario);
                     lblMensaje.CssClass = "logueo exitoso";
                     Response.Redirect("Administrador.aspx");
-                    
                 }
                 else
                 {
-                    lblMensaje.CssClass = "Datos incorrectos";
+                    lblMensaje.CssClass = "Usuario no existe";
+                    Response.Redirect("Error.aspx");
                 }
             }
             catch (Exception ex)
             {
 
                 Session.Add("error", ex.ToString());
+            
             }
         }
 
