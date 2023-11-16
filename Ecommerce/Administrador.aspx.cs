@@ -14,7 +14,7 @@ namespace Ecommerce
             if (Session ["usuario"] == null )
             {
                 Session.Add("Error", "Debes ser administrador para ingresar");
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx", false);
             }
         }
     }

@@ -65,6 +65,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Contacto.aspx">Contacto</a>
                             </li>
+                            <% if(Session ["usuario"]!= null && ((dominio.Usuario) Session["usuario"]).rolUsuario.idRol == 1 ) {  %>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="Administrador.aspx">Administrador</a>
+                            </li>
+
+                            <% } %>
                         </ul>
 
                     </div>
