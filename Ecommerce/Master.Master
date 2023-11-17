@@ -65,6 +65,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Contacto.aspx">Contacto</a>
                             </li>
+                            <% if(Session ["usuario"]!= null && ((dominio.Usuario) Session["usuario"]).rolUsuario.idRol == 1 ) {  %>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="Administrador.aspx">Administrador</a>
+                            </li>
+
+                            <% } %>
                         </ul>
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
@@ -73,9 +80,8 @@
                         </ul>
                     </div>
                     <div class="col" style="text-align: right; position: center">
-                        <asp:Label ID="LblVacio" runat="server" Text=""></asp:Label>
-                        <asp:ImageButton ID="btncarrito" Text="Carrito" runat="server" OnClick="btncarrito_Click" CssClass="btn btn-danger" BorderColor="Black" ImageUrl="Imagen/carrito.png" Width="45" Height="35" />
-                        <asp:Label ID="tamCarrito" runat="server" Text="0"></asp:Label>
+                        <asp:Button ID="BtnAcesso" runat="server" Text="👤" onclick="BtnAcesso_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" />
+                        <asp:Button ID="BtnCarrito" runat="server" Text="🛒" OnClick="BtnCarrito_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" />
                     </div>
                 </div>
             </nav>

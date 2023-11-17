@@ -38,28 +38,29 @@
 
     <div>
 
-        <asp:Panel ID="divImagenes" runat="server" CssClass="image-container">-->
-            <div id="carouselImagenes" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <asp:Repeater ID="Repeater1" runat="server">
-                        <ItemTemplate>
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="<%#Eval("UrlImagen") %>" alt="First slide">
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+        <!--<asp:Panel ID="divImagenes" runat="server" CssClass="image-container">-->
+        <div id="carouselImagenes" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
+                        <div class="carousel-item active" id="divCarouselItem">
+                            <img class="d-block w-100" src="<%#Eval("UrlImagen") %>" alt="First slide">
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
-            <!-- Las imágenes se agregarán dinámicamente aquí -->
-        </asp:Panel>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagenes" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselImagenes" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+        <!-- Las imágenes se agregarán dinámicamente aquí -->
+        <!--</asp:Panel>-->
     </div>
+    
 
 </asp:Content>
