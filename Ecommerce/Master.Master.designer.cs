@@ -42,7 +42,7 @@ namespace Ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// Control LblVacio.
+        /// Control BtnAcesso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

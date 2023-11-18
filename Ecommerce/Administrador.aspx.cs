@@ -44,9 +44,52 @@ namespace Ecommerce
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            int idArticulo = Convert.ToInt32(((Button)sender).CommandArgument);
 
+            ArticuloNegocio articulonegocio = new ArticuloNegocio();
+            Articulo articulo = articulonegocio.buscarPorID(idArticulo);
+            if (articulo != null)
+            {
+                txtNNombreArticulo.Text = articulo.nombreArticulo;
+                ViewState["IdArticulo"] = idArticulo;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "abrirModalEditar();", true);
+            }
         }
 
+        protected void btnGuardarCambios_Click(object sender, EventArgs e)
+        {
+            string nuevoNombre = txtNNombreArticulo.Text;
 
+            // Obtén el ID del artículo desde el ViewState (puedes cambiar esto según tu lógica)
+            int idArticulo = Convert.ToInt32(ViewState["IdArticulo"]);
+
+            // Crea una instancia de AccesoDatos
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                // Configura la consulta UPDATE
+                datos.setConexion($"UPDATE Articulos SET NombreArticulo = '{nuevoNombre}' WHERE idArticulo = {idArticulo}");
+
+                // Ejecuta la consulta
+                datos.ejecutarAccion();
+
+                // Actualiza la interfaz o realiza otras acciones si es necesario
+                // ...
+
+                // Cierra el modal después de guardar cambios
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "cerrarModalEditar();", true);
+            }
+            catch (Exception ex)
+            {
+                // Maneja la excepción
+                // ...
+            }
+            finally
+            {
+                // Cierra la conexión
+                datos.cerrarConexion();
+            }
+        }
     }
 }
