@@ -31,10 +31,6 @@
         <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
     </div>
 
-    <div>
-        <h2>Stock:</h2>
-        <asp:Label ID="lblStock" runat="server" Text=""></asp:Label>
-    </div>
 
     <div>
 
