@@ -33,11 +33,20 @@ namespace Ecommerce
                 Repeater1.DataBind();
             }
         }
+        protected string GetImageUrl(object dataItem)
+        {
+            if (dataItem is Articulo articulo && articulo.listaImagenes.Count > 0)
+            {
+                return articulo.listaImagenes[0].UrlImagen;
+            }
+            return string.Empty;
+        }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
 
         }
+
 
     }
 }

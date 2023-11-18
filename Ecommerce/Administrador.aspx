@@ -39,14 +39,15 @@
             <div class="card">
                 <div style="display: flex; justify-content: center;">
                     <asp:HyperLink ID="hlImagen" runat="server" NavigateUrl='<%# "DetalleArticulo.aspx?id=" + Eval("idArticulo") %>'>
+                        <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>' AlternateText="Imagen del artículo" Width="300" Height="250" />
                     </asp:HyperLink>
-                    </div>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title"><%# Eval("NombreArticulo") %></h5>
                     <p class="card-text"><%# Eval("Descripcion") %></p>
                     <p class="card-text"><%# Eval("Categoria") %></p>
                     <p class="card-text"><%# Eval("Marca") %></p>
-                    <p class="card-text"><%# Eval("Stock") %></p>
+                    <p class="card-text">Stock<%# Eval("Stock") %></p>
                     <div style="display: flex; justify-content: space-evenly;">
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar⚙" OnClick="btnModificar_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo"/>
                     </div>
