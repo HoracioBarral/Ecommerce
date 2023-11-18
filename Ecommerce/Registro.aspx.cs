@@ -23,8 +23,8 @@ namespace Ecommerce
             {
                 nuevoUsuario.nombreUsuario = TxtNombreUser.Text;
                 nuevoUsuario.Pass = Txtpass.Text;
-                UsuarioNegocio usuarioNegocio = new UsuarioNegocio(nuevoUsuario);
-                if (usuarioNegocio.Registrarse(2)){
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                if (usuarioNegocio.Registrarse(nuevoUsuario)){
                     Label1.Visible = true;
                     Label1.Text = "Registro Exitoso";
                 }

@@ -9,11 +9,6 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-        public Usuario usuario1 { get; set; }
-        public UsuarioNegocio(Usuario usuario){
-            usuario1 = usuario;
-        }
-
         public int Logearse(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -53,17 +48,16 @@ namespace Negocio
         }
 
 
-        public bool Registrarse(int idRol=2)
+        public bool Registrarse(Usuario usuario1)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (!existeUsuario())
+                if (!existeUsuario(usuario1.nombreUsuario))
                 {
-                    datos.setConexion("insert into Usuarios(NombreUsuario,Pass,ID_Rol) output inserted.ID_Usuario values(@usuarionuevo,@pass,@idRol)");
+                    datos.setConexion("insert into Usuarios(NombreUsuario,Pass,ID_Rol) output inserted.ID_Usuario values(@usuarionuevo,@pass,2)");
                     datos.setearParametro("@usuarionuevo", usuario1.nombreUsuario);
                     datos.setearParametro("@pass", usuario1.Pass);
-                    datos.setearParametro("@idRol", idRol);
                     datos.abrirConexion();
                     return true;
                 }
@@ -77,13 +71,13 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
         }
 
-        public bool existeUsuario()
+        private bool existeUsuario(string nombreUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setConexion("select COUNT(NombreUsuario) as 'Cantidad' from usuarios where NombreUsuario like @nombreUsuario");
-                datos.setearParametro("@nombreUsuario", usuario1.nombreUsuario);
+                datos.setearParametro("@nombreUsuario", nombreUsuario);
                 datos.abrirConexion();
                 while (datos.Lector.Read())
                 {
