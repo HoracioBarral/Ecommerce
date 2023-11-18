@@ -19,6 +19,10 @@ namespace Ecommerce
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
            Usuario usuario = new Usuario();
+            /*
+             En la clase UsuarioNegocio agregue un constructor que recibe como parametro un objeto de tipo Usuario
+            por eso falla en esta linea
+             */
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {

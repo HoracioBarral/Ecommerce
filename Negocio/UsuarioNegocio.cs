@@ -9,6 +9,11 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
+        public Usuario usuario1 { get; set; }
+        public UsuarioNegocio(Usuario usuario){
+            usuario1 = usuario;
+        }
+
         public int Logearse(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -48,26 +53,18 @@ namespace Negocio
         }
 
 
-        public bool Registrarse(string nombreUsuario, string pass, int idRol)
+        public bool Registrarse(int idRol=2)
         {
-            Usuario usuarioNuevo = new Usuario();
-            usuarioNuevo.nombreUsuario = nombreUsuario;
-            usuarioNuevo.Pass = pass;
-            usuarioNuevo.rolUsuario=new RolUsuario();
-            usuarioNuevo.rolUsuario.idRol = idRol;
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConexion("insert into Usuarios(NombreUsuario,Pass,ID_Rol) output inserted.ID_Usuario values(@usuarionuevo,@pass,2)");
-                datos.setearParametro("@usuarionuevo", usuarioNuevo.nombreUsuario);
-                datos.setearParametro("@pass", usuarioNuevo.Pass);
-                datos.abrirConexion();
-                while (datos.Lector.Read())
+                if (!existeUsuario())
                 {
-                    usuarioNuevo.idUsuario = (int)datos.Lector["ID_Usuario"];
-                }
-                if (usuarioNuevo.idUsuario >0)
-                {
+                    datos.setConexion("insert into Usuarios(NombreUsuario,Pass,ID_Rol) output inserted.ID_Usuario values(@usuarionuevo,@pass,@idRol)");
+                    datos.setearParametro("@usuarionuevo", usuario1.nombreUsuario);
+                    datos.setearParametro("@pass", usuario1.Pass);
+                    datos.setearParametro("@idRol", idRol);
+                    datos.abrirConexion();
                     return true;
                 }
                 return false;
@@ -78,6 +75,35 @@ namespace Negocio
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
+        }
+
+        public bool existeUsuario()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("select COUNT(NombreUsuario) as 'Cantidad' from usuarios where NombreUsuario like @nombreUsuario");
+                datos.setearParametro("@nombreUsuario", usuario1.nombreUsuario);
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    if ((int)datos.Lector["Cantidad"] == 1)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
 
 namespace Ecommerce
 {
@@ -17,17 +18,20 @@ namespace Ecommerce
 
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            Usuario nuevoUsuario = new Usuario();
             try
             {
-                if(usuarioNegocio.Registrarse(TxtNombreUser.Text, Txtpass.Text, 2)){
+                nuevoUsuario.nombreUsuario = TxtNombreUser.Text;
+                nuevoUsuario.Pass = Txtpass.Text;
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio(nuevoUsuario);
+                if (usuarioNegocio.Registrarse(2)){
                     Label1.Visible = true;
                     Label1.Text = "Registro Exitoso";
                 }
                 else
                 {
                     Label1.Visible = true;
-                    Label1.Text = "No se pudo registrar";
+                    Label1.Text = "El nombre de usuario ya existe";
                 }
             }
             catch (Exception ex)
