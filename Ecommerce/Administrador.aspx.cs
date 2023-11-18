@@ -58,31 +58,33 @@ namespace Ecommerce
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            string nuevoNombre = txtNNombreArticulo.Text;
-
-            // Obtén el ID del artículo desde el ViewState (puedes cambiar esto según tu lógica)
-            int idArticulo = Convert.ToInt32(ViewState["IdArticulo"]);
-
-            // Crea una instancia de AccesoDatos
-            AccesoDatos datos = new AccesoDatos();
-
+                AccesoDatos datos = new AccesoDatos();
             try
             {
-                // Configura la consulta UPDATE
-                datos.setConexion($"UPDATE Articulos SET NombreArticulo = '{nuevoNombre}' WHERE idArticulo = {idArticulo}");
+                // Obtén el nuevo nombre del artículo desde el TextBox en el modal
+                string nuevoNombre = txtNNombreArticulo.Text;
 
-                // Ejecuta la consulta
+                // Obtén el ID del artículo desde el ViewState (puedes cambiar esto según tu lógica)
+                int idArticulo = Convert.ToInt32(ViewState["IdArticulo"]);
+
+                // Crea una instancia de AccesoDatos
+
+                // Configura la consulta UPDATE
+                datos.setConexion("UPDATE Articulos SET NombreArticulo = @NuevoNombre WHERE ID_Articulo = @IDArticulo");
+                datos.abrirConexion();
+                datos.setearParametro("@NuevoNombre", nuevoNombre);
+                datos.setearParametro("@IDArticulo", idArticulo);
                 datos.ejecutarAccion();
 
                 // Actualiza la interfaz o realiza otras acciones si es necesario
                 // ...
 
                 // Cierra el modal después de guardar cambios
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "cerrarModalEditar();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "cerrarModalEditar(); Sys.WebForms.PageRequestManager.getInstance().forceUpdate();", true);
             }
             catch (Exception ex)
             {
-                // Maneja la excepción
+                // Maneja la excepción (puedes mostrar un mensaje de error, hacer un log, etc.)
                 // ...
             }
             finally

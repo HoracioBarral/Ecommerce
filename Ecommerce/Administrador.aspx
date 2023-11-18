@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
     <h3>Bienvenido Administrador</h3>
 
         <style>
@@ -49,7 +49,7 @@
                                     <p class="card-text"><%# Eval("Marca") %></p>
                                     <p class="card-text">Stock<%# Eval("Stock") %></p>
                                     <div style="display: flex; justify-content: space-evenly;">
-                                        <asp:Button ID="btnModificar" runat="server" Text="Modificar⚙" OnClientClick="abrirModalEditar(); return false;" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
+                                        <asp:Button ID="btnModificar" runat="server" Text="Modificar⚙" OnClientClick="abrirModalEditar(); return false;" />
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,12 @@
         }
         // Cerrar
         function cerrarModalEditar() {
-            $('#modalEditarArticulo').modal('hide');
+            try {
+                console.log("Cerrando modal...");
+                $('#modalEditarArticulo').modal('hide');
+            } catch (error) {
+                console.error("Error al cerrar el modal:", error);
+            }
         }
     </script>
 
