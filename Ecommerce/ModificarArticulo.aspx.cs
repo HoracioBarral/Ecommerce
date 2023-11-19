@@ -20,7 +20,7 @@ namespace Ecommerce
             {
                 int id = int.Parse(Request.QueryString["id"]);
                 List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
-                Articulo articulo = lista.Find(a => a.idArticulo == id);
+                Articulo articulo = lista.Find(a => a.idArticulo == (id+1));
                 txtNombreArticulo.Text = articulo.nombreArticulo;
                 txtDescripcion.Text = articulo.descripcion;
                 txtCategoria.Text = articulo.categoria.nombreCategoria;

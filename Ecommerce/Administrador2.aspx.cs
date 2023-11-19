@@ -30,7 +30,7 @@ namespace Ecommerce
         {
             int id = Convert.ToInt32(e.CommandArgument);
             List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
-            Articulo articulo = lista.Find(a => a.idArticulo == id);
+            Articulo articulo = lista.Find(a => a.idArticulo == (id+1));
             if (articulo != null)
             {
                 Response.Redirect("ModificarArticulo.aspx?id=" + id, false);
