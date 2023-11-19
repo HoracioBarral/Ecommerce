@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Administrador.aspx" />
     <Content Include="Administrador2.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Contacto.aspx" />
@@ -82,13 +81,6 @@
     <Content Include="Error.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador.aspx.cs">
-      <DependentUpon>Administrador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Administrador.aspx.designer.cs">
-      <DependentUpon>Administrador.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Administrador2.aspx.cs">
       <DependentUpon>Administrador2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

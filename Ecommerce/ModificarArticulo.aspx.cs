@@ -24,7 +24,25 @@ namespace Ecommerce
                 txtNombreArticulo.Text = articulo.nombreArticulo;
                 txtDescripcion.Text = articulo.descripcion;
                 txtCategoria.Text = articulo.categoria.nombreCategoria;
+                txtMarca.Text = articulo.marca.nombreMarca;
+                txtPrecio.Text = articulo.precio.ToString();
+                txtStock.Text = articulo.stock.ToString();
             }
+        }
+
+        protected void btnGuardarCambios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolverAtras_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
