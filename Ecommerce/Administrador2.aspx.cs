@@ -13,20 +13,28 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Login.aspx", false);
+            }
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            Session.Add("listaArticulos", articuloNegocio.listar());
             if (!IsPostBack)
             {
-                List<Articulo> listaArticulos;
-                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-                listaArticulos = articuloNegocio.listar();
-                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.DataSource = Session["listaArticulos"];
                 dgvArticulos.DataBind();
             }
         }
 
-        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string id=dgvArticulos.SelectedDataKey.Value.ToString();
-            Response.Redirect("DetalleArticulo.aspx?id="+ id, false);
+            int id = Convert.ToInt32(e.CommandArgument);
+            List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
+            Articulo articulo = lista.Find(a => a.idArticulo == id);
+            if (articulo != null)
+            {
+                Response.Redirect("ModificarArticulo.aspx?id=" + id, false);
+            }
         }
     }
 }

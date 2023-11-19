@@ -75,6 +75,7 @@
     <Content Include="DetalleArticulo.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="ModificarArticulo.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
@@ -139,6 +140,13 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarArticulo.aspx.cs">
+      <DependentUpon>ModificarArticulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarArticulo.aspx.designer.cs">
+      <DependentUpon>ModificarArticulo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
