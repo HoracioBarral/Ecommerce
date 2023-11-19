@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
+using System.Drawing;
 
 namespace Ecommerce
 {
@@ -18,9 +19,21 @@ namespace Ecommerce
 
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
-            Usuario nuevoUsuario = new Usuario();
+            if (string.IsNullOrWhiteSpace(TxtNombreUser.Text))
+            {
+                Label1.Visible = true;
+                Label1.Text = "Debe ingresar nombre de usuario";
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Txtpass.Text))
+            {
+                Label1.Visible = true;
+                Label1.Text = "Debe ingresar contraseña";
+                return;
+            }
             try
             {
+                Usuario nuevoUsuario = new Usuario();
                 nuevoUsuario.nombreUsuario = TxtNombreUser.Text;
                 nuevoUsuario.Pass = Txtpass.Text;
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
