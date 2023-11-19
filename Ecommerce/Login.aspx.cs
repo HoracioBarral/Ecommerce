@@ -18,8 +18,20 @@ namespace Ecommerce
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-           Usuario usuario = new Usuario();
-           UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            if (string.IsNullOrWhiteSpace(Txtusuario.Text))
+            {
+                Label1.Visible = true;
+                Label1.Text = "Debe ingresar nombre de usuario";
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Txtpass.Text))
+            {
+                Label1.Visible = true;
+                Label1.Text = "Debe ingresar contraseña";
+                return;
+            }
+            Usuario usuario = new Usuario();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
                 usuario.nombreUsuario = Txtusuario.Text;
