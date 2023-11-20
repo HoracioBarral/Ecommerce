@@ -26,15 +26,10 @@ namespace Ecommerce
             }
         }
 
-        protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(e.CommandArgument);
-            List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
-            Articulo articulo = lista.Find(a => a.idArticulo == (id+1));
-            if (articulo != null)
-            {
-                Response.Redirect("ModificarArticulo.aspx?id=" + id, false);
-            }
+            int id = (int)(dgvArticulos.SelectedDataKey.Value);
+            Response.Redirect("ModificarArticulo.aspx?id=" + id, false);
         }
     }
 }

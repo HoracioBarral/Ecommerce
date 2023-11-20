@@ -5,21 +5,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <h1>Productos</h1>
     <style>
-    <%--   
-    .card {
-            width: 300px; 
-            height: 700px; 
-            margin: 10px; 
-            float: left; 
-        }
-
-
-    .card-img {
-            max-width: 100%; 
-            max-height: 100%; 
-            
-        }
-    --%>
+    
     .card:hover {
         box-shadow: -1px 9px 40px 2px #020202;
     }
@@ -40,7 +26,6 @@
 
     <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="updatePanelProductos">
         <ContentTemplate>
-        
  <div>
      <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
       <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>

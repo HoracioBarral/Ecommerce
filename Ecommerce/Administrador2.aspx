@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
     <h3>Listado de Articulos</h3>
 
-    <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idArticulo" OnRowCommand="dgvArticulos_RowCommand">
+    <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idArticulo" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="nombreArticulo"/>
             <asp:BoundField HeaderText="Descripcion" DataField="descripcion"/>
