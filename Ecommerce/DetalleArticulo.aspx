@@ -31,6 +31,23 @@
         <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <asp:Label ID="lblTalle" runat="server" Text="Seleccionar Talle"></asp:Label>
+            <asp:DropDownList runat="server" ID="ddlTalles" AutoPostBack="true" OnSelectedIndexChanged="ddlTalles_SelectedIndexChanged">
+            <asp:ListItem Text="XS" />
+            <asp:ListItem Text="S" />
+            <asp:ListItem Text="M" />
+            <asp:ListItem Text="L" />
+            <asp:ListItem Text="XL" />
+        </asp:DropDownList>
+        </div>
+        <div class="col">
+            <asp:Label ID="lblCantidad" runat="server" Text="Seleccionar Cantidad"></asp:Label>
+            <asp:DropDownList ID="ddlCantidad" runat="server" AutoPostBack="true">
+            </asp:DropDownList>
+        </div>
+    </div>
 
     <div>
 

@@ -83,6 +83,9 @@ namespace Ecommerce
             }
         }
 
-        
+        protected void ddlTalles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
