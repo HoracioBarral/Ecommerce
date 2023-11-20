@@ -62,7 +62,7 @@ namespace Negocio
 
             try
             {
-                datos.setConexion("SELECT A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.NombreCategoria AS Categoria, M.NombreMarca AS Marca, A.Precio, A.Stock FROM Articulos A INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca WHERE A.ID_Articulo = @ID");
+                datos.setConexion("SELECT A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.ID_Categoria ,C.NombreCategoria AS Categoria, M.ID_Marca ,M.NombreMarca AS Marca, A.Precio, A.Stock FROM Articulos A INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca WHERE A.ID_Articulo = @ID");
                 datos.setearParametro("@ID", Id);
                 datos.abrirConexion();
 
@@ -73,8 +73,10 @@ namespace Negocio
                     articulo.nombreArticulo = (string)datos.Lector["NombreArticulo"];
                     articulo.descripcion = (string)datos.Lector["Descripcion"];
                     articulo.categoria = new Categoria();
+                    articulo.categoria.idCategoria = (int)datos.Lector["ID_Categoria"];
                     articulo.categoria.nombreCategoria = (string)datos.Lector["Categoria"];
                     articulo.marca = new Marca();
+                    articulo.marca.idMarca = (int)datos.Lector["ID_Marca"];
                     articulo.marca.nombreMarca = (string)datos.Lector["Marca"];
                     articulo.precio = (decimal)datos.Lector["Precio"];
                     articulo.stock = (int)datos.Lector["Stock"];

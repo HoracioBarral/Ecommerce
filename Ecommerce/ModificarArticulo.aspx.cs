@@ -23,38 +23,43 @@ namespace Ecommerce
                 }
                 if (!IsPostBack)
                 {
+                    CategoriaNegocio cat = new CategoriaNegocio();
+                    List<Categoria> listaC = cat.listarCategorias();
+                    MarcaNegocio mar = new MarcaNegocio();
+                    List<Marca> listaM = mar.listarMarcas();
+                    ddlCategoria.DataSource = listaC;
+                    ddlCategoria.DataValueField = "idCategoria";
+                    ddlCategoria.DataTextField = "nombreCategoria";
+                    ddlCategoria.DataBind();
+                    ddlMarca.DataSource = listaM;
+                    ddlMarca.DataValueField = "idMarca";
+                    ddlMarca.DataTextField = "nombreMArca";
+                    ddlMarca.DataBind();
                     if (Request.QueryString["nuevo"] == "true")
                     {
-                        CategoriaNegocio cat = new CategoriaNegocio();
-                        List<Categoria> listaC = cat.listarCategorias();
-                        MarcaNegocio mar = new MarcaNegocio();
-                        List<Marca> listaM = mar.listarMarcas();
-                        ddlCategoria.DataSource = listaC;
-                        ddlCategoria.DataValueField = "idCategoria";
-                        ddlCategoria.DataTextField = "nombreCategoria";
-                        ddlCategoria.DataBind();
-                        ddlMarca.DataSource = listaM;
-                        ddlMarca.DataValueField = "idMarca";
-                        ddlMarca.DataTextField = "nombreMArca";
-                        ddlMarca.DataBind();
-                        // Lógica para cargar un nuevo artículo (puede ser limpiar los controles, por ejemplo)
+                        
                         LimpiarControles();
                     }
-                    else if (Request.QueryString["id"] != null)
+                    if (Request.QueryString["id"] != null)
                     {
+
                         int id = int.Parse(Request.QueryString["id"]);
-                        List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
-                        Articulo articulo = lista.Find(a => a.idArticulo == id);
+                        ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                        Articulo articulo = new Articulo();
+                        articulo = articuloNegocio.buscarPorID(id);
                         txtNombreArticulo.Text = articulo.nombreArticulo;
                         txtDescripcion.Text = articulo.descripcion;
-                        ddlCategoria.Text = articulo.categoria.nombreCategoria;
-                        ddlMarca.Text = articulo.marca.nombreMarca;
+                        ddlCategoria.SelectedValue = articulo.categoria.idCategoria.ToString();
+                        ddlMarca.SelectedValue = articulo.marca.idMarca.ToString();
                         txtPrecio.Text = articulo.precio.ToString();
                         txtStock.Text = articulo.stock.ToString();
                         ImagenNegocio imagenNegocio = new ImagenNegocio();
                         List<Imagen> imagenes = imagenNegocio.Listar(id);
                         RepeaterImagenes.DataSource = imagenes;
                         RepeaterImagenes.DataBind();
+                        /*List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
+                        Articulo articulo = lista.Find(a => a.idArticulo == id);*/
+
                     }
                 }
             }
@@ -75,6 +80,23 @@ namespace Ecommerce
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
+            Articulo nuevo  = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();  
+            nuevo.nombreArticulo = txtNombreArticulo.Text;
+            nuevo.descripcion = txtDescripcion.Text;
+            nuevo.categoria = new Categoria();
+            nuevo.categoria.idCategoria = int.Parse(ddlCategoria.SelectedValue);
+            nuevo.marca = new Marca();
+            nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
+            nuevo.precio = decimal.Parse(txtPrecio.Text);
+            nuevo.stock = int.Parse(txtStock.Text);
+            nuevo.listaImagenes = new List<Imagen>();
+            Imagen img = new Imagen();
+            img.UrlImagen = txtUrlImagen.Text;
+            img.idArticulo = nuevo.idArticulo;
+            nuevo.listaImagenes.Add(img);
+            negocio.agregar(nuevo);
+            Response.Redirect("Administrador2.aspx");
 
         }
 
