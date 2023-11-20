@@ -1,6 +1,7 @@
 create database Ecommerce
 go
 
+
 use ecommerce
 go
 
@@ -52,6 +53,16 @@ create table Articulos(
 	ID_Marca int not null,
 	foreign key(ID_Categoria) references Categorias(ID_Categoria),
 	foreign key(ID_Marca) references Marcas(ID_Marca)
+)
+go
+
+
+create table StockPorTalles(
+	ID_Registro int not null primary key CLUSTERED identity(1,1),
+	Talle varchar(5) not null,
+	Stock int not null check(Stock>=0),
+	ID_Articulo int not null,
+	foreign key(ID_Articulo) references Articulos(ID_Articulo)
 )
 go
 
