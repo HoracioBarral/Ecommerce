@@ -119,5 +119,30 @@ namespace Negocio
             }
             finally { datos.cerrarConexion();}
         }
+        public void modificarConSP(Articulo arti)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("sp_ModificarArticulo");
+                datos.setearParametro("@ID_Articulo",arti.idArticulo);
+                datos.setearParametro("@NombreArticulo", arti.nombreArticulo);
+                datos.setearParametro("@Descripcion", arti.descripcion);
+                datos.setearParametro("@Precio", arti.precio);
+                datos.setearParametro("@Stock", arti.stock);
+                datos.setearParametro("@ID_Categoria", arti.categoria.idCategoria);
+                datos.setearParametro("@ID_Marca", arti.marca.idMarca);
+
+                datos.ejecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion();}
+        }
     }
 }

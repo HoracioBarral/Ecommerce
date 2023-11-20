@@ -66,6 +66,12 @@ namespace Negocio
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
+        public void setearSP(string sp)
+        {
+            comando = new SqlCommand();
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
 
         public void cerrarConexion()
         {

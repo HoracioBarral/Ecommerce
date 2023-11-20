@@ -40,7 +40,7 @@ namespace Ecommerce
                         
                         LimpiarControles();
                     }
-                    if (Request.QueryString["id"] != null)
+                    if (Request.QueryString["id"] != null&& !IsPostBack)
                     {
 
                         int id = int.Parse(Request.QueryString["id"]);
@@ -80,8 +80,8 @@ namespace Ecommerce
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            Articulo nuevo  = new Articulo();
-            ArticuloNegocio negocio = new ArticuloNegocio();  
+            Articulo nuevo = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
             nuevo.nombreArticulo = txtNombreArticulo.Text;
             nuevo.descripcion = txtDescripcion.Text;
             nuevo.categoria = new Categoria();
@@ -95,7 +95,16 @@ namespace Ecommerce
             img.UrlImagen = txtUrlImagen.Text;
             img.idArticulo = nuevo.idArticulo;
             nuevo.listaImagenes.Add(img);
+
+            if (Request.QueryString["id"] != null)
+            {
+                nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
+                negocio.modificarConSP(nuevo);
+
+            }
+            else
             negocio.agregar(nuevo);
+
             Response.Redirect("Administrador2.aspx");
 
         }
