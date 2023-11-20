@@ -24,10 +24,16 @@ namespace Ecommerce
                 if (Request.QueryString["nuevo"] == "true")
                 {
                     CategoriaNegocio cat = new CategoriaNegocio();
+                    List<Categoria> listaC = cat.listarCategorias();
                     MarcaNegocio mar = new MarcaNegocio();
-                    ddlCategoria.DataSource = cat.listarCategorias();
-                    ddlMarca.DataSource = mar.listarMarcas();
+                    List<Marca> listaM = mar.listarMarcas();
+                    ddlCategoria.DataSource = listaC;
+                    ddlCategoria.DataValueField = "idCategoria";
+                    ddlCategoria.DataTextField = "nombreCategoria";
                     ddlCategoria.DataBind();
+                    ddlMarca.DataSource =listaM;
+                    ddlMarca.DataValueField = "idMarca";
+                    ddlMarca.DataTextField = "nombreMArca";
                     ddlMarca.DataBind();
                     // Lógica para cargar un nuevo artículo (puede ser limpiar los controles, por ejemplo)
                     LimpiarControles();
@@ -77,6 +83,11 @@ namespace Ecommerce
         {
             Button btnStringUrl = (Button)sender;
             string url=btnStringUrl.CommandArgument;
+        }
+
+        protected void txtUrlImagen_TextChanged(object sender, EventArgs e)
+        {
+            Image1.ImageUrl = txtUrlImagen.Text;
         }
     }
 }

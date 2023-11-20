@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -14,7 +15,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtDescripcion">Descripción</label>
-                    <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" />
                 </div>
             </div>
         </div>
@@ -47,16 +48,28 @@
                     <asp:TextBox runat="server" ID="txtStock" CssClass="form-control" />
                 </div>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-end">
-                    <asp:Button runat="server" ID="btnGuardarCambios" Text="Guardar Cambios" CssClass="btn btn-primary mr-2" OnClick="btnGuardarCambios_Click" />
-                    <asp:Button runat="server" ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger mr-2" OnClick="btnEliminar_Click" />
-                    <asp:Button runat="server" ID="btnVolverAtras" Text="Volver Atrás" CssClass="btn btn-secondary" OnClick="btnVolverAtras_Click" />
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <asp:Button runat="server" ID="btnGuardarCambios" Text="Guardar Cambios" CssClass="btn btn-primary mr-2" OnClick="btnGuardarCambios_Click" />
+                        <asp:Button runat="server" ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger mr-2" OnClick="btnEliminar_Click" />
+                        <asp:Button runat="server" ID="btnVolverAtras" Text="Volver Atrás" CssClass="btn btn-secondary" OnClick="btnVolverAtras_Click" />
+                    </div>
                 </div>
             </div>
-        </div>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtUrlImagen">Url Imagen</label>
+                            <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged"/>                          
+                            <asp:Image ImageUrl="https://cdn-icons-png.flaticon.com/512/4173/4173686.png" 
+                                ID="Image1" runat="server" Width="60%" />
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>    
     </div>
  
     <div class="row row-cols-1 row-cols-md-3 g-4">
