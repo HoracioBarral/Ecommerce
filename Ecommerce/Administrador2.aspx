@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
-    <h3>Listado de Articulos</h3>
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Listado de Articulos</h3>
+        <asp:Button runat="server" ID="btnNuevoArticulo" Text="Nuevo Articulo" CssClass="btn btn-primary" OnClick="btnNuevoArticulo_Click" />
+    </div>
 
     <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idArticulo" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">
         <Columns>

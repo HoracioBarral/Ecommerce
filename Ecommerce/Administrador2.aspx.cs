@@ -31,5 +31,10 @@ namespace Ecommerce
             int id = (int)(dgvArticulos.SelectedDataKey.Value);
             Response.Redirect("ModificarArticulo.aspx?id=" + id, false);
         }
+
+        protected void btnNuevoArticulo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificarArticulo.aspx?nuevo=true");
+        }
     }
 }

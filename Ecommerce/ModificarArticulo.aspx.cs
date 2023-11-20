@@ -18,22 +18,39 @@ namespace Ecommerce
             {
                 Response.Redirect("Login.aspx", false);
             }
-            if (Request.QueryString["id"] != null && !IsPostBack)
+            if (!IsPostBack)
             {
-                int id = int.Parse(Request.QueryString["id"]);
-                List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
-                Articulo articulo = lista.Find(a => a.idArticulo == id);
-                txtNombreArticulo.Text = articulo.nombreArticulo;
-                txtDescripcion.Text = articulo.descripcion;
-                txtCategoria.Text = articulo.categoria.nombreCategoria;
-                txtMarca.Text = articulo.marca.nombreMarca;
-                txtPrecio.Text = articulo.precio.ToString();
-                txtStock.Text = articulo.stock.ToString();
-                ImagenNegocio imagenNegocio = new ImagenNegocio();
-                List<Imagen> imagenes = imagenNegocio.Listar(id);
-                RepeaterImagenes.DataSource = imagenes;
-                RepeaterImagenes.DataBind();
+                if (Request.QueryString["nuevo"] == "true")
+                {
+                    // Lógica para cargar un nuevo artículo (puede ser limpiar los controles, por ejemplo)
+                    LimpiarControles();
+                }
+                else if (Request.QueryString["id"] != null )
+                {
+                    int id = int.Parse(Request.QueryString["id"]);
+                    List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
+                    Articulo articulo = lista.Find(a => a.idArticulo == id);
+                    txtNombreArticulo.Text = articulo.nombreArticulo;
+                    txtDescripcion.Text = articulo.descripcion;
+                    txtCategoria.Text = articulo.categoria.nombreCategoria;
+                    txtMarca.Text = articulo.marca.nombreMarca;
+                    txtPrecio.Text = articulo.precio.ToString();
+                    txtStock.Text = articulo.stock.ToString();
+                    ImagenNegocio imagenNegocio = new ImagenNegocio();
+                    List<Imagen> imagenes = imagenNegocio.Listar(id);
+                    RepeaterImagenes.DataSource = imagenes;
+                    RepeaterImagenes.DataBind();
+                }
             }
+        }
+        private void LimpiarControles()
+        {
+            txtNombreArticulo.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            txtCategoria.Text = string.Empty;
+            txtMarca.Text = string.Empty;
+            txtPrecio.Text = string.Empty;
+            txtStock.Text = string.Empty;
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)

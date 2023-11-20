@@ -78,17 +78,14 @@ namespace Negocio
                     articulo.marca.nombreMarca = (string)datos.Lector["Marca"];
                     articulo.precio = (decimal)datos.Lector["Precio"];
                     articulo.stock = (int)datos.Lector["Stock"];
-                    articulo.listaImagenes = new List<Imagen>();;
+                    articulo.listaImagenes = new List<Imagen>(); ;
 
                     return articulo;
                 }
-
-                // Si no se encontró un artículo con el ID especificado, devolvemos null.
                 return null;
             }
             catch (Exception ex)
             {
-                // Manejar la excepción (registro, notificación, etc.) o lanzarla nuevamente si es necesario.
                 throw ex;
             }
             finally
@@ -96,6 +93,29 @@ namespace Negocio
                 datos.cerrarConexion();
             }
 
+        }
+        public void agregar(Articulo nuevo)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("INSERT INTO Articulos (NombreArticulo, Descripcion, Precio, Stock, ID_Categoria, ID_Marca) " + "VALUES (@NombreArticulo, @Descripcion, @Precio, @Stock, @ID_Categoria, @ID_Marca);");
+                datos.setearParametro("@NombreArticulo",nuevo.nombreArticulo);
+                datos.setearParametro("@Descripcion", nuevo.descripcion);
+                datos.setearParametro("@Precio", nuevo.precio);
+                datos.setearParametro("@Stock", nuevo.stock);
+                datos.setearParametro("@ID_Categoria", nuevo.categoria.idCategoria);
+                datos.setearParametro("@ID_Marca", nuevo.marca.idMarca);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion();}
         }
     }
 }
