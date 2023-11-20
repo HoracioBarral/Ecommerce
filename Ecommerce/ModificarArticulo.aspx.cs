@@ -14,6 +14,7 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArticuloNegocio negocio = new ArticuloNegocio();
             if(Session["usuario"] == null)
             {
                 Response.Redirect("Login.aspx", false);
@@ -22,6 +23,12 @@ namespace Ecommerce
             {
                 if (Request.QueryString["nuevo"] == "true")
                 {
+                    CategoriaNegocio cat = new CategoriaNegocio();
+                    MarcaNegocio mar = new MarcaNegocio();
+                    ddlCategoria.DataSource = cat.listarCategorias();
+                    ddlMarca.DataSource = mar.listarMarcas();
+                    ddlCategoria.DataBind();
+                    ddlMarca.DataBind();
                     // Lógica para cargar un nuevo artículo (puede ser limpiar los controles, por ejemplo)
                     LimpiarControles();
                 }
@@ -32,8 +39,8 @@ namespace Ecommerce
                     Articulo articulo = lista.Find(a => a.idArticulo == id);
                     txtNombreArticulo.Text = articulo.nombreArticulo;
                     txtDescripcion.Text = articulo.descripcion;
-                    txtCategoria.Text = articulo.categoria.nombreCategoria;
-                    txtMarca.Text = articulo.marca.nombreMarca;
+                    ddlCategoria.Text = articulo.categoria.nombreCategoria;
+                    ddlMarca.Text = articulo.marca.nombreMarca;
                     txtPrecio.Text = articulo.precio.ToString();
                     txtStock.Text = articulo.stock.ToString();
                     ImagenNegocio imagenNegocio = new ImagenNegocio();
@@ -47,8 +54,6 @@ namespace Ecommerce
         {
             txtNombreArticulo.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
-            txtCategoria.Text = string.Empty;
-            txtMarca.Text = string.Empty;
             txtPrecio.Text = string.Empty;
             txtStock.Text = string.Empty;
         }
@@ -65,7 +70,7 @@ namespace Ecommerce
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Administrador2.aspx");
         }
 
         protected void btnEliminarImagen_Click(object sender, EventArgs e)

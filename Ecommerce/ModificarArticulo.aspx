@@ -23,13 +23,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtCategoria">Categoría</label>
-                    <asp:TextBox runat="server" ID="txtCategoria" CssClass="form-control" />
+                    <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtMarca">Marca</label>
-                    <asp:TextBox runat="server" ID="txtMarca" CssClass="form-control" />
+                    <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
         </div>
