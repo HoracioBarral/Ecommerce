@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label for="txtUrlImagen">Url Imagen</label>
                             <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged"/>                          
-                            <asp:Image ImageUrl="https://cdn-icons-png.flaticon.com/512/4173/4173686.png" 
+                            <asp:Image ImageUrl=" " 
                                 ID="Image1" runat="server" Width="60%" />
                         </div>
                     </div>

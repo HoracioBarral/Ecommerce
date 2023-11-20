@@ -92,9 +92,10 @@ namespace Ecommerce
             nuevo.stock = int.Parse(txtStock.Text);
             nuevo.listaImagenes = new List<Imagen>();
             Imagen img = new Imagen();
+            ImagenNegocio inegocio = new ImagenNegocio();
             img.UrlImagen = txtUrlImagen.Text;
-            img.idArticulo = nuevo.idArticulo;
             nuevo.listaImagenes.Add(img);
+            negocio.agregar(nuevo);
 
             if (Request.QueryString["id"] != null)
             {
@@ -103,9 +104,13 @@ namespace Ecommerce
 
             }
             else
-            negocio.agregar(nuevo);
+            {
+            }
+                int idArticuloGenerado = nuevo.idArticulo;
 
-            Response.Redirect("Administrador2.aspx");
+                inegocio.GuardarImagen(txtUrlImagen.Text, idArticuloGenerado);
+
+                Response.Redirect("Administrador2.aspx");
 
         }
 

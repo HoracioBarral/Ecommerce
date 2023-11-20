@@ -40,7 +40,27 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-        }
 
+        }
+        public void GuardarImagen(string urlImagen, int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("sp_GuardarImagen");
+                datos.setearParametro("@Url_Imagen", urlImagen);
+                datos.setearParametro("@ID_Articulo", idArticulo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
