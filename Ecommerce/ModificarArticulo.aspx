@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -62,28 +62,32 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="txtUrlImagen">Url Imagen</label>
-                            <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged"/>                          
-                            <asp:Image ImageUrl=" " 
+                            <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" />
+                            <asp:Image ImageUrl=" "
                                 ID="Image1" runat="server" Width="60%" />
                         </div>
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-        </div>    
+        </div>
     </div>
- 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <asp:Repeater ID="RepeaterImagenes" runat="server">
-            <ItemTemplate>
-                <div class="col">
-                    <div class="card">
-                        <asp:Button runat="server" ID="btnEliminarImagen" Text="Eliminar Imagen" CssClass="btn btn-danger mr-2" CommandArgument='<%#Eval("UrlImagen") %>' OnClick="btnEliminarImagen_Click"/>
-                        <div style="display: flex; justify-content: center;">
-                            <img src="<%#Eval("UrlImagen") %>" class="card-img-top" alt="...">
+
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <asp:Repeater ID="RepeaterImagenes" runat="server">
+                    <ItemTemplate>
+                        <div class="col">
+                            <div class="card">
+                                <asp:Button runat="server" ID="btnEliminarImagen" Text="Eliminar Imagen" CssClass="btn btn-danger mr-2" CommandArgument='<%#Eval("UrlImagen") %>' OnClick="btnEliminarImagen_Click" />
+                                <div style="display: flex; justify-content: center;">
+                                    <img src="<%#Eval("UrlImagen") %>" class="card-img-top">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
-    </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

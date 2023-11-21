@@ -38,7 +38,7 @@
             <div class="card">
                 <div style="display: flex; justify-content: center;">
                     <asp:HyperLink ID="hlImagen" runat="server" NavigateUrl='<%# "DetalleArticulo.aspx?id=" + Eval("idArticulo") %>'>
-                    <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>'  AlternateText="Imagen del artículo" Width="300" Height="250" />
+                        <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# GetImageUrl(Container.DataItem) %>' AlternateText="Imagen del artículo" Width="300" Height="250" />
                     </asp:HyperLink>
                     </div>
                 <div class="card-body">

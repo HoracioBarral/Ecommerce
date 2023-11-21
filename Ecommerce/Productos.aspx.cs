@@ -14,7 +14,6 @@ namespace Ecommerce
     {
         List<Articulo> listadoArticulos;
         public List<Articulo> listaarticulos = new List<Articulo>();
-        //Articulo articulo = new Articulo();
         private ArticuloNegocio articulonegocio = new ArticuloNegocio();
         public bool EvaluarEstadoDelEnlace(string url)
         {
@@ -69,8 +68,10 @@ namespace Ecommerce
             {
                 return articulo.listaImagenes[0].UrlImagen;
             }
-            return string.Empty;
+            return "Imagen/error.png";
+            //return string.Empty;
         }
+
 
         protected void btnCarrito_Click(object sender, EventArgs e)
         {
@@ -92,21 +93,6 @@ namespace Ecommerce
                 Label1.CssClass = "alert alert-danger";
             }
 
-            
-            /*
-            List<Articulo> artAgregados;
-            if (Session["artAgregados"] == null)
-            {
-                artAgregados = new List<Articulo>();
-                Session.Add("artAgregados", artAgregados);
-            }
-            int id = int.Parse(((Button)sender).CommandArgument);
-            Articulo agregado = new Articulo();
-            listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
-            agregado = listadoArticulos.Find(x => x.idArticulo == id);
-            ((List<Articulo>)Session["artAgregados"]).Add(agregado);
-            Label1.Text = agregado.nombreArticulo + " añadido al carrito";
-            Label1.CssClass = "alert alert-success";*/
 
         }
         private bool estaEnCarrito(Articulo articulo)
