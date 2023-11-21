@@ -15,6 +15,15 @@ namespace Ecommerce
     {
 
         /// <summary>
+        /// Control btnNuevaCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNuevaCategoria;
+
+        /// <summary>
         /// Control dgvCategorias.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvCategorias;
+
+        /// <summary>
+        /// Control btnNuevaMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNuevaMarca;
 
         /// <summary>
         /// Control dgvMarcas.

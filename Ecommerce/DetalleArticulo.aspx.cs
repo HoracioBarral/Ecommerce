@@ -44,7 +44,7 @@ namespace Ecommerce
                         lblDescripcion.Text = articulo.descripcion;
                         lblCategoria.Text = articulo.categoria.nombreCategoria;
                         lblMarca.Text = articulo.marca.nombreMarca;
-                        lblPrecio.Text = articulo.precio.ToString("C"); // Formatear el precio como moneda
+                        lblPrecio.Text = articulo.precio.ToString("C2"); // Formatear el precio como moneda
                         
                         ImagenNegocio imagenNegocio = new ImagenNegocio();
                         List<Imagen> imagenes = imagenNegocio.Listar(idArticulo);

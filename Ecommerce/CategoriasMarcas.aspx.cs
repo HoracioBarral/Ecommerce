@@ -36,5 +36,15 @@ namespace Ecommerce
         {
 
         }
+
+        protected void btnNuevaCategoria_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNuevaMarca_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

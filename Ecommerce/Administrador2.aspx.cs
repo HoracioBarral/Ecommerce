@@ -41,5 +41,10 @@ namespace Ecommerce
         {
             Response.Redirect("CategoriasMarcas.aspx", false);
         }
+
+        protected void BtnUsuarios_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UsuariosRegistrados.aspx",false);
+        }
     }
 }

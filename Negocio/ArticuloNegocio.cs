@@ -14,15 +14,10 @@ namespace Negocio
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
-            // MarcaNegocio marcaNegocio = new MarcaNegocio();
-            //CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            // ImagenNegocio imagenNegocio = new ImagenNegocio();
-
             try
             {
                 datos.setConexion("SELECT A.ID_Articulo,A.NombreArticulo,A.Descripcion,C.NombreCategoria AS Categoria,M.NombreMarca AS Marca,A.Precio,A.Stock,STRING_AGG(I.Url_Imagen, ';') AS Imagenes\r\nFROM Articulos A INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca LEFT JOIN Imagenes I ON I.ID_Articulo = A.ID_Articulo\r\nGROUP BY A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.NombreCategoria, M.NombreMarca, A.Precio, A.Stock");
                 datos.abrirConexion();
-
                 while (datos.Lector.Read())
                 {
                     Articulo articulo = new Articulo();

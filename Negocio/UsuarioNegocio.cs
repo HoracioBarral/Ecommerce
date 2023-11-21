@@ -99,5 +99,35 @@ namespace Negocio
             }
 
         }
+
+        public List<Usuario> Listar()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+            datos.setConexion("select * from usuarios where ID_Rol=2 and Estado=1");
+            try
+            {
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.idUsuario = (int)datos.Lector["ID_Usuario"];
+                    usuario.nombreUsuario = (string)datos.Lector["NombreUsuario"];
+                    usuario.rolUsuario = new RolUsuario();
+                    usuario.rolUsuario.idRol = (int)datos.Lector["ID_Rol"];
+                    lista.Add(usuario);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

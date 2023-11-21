@@ -78,6 +78,7 @@
     <Content Include="ModificarArticulo.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Registro.aspx" />
+    <Content Include="UsuariosRegistrados.aspx" />
     <Content Include="Web.config" />
     <Content Include="Error.aspx" />
   </ItemGroup>
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosRegistrados.aspx.cs">
+      <DependentUpon>UsuariosRegistrados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuariosRegistrados.aspx.designer.cs">
+      <DependentUpon>UsuariosRegistrados.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

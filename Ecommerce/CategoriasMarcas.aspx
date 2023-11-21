@@ -6,9 +6,9 @@
     <div class="d-flex justify-content-between mb-3">
         <h3>Desde aqui podra editar y/o agregar Marcas y Categorias</h3>
     </div>
-
     <div class="d-flex justify-content-between mb-3">
         <h3>Listado de Categorias</h3>
+        <asp:Button runat="server" ID="btnNuevaCategoria" Text="Nueva Categoria" CssClass="btn btn-primary" OnClick="btnNuevaCategoria_Click"/>
     </div>
     <asp:GridView ID="dgvCategorias" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idCategoria" OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
         <Columns>
@@ -20,6 +20,7 @@
     <hr>
     <div class="d-flex justify-content-between mb-3">
         <h3>Listado de Marcas</h3>
+        <asp:Button runat="server" ID="btnNuevaMarca" Text="Nueva Marca" CssClass="btn btn-primary" OnClick="btnNuevaMarca_Click"/>
     </div>
     <asp:GridView ID="dgvMarcas" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idMarca" OnSelectedIndexChanged="dgvMarcas_SelectedIndexChanged" >
         <Columns>
