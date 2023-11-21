@@ -19,16 +19,16 @@ namespace Ecommerce
 
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNombreUser.Text))
+            if (TxtNombreUser.Text.Contains(" ") || TxtNombreUser.Text.Length<5)
             {
                 Label1.Visible = true;
-                Label1.Text = "Debe ingresar nombre de usuario";
+                Label1.Text = "El nombre de usuario debe tener al menos 4 caracteres y/o sin espaciones en blanco";
                 return;
             }
-            if (string.IsNullOrWhiteSpace(Txtpass.Text))
+            if (Txtpass.Text.Contains(" ") || Txtpass.Text.Length<5)
             {
                 Label1.Visible = true;
-                Label1.Text = "Debe ingresar contraseña";
+                Label1.Text = "La contraseña debe tener al menos cuatro caracteres y/o sin espaciones en blanco";
                 return;
             }
             try

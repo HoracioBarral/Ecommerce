@@ -50,8 +50,12 @@ namespace Ecommerce
                 }
                 else
                 {
-                    lblMensaje.CssClass = "Usuario no existe";
-                    Response.Redirect("Error.aspx");
+                    Label1.Visible = true;
+                    Label1.Text = "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?";
+                    Txtusuario.Text = "";
+                    Txtpass.Text = "";
+                    //lblMensaje.CssClass = "Usuario no existe";
+                    //Response.Redirect("Error.aspx");
                 }
             }
             catch (Exception ex)
