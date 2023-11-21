@@ -42,7 +42,7 @@ namespace Ecommerce
                         
                         LimpiarControles();
                     }
-                    if (Request.QueryString["id"] != null&& !IsPostBack)
+                    if (Request.QueryString["id"] != null && !IsPostBack)
                     {
 
                         int id = int.Parse(Request.QueryString["id"]);
@@ -95,7 +95,7 @@ namespace Ecommerce
             ImagenNegocio inegocio = new ImagenNegocio();
             img.UrlImagen = txtUrlImagen.Text;
             nuevo.listaImagenes.Add(img);
-            negocio.agregar(nuevo);
+            //negocio.agregar(nuevo);
 
             if (Request.QueryString["id"] != null)
             {
@@ -142,6 +142,12 @@ namespace Ecommerce
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnStock_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            Response.Redirect("Stock.aspx?id=" + id, false);
         }
     }
 }

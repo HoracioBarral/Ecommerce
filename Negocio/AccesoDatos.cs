@@ -50,7 +50,6 @@ namespace Negocio
         public void ejecutarAccion()
         {
             comando.Connection = conexion;
-
             try
             {
                 conexion.Open();
