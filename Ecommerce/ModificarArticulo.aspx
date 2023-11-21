@@ -62,11 +62,12 @@
                 <asp:Button runat="server" ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger mb-2" OnClick="btnEliminar_Click" />
                 <asp:Button runat="server" ID="btnVolverAtras" Text="Volver Atrás" CssClass="btn btn-secondary mb-2" OnClick="btnVolverAtras_Click" />
             </div>
-
+            <%if(ConfirmaEliminacion) { %>
             <div>
                 <asp:CheckBox Text="Confirmar" ID="chkConfirmElimi" runat="server" />
                 <asp:Button ID="btnEliminar2" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" />
             </div>
+            <%} %>
         </div>
     </div>
 

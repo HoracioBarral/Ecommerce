@@ -12,8 +12,10 @@ namespace Ecommerce
 {
     public partial class ModificarArticulo : System.Web.UI.Page
     {
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            ConfirmaEliminacion = false;
             try
             {
                 ArticuloNegocio negocio = new ArticuloNegocio();
@@ -114,7 +116,7 @@ namespace Ecommerce
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            ConfirmaEliminacion = true;
         }
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
