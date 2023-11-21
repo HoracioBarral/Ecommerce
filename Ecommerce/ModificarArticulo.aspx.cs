@@ -139,5 +139,10 @@ namespace Ecommerce
         {
             Image1.ImageUrl = txtUrlImagen.Text;
         }
+
+        protected void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

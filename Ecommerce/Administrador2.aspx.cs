@@ -36,5 +36,10 @@ namespace Ecommerce
         {
             Response.Redirect("ModificarArticulo.aspx?nuevo=true");
         }
+
+        protected void btnMarcaCategoria_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CategoriasMarcas.aspx", false);
+        }
     }
 }
