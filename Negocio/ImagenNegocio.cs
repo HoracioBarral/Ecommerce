@@ -44,10 +44,9 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConexion("sp_GuardarImagen");
+                datos.setearSP("sp_GuardarImagen");
                 datos.setearParametro("@Url_Imagen", urlImagen);
                 datos.setearParametro("@ID_Articulo", idArticulo);
-
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

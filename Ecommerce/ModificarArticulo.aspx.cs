@@ -101,7 +101,6 @@ namespace Ecommerce
             {
                 nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
                 negocio.modificarConSP(nuevo);
-
             }
             else
             {
