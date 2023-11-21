@@ -19,5 +19,7 @@ namespace dominio
             return UrlImagen;
         }
         public bool IsFirst { get; set; }
+
+        public bool Estado { get; set; }
     }
 }

@@ -52,8 +52,7 @@ namespace Ecommerce
                 {
                     Label1.Visible = true;
                     Label1.Text = "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?";
-                    Txtusuario.Text = "";
-                    Txtpass.Text = "";
+                    Txtpass.Text = string.Empty;
                     //lblMensaje.CssClass = "Usuario no existe";
                     //Response.Redirect("Error.aspx");
                 }

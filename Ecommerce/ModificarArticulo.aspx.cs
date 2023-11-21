@@ -128,6 +128,11 @@ namespace Ecommerce
         {
             Button btnStringUrl = (Button)sender;
             string url=btnStringUrl.CommandArgument;
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            int id = int.Parse(Request.QueryString["id"].ToString());
+            imagenNegocio.EliminarImagen(id, url);
+            RepeaterImagenes.DataSource = imagenNegocio.Listar(id);
+            RepeaterImagenes.DataBind();
         }
 
         protected void txtUrlImagen_TextChanged(object sender, EventArgs e)

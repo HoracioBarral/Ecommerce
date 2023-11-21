@@ -13,23 +13,20 @@ namespace Negocio
         public List <Imagen> Listar(int id)
         {
             List<Imagen> lista = new List<Imagen>();
-            datos.setConexion("SELECT * FROM IMAGENES WHERE ID_Articulo = @idArticulo");
-            datos.setearParametro("@idArticulo", id);
-            datos.abrirConexion();
             try
             {
-
-            while (datos.Lector.Read())
-            {
-                Imagen imagen = new Imagen();
-                imagen.idImagen = datos.Lector.GetInt32(0);
-                imagen.idArticulo = datos.Lector.GetInt32(datos.Lector.GetOrdinal("ID_Articulo"));
+                datos.setConexion("SELECT * FROM IMAGENES WHERE ID_Articulo = @idArticulo and estado=1");
+                datos.setearParametro("@idArticulo", id);
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    Imagen imagen = new Imagen();
+                    imagen.idImagen = datos.Lector.GetInt32(0);
+                    imagen.idArticulo = datos.Lector.GetInt32(datos.Lector.GetOrdinal("ID_Articulo"));
                     imagen.UrlImagen= (string)datos.Lector["Url_Imagen"];
-
                     lista.Add(imagen);
-            }
+                }
             return lista;
-
             }
             catch (Exception ex)
             {
@@ -52,6 +49,26 @@ namespace Negocio
                 datos.setearParametro("@ID_Articulo", idArticulo);
 
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void EliminarImagen(int id,string url)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update Imagenes set Estado=0 where ID_Articulo=@id and Url_Imagen like @url");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@url", url);
+                datos.abrirConexion();
             }
             catch (Exception ex)
             {

@@ -46,6 +46,8 @@ namespace Ecommerce
                     Label1.Visible = true;
                     Label1.Text = "El nombre de usuario ya existe";
                 }
+                TxtNombreUser.Text = string.Empty;
+                Txtpass.Text = string.Empty;
             }
             catch (Exception ex)
             {

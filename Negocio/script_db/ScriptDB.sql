@@ -71,6 +71,7 @@ create table Imagenes(
 	ID_Imagen int not null primary key CLUSTERED identity(1,1),
 	Url_Imagen varchar(1500) not null,
 	ID_Articulo int not null,
+	Estado bit not null default 1,
 	foreign key(ID_Articulo) references Articulos(ID_Articulo)
 )
 go
@@ -142,3 +143,39 @@ VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=6382296
 --Se insertan valores a la tabla Roles
 
 insert into Roles values ('1'),('2')
+
+
+CREATE PROCEDURE sp_ModificarArticulo
+    @ID_Articulo INT,
+    @NombreArticulo VARCHAR(50),
+    @Descripcion VARCHAR(100),
+    @Precio MONEY,
+    @Stock INT,
+    @ID_Categoria INT,
+    @ID_Marca INT
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        UPDATE Articulos
+        SET
+            NombreArticulo = @NombreArticulo,
+            Descripcion = @Descripcion,
+            Precio = @Precio,
+            Stock = @Stock,
+            ID_Categoria = @ID_Categoria,
+            ID_Marca = @ID_Marca
+        WHERE
+            ID_Articulo = @ID_Articulo;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK;
+
+        -- Puedes agregar aquí código para manejar la excepción, por ejemplo:
+        -- SELECT ERROR_MESSAGE() AS ErrorMessage;
+    END CATCH;
+END;
