@@ -57,8 +57,6 @@ namespace Ecommerce
                         List<Imagen> imagenes = imagenNegocio.Listar(id);
                         RepeaterImagenes.DataSource = imagenes;
                         RepeaterImagenes.DataBind();
-                        /*List<Articulo> lista = (List<Articulo>)(Session["listaArticulos"]);
-                        Articulo articulo = lista.Find(a => a.idArticulo == id);*/
 
                     }
                 }

@@ -29,7 +29,7 @@ namespace Ecommerce
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = (int)(dgvArticulos.SelectedDataKey.Value);
-            Response.Redirect("ModificarArticulo.aspx?id=" + id, false);
+            Response.Redirect($"ModificarArticulo.aspx?id={id}", false);
         }
 
         protected void btnNuevoArticulo_Click(object sender, EventArgs e)

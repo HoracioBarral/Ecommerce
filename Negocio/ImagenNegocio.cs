@@ -15,7 +15,7 @@ namespace Negocio
             List<Imagen> lista = new List<Imagen>();
             try
             {
-                datos.setConexion("SELECT * FROM IMAGENES WHERE ID_Articulo = @idArticulo and estado=1");
+                datos.setConexion("SELECT * FROM IMAGENES WHERE ID_Articulo = @idArticulo and Estado=1");
                 datos.setearParametro("@idArticulo", id);
                 datos.abrirConexion();
                 while (datos.Lector.Read())

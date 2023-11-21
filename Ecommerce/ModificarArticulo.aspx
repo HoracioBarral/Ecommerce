@@ -4,74 +4,98 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtNombreArticulo">Nombre de Articulo</label>
-                    <asp:TextBox runat="server" ID="txtNombreArticulo" CssClass="form-control" />
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Columna 1 -->
+            <div class="form-group">
+                <label for="txtNombreArticulo">Nombre de Articulo</label>
+                <asp:TextBox runat="server" ID="txtNombreArticulo" CssClass="form-control" />
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtDescripcion">Descripción</label>
-                    <asp:TextBox runat="server" ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" />
-                </div>
+
+            <div class="form-group">
+                <label for="txtDescripcion">Descripción</label>
+                <asp:TextBox runat="server" ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtUrlImagen">Url Imagen</label>
+                <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" />
+            </div>
+            <div class="form-group">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnAgregarImagen_Click" style="margin: 20px; padding: 10px;"/>
+                        <asp:Image ImageUrl=" " ID="Image1" runat="server" Width="60%" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtCategoria">Categoría</label>
-                    <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
-                </div>
+        <div class="col-md-4">
+            <!-- Columna 2 -->
+            <div class="form-group">
+                <label for="txtCategoria">Categoría</label>
+                <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtMarca">Marca</label>
-                    <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
-                </div>
+
+            <div class="form-group">
+                <label for="txtMarca">Marca</label>
+                <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtPrecio">Precio</label>
-                    <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
-                </div>
+        <div class="col-md-4">
+            <!-- Columna 3 -->
+            <div class="form-group">
+                <label for="txtPrecio">Precio</label>
+                <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtStock">Stock</label>
-                    <asp:TextBox runat="server" ID="txtStock" CssClass="form-control" />
-                </div>
+
+            <div class="form-group">
+                <label for="txtStock">Stock</label>
+                <asp:TextBox runat="server" ID="txtStock" CssClass="form-control" />
             </div>
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <div class="d-flex justify-content-end">
-                        <asp:Button runat="server" ID="btnGuardarCambios" Text="Guardar Cambios" CssClass="btn btn-primary mr-2" OnClick="btnGuardarCambios_Click" />
-                        <asp:Button runat="server" ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger mr-2" OnClick="btnEliminar_Click" />
-                        <asp:Button runat="server" ID="btnVolverAtras" Text="Volver Atrás" CssClass="btn btn-secondary" OnClick="btnVolverAtras_Click" />
-                    </div>
-                </div>
+
+            <div class="d-flex justify-content-end">
+                <asp:Button runat="server" ID="btnGuardarCambios" Text="Guardar Cambios" CssClass="btn btn-primary mb-2" OnClick="btnGuardarCambios_Click" />
+                <asp:Button runat="server" ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger mb-2" OnClick="btnEliminar_Click" />
+                <asp:Button runat="server" ID="btnVolverAtras" Text="Volver Atrás" CssClass="btn btn-secondary mb-2" OnClick="btnVolverAtras_Click" />
             </div>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="txtUrlImagen">Url Imagen</label>
-                            <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" />
-                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" CssClass="btn btn-danger mr-2" runat="server" OnClick="btnAgregarImagen_Click"/>
-                            <asp:Image ImageUrl=" "
-                                ID="Image1" runat="server" Width="60%" />
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+
+            <div>
+                <asp:CheckBox Text="Confirmar" ID="chkConfirmElimi" runat="server" />
+                <asp:Button ID="btnEliminar2" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" />
+            </div>
         </div>
     </div>
+
+ 
+    <div>
+</div>
+   <!-- ... -->
+    <div>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <!-- Imágenes -->
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
+                        <div class="col">
+                            <div class="card">
+                                <asp:Button runat="server" ID="btnEliminarImagen" Text="Eliminar Imagen" CssClass="btn btn-danger mt-2" CommandArgument='<%#Eval("UrlImagen") %>' OnClick="btnEliminarImagen_Click" />
+                                <div style="display: flex; justify-content: center;">
+                                    <img src="<%#Eval("UrlImagen") %>" class="card-img-top">
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+ </div>
+</div>
 
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
@@ -79,7 +103,7 @@
                 <asp:Repeater ID="RepeaterImagenes" runat="server">
                     <ItemTemplate>
                         <div class="col">
-                            <div class="card">
+                            <div class="card" style="margin-top: 10px; padding: 10px;">
                                 <asp:Button runat="server" ID="btnEliminarImagen" Text="Eliminar Imagen" CssClass="btn btn-danger mr-2" CommandArgument='<%#Eval("UrlImagen") %>' OnClick="btnEliminarImagen_Click" />
                                 <div style="display: flex; justify-content: center;">
                                     <img src="<%#Eval("UrlImagen") %>" class="card-img-top">
