@@ -67,7 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminCategorias.aspx" />
     <Content Include="Administrador2.aspx" />
+    <Content Include="AdminMarcas.aspx" />
     <Content Include="AdmStock.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="CategoriasMarcas.aspx" />
@@ -85,12 +87,26 @@
     <Content Include="Error.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminCategorias.aspx.cs">
+      <DependentUpon>AdminCategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminCategorias.aspx.designer.cs">
+      <DependentUpon>AdminCategorias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrador2.aspx.cs">
       <DependentUpon>Administrador2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Administrador2.aspx.designer.cs">
       <DependentUpon>Administrador2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMarcas.aspx.cs">
+      <DependentUpon>AdminMarcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMarcas.aspx.designer.cs">
+      <DependentUpon>AdminMarcas.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdmStock.aspx.cs">
       <DependentUpon>AdmStock.aspx</DependentUpon>

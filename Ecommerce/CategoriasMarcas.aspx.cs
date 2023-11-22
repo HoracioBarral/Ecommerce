@@ -29,12 +29,14 @@ namespace Ecommerce
 
         protected void dgvCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int idCategoria = (int)(dgvCategorias.SelectedDataKey.Value);
+            Response.Redirect("AdminCategorias.aspx?id=" + idCategoria, false);
         }
 
         protected void dgvMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int idMarca = (int)(dgvMarcas.SelectedDataKey.Value);
+            Response.Redirect("AdminMarcas.aspx?id=" + idMarca, false);
         }
 
         protected void btnNuevaCategoria_Click(object sender, EventArgs e)
