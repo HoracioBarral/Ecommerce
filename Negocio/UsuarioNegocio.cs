@@ -129,5 +129,25 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void resetContraseña(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update Usuarios set Pass='nuevaClave' where ID_Usuario=@idUsuario");
+                datos.setearParametro("@idUsuario", idUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

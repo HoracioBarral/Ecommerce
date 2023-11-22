@@ -54,9 +54,11 @@ namespace Ecommerce
                         MostrarImagenes(articulo.listaImagenes);
                         Repeater1.DataSource= imagenes;
                         Repeater1.DataBind();
+                        ddlTalles.SelectedIndex = 0;
+                        llenarddlCantidad();
                         StockNegocio stockNegocio = new StockNegocio();
                         List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
-                        ddlTalles.DataSource= stock;
+                        ddlTalles.DataSource = stock;
                         ddlTalles.DataValueField = "talle";
                         ddlTalles.DataTextField = "talle";
                         ddlTalles.DataBind();
@@ -71,28 +73,29 @@ namespace Ecommerce
         }
 
 
-
-
         private void MostrarImagenes(List<Imagen> imagenes)
         {
             Repeater1.DataSource = imagenes;
             Repeater1.DataBind();
 
         }
-        
+
 
         protected void ddlTalles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idArticulo = int.Parse(Request.QueryString["id"]);
+            ddlCantidad.Items.Clear();
+            llenarddlCantidad();
+        }
+
+        private void llenarddlCantidad()
+        {
             StockNegocio stockNegocio = new StockNegocio();
-            List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
-            string talle = ddlTalles.SelectedValue.ToString();
-            //Falta el metodo de Stock Negocio que filtre por id y talle
+            List<StockTalles> stock = stockNegocio.listarPorID(int.Parse(Request.QueryString["id"]));
             List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle.Contains(ddlTalles.SelectedValue.ToString()));
-            ddlCantidad.DataSource = stockFiltrado;
-            ddlCantidad.DataValueField = "idArticulo";
-            ddlCantidad.DataTextField = "stock";
-            ddlCantidad.DataBind();
+            for (int i = 0; i < stockFiltrado[0].stock; i++)
+            {
+                ddlCantidad.Items.Add((i + 1).ToString());
+            }
         }
     }
 }

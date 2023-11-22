@@ -9,7 +9,6 @@
         <Columns>
             <asp:BoundField HeaderText="ID Usuario" DataField="idUsuario" />
             <asp:BoundField HeaderText="Nombre Usuario" DataField="nombreUsuario" />
-            <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="&#128077;" ControlStyle-CssClass="btn btn-link"/>
             <asp:CommandField HeaderText="Resetear Contraseña" ShowSelectButton="true" SelectText="&#128077;" ControlStyle-CssClass="btn btn-link" />
         </Columns>
     </asp:GridView>

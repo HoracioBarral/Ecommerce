@@ -56,7 +56,7 @@
                 <tr>
                     <td><strong>Seleccionar Talle:</strong></td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlTalles" AutoPostBack="true" CssClass="form-select">
+                        <asp:DropDownList runat="server" ID="ddlTalles" AutoPostBack="true" OnSelectedIndexChanged="ddlTalles_SelectedIndexChanged" CssClass="form-select">
                         </asp:DropDownList>
                     </td>
                 </tr>

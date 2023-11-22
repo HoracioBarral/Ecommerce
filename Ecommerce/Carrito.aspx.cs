@@ -55,7 +55,7 @@ namespace Ecommerce
             {
                 total += articulo.precio;
             }
-            lblPrecioTotal.Text = total.ToString();
+            lblPrecioTotal.Text = total.ToString("C2");
         }
 
         private void RemoveCarrito(int idArticulo)

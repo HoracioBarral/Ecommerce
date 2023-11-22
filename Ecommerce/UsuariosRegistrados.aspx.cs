@@ -27,7 +27,9 @@ namespace Ecommerce
 
         protected void dgvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int id = (int)(dgvUsuarios.SelectedDataKey.Value);
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            usuarioNegocio.resetContraseña(id);
         }
     }
 }
