@@ -1,8 +1,10 @@
 ﻿using dominio;
 using Negocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -52,6 +54,12 @@ namespace Ecommerce
                         MostrarImagenes(articulo.listaImagenes);
                         Repeater1.DataSource= imagenes;
                         Repeater1.DataBind();
+                        StockNegocio stockNegocio = new StockNegocio();
+                        List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
+                        ddlTalles.DataSource= stock;
+                        ddlTalles.DataValueField = "idArticulo";
+                        ddlTalles.DataTextField = "talle";
+                        ddlTalles.DataBind();
                     }
                 }
                 else
@@ -85,7 +93,16 @@ namespace Ecommerce
 
         protected void ddlTalles_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int idArticulo = int.Parse(Request.QueryString["id"]);
+            StockNegocio stockNegocio = new StockNegocio();
+            List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
+            string talle = ddlTalles.SelectedValue.ToString();
+            //Falta el metodo de Stock Negocio que filtre por id y talle
+            List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle.Contains(ddlTalles.SelectedValue.ToString()));
+            ddlCantidad.DataSource = stockFiltrado;
+            ddlCantidad.DataValueField = "idArticulo";
+            ddlCantidad.DataTextField = "stock";
+            ddlCantidad.DataBind();
         }
     }
 }
