@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace Ecommerce
 {
@@ -11,8 +12,11 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!(Page is Login || Page is Carrito)){
-                Response.Redirect("Login.aspx", false);
+            if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto)){
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
             } 
         }
 

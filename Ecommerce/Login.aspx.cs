@@ -38,7 +38,7 @@ namespace Ecommerce
                 usuario.Pass = Txtpass.Text;
                 if(usuarioNegocio.Logearse(usuario)==2)
                 {
-                    Session.Add("usuarioAdmin", usuario);
+                    Session.Add("usuario", usuario);
                     lblMensaje.CssClass = "logueo exitoso";
                     Response.Redirect("Default.aspx");
                 }

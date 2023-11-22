@@ -13,10 +13,11 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             if (Session["usuario"] == null)
             {
                 Response.Redirect("Login.aspx", false);
-            }
+            }*/
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             Session.Add("listaArticulos", articuloNegocio.listar());
             if (!IsPostBack)

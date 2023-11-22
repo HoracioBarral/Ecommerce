@@ -19,10 +19,10 @@ namespace Ecommerce
             try
             {
                 ArticuloNegocio negocio = new ArticuloNegocio();
-                if (Session["usuario"] == null)
+                /*if (Session["usuario"] == null)
                 {
                     Response.Redirect("Login.aspx", false);
-                }
+                }*/
                 if (!IsPostBack)
                 {
                     CategoriaNegocio cat = new CategoriaNegocio();
