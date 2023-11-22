@@ -75,21 +75,11 @@ namespace Ecommerce
 
         private void MostrarImagenes(List<Imagen> imagenes)
         {
-            foreach (Imagen imagen in imagenes)
-            {
-                string imageUrl = imagen.UrlImagen;
+            Repeater1.DataSource = imagenes;
+            Repeater1.DataBind();
 
-                
-                Image img = new Image();
-                img.ImageUrl = imageUrl;
-                img.CssClass = "img-fluid"; 
-                img.AlternateText = "Imagen del artículo";
-
-                
-                divImagenes.Controls.Add(img);
-                
-            }
         }
+        
 
         protected void ddlTalles_SelectedIndexChanged(object sender, EventArgs e)
         {
