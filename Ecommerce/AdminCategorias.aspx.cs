@@ -13,27 +13,31 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
+            if (Request.QueryString["id"] != null && !IsPostBack)
             {
-                int idCategoria = int.Parse(Request.QueryString["id"]);
                 CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-                Categoria categoria=categoriaNegocio.listarCaterogiaPorId(idCategoria);
+                Categoria categoria=categoriaNegocio.listarCaterogiaPorId(int.Parse(Request.QueryString["id"]));
                 txtCategoria.Text = categoria.nombreCategoria;
             }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            string nomCategoria = txtCategoria.Text.ToString();
-            if (nomCategoria.Length==0)
+            if (txtCategoria.Text.Trim()=="")
             {
                 Label1.Visible = true;
                 Label1.Text = "No puede Ingresar la Categoria en Blanco";
                 return;
             }
+            string categoria = txtCategoria.Text;
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            int idCategoria = int.Parse(Request.QueryString["id"]);
-            categoriaNegocio.modificarCategoria(idCategoria, nomCategoria);
+            if (Request.QueryString["id"] != null)
+            {
+                categoriaNegocio.modificarCategoria(int.Parse(Request.QueryString["id"]), txtCategoria.Text);
+            }
+            else
+                categoriaNegocio.agregarCategoria(txtCategoria.Text);
+            Response.Redirect("CategoriasMarcas.aspx", false);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)

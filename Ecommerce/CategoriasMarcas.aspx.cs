@@ -41,12 +41,12 @@ namespace Ecommerce
 
         protected void btnNuevaCategoria_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("AdminCategorias.aspx", false);
         }
 
         protected void btnNuevaMarca_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("AdminMarcas.aspx", false);
         }
     }
 }

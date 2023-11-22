@@ -12,6 +12,7 @@ namespace Negocio
     public class CategoriaNegocio
     {
         AccesoDatos datos = new AccesoDatos();
+
         public List<Categoria> listarCategorias()
         {
             List<Categoria> listaCategorias=new List<Categoria>();
@@ -83,6 +84,26 @@ namespace Negocio
                 throw ex;
             }
             finally { datos2.cerrarConexion(); }
+        }
+
+        public void agregarCategoria(string nuevaCat)
+        {
+            AccesoDatos datos2= new AccesoDatos();
+            try
+            {
+                datos2.setConexion("insert into Categorias(NombreCategoria) values(@nuevaCat)");
+                datos2.setearParametro("@nuevaCat", nuevaCat);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
         }
     }
 }

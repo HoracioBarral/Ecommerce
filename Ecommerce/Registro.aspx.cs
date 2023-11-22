@@ -34,7 +34,7 @@ namespace Ecommerce
             try
             {
                 Usuario nuevoUsuario = new Usuario();
-                nuevoUsuario.nombreUsuario = TxtNombreUser.Text;
+                nuevoUsuario.nombreUsuario = TxtNombreUser.Text.ToLower();
                 nuevoUsuario.Pass = Txtpass.Text;
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
                 if (usuarioNegocio.Registrarse(nuevoUsuario)){

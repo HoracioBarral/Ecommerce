@@ -11,7 +11,9 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!(Page is Login || Page is Carrito)){
+                Response.Redirect("Login.aspx", false);
+            } 
         }
 
         protected void BtnCarrito_Click(object sender, EventArgs e)

@@ -18,13 +18,13 @@ namespace Ecommerce
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Txtusuario.Text))
+            if (Txtusuario.Text.Trim()=="")
             {
                 Label1.Visible = true;
                 Label1.Text = "Debe ingresar nombre de usuario";
                 return;
             }
-            if (string.IsNullOrWhiteSpace(Txtpass.Text))
+            if (Txtpass.Text.Trim() == "")
             {
                 Label1.Visible = true;
                 Label1.Text = "Debe ingresar contraseña";
@@ -34,11 +34,11 @@ namespace Ecommerce
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                usuario.nombreUsuario = Txtusuario.Text;
+                usuario.nombreUsuario = Txtusuario.Text.ToLower();
                 usuario.Pass = Txtpass.Text;
                 if(usuarioNegocio.Logearse(usuario)==2)
                 {
-                    
+                    Session.Add("usuarioAdmin", usuario);
                     lblMensaje.CssClass = "logueo exitoso";
                     Response.Redirect("Default.aspx");
                 }
@@ -53,8 +53,6 @@ namespace Ecommerce
                     Label1.Visible = true;
                     Label1.Text = "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?";
                     Txtpass.Text = string.Empty;
-                    //lblMensaje.CssClass = "Usuario no existe";
-                    //Response.Redirect("Error.aspx");
                 }
             }
             catch (Exception ex)
