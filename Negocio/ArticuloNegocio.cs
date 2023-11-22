@@ -135,5 +135,25 @@ namespace Negocio
             }
             finally { datos.cerrarConexion();}
         }
+        public void EliminarArticulo(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("sp_EliminarArticulo"); 
+                datos.setearParametro("@ID_Articulo", idArticulo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
+

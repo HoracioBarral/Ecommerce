@@ -149,5 +149,19 @@ namespace Ecommerce
             int id = int.Parse(Request.QueryString["id"]);
             Response.Redirect("Stock.aspx?id=" + id, false);
         }
+
+        protected void btnEliminar2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ArticuloNegocio negocio =  new ArticuloNegocio();
+                negocio.EliminarArticulo(int.Parse(Request.QueryString["id"]));
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
+        }
     }
 }

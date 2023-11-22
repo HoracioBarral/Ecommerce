@@ -66,7 +66,7 @@
             <%if(ConfirmaEliminacion) { %>
             <div>
                 <asp:CheckBox Text="Confirmar" ID="chkConfirmElimi" runat="server" />
-                <asp:Button ID="btnEliminar2" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" />
+                <asp:Button ID="btnEliminar2" runat="server" Text="Eliminar" OnClick="btnEliminar2_Click" CssClass="btn btn-outline-danger" />
             </div>
             <%} %>
         </div>
