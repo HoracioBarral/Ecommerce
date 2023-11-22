@@ -63,6 +63,8 @@ namespace Ecommerce
             Articulo articuloParaQuitar = carrito.Find(a => a.idArticulo == idArticulo);
             if (articuloParaQuitar != null)
             {
+                StockNegocio stock = new StockNegocio();
+                stock.modificarStock(articuloParaQuitar.idArticulo, articuloParaQuitar.talle, articuloParaQuitar.cantidad, true);
                 carrito.Remove(articuloParaQuitar);
             }
 

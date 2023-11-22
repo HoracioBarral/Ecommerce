@@ -101,11 +101,18 @@ namespace Ecommerce
         {
             int cantidad = int.Parse(ddlCantidad.SelectedValue);
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-            Articulo articulo = articuloNegocio.buscarPorID(int.Parse(Request.QueryString["id"]));
+            int id = int.Parse(Request.QueryString["id"]);
+            Articulo articulo = articuloNegocio.buscarPorID(id);
+            articulo.cantidad = cantidad;
             articulo.precio = articulo.precio * cantidad;
             List<Articulo> carrito = new List<Articulo>();
             carrito = (List<Articulo>)Session["Carrito"];
             carrito.Add(articulo);
+            string talle = ddlTalles.SelectedValue.ToString();
+            articulo.talle = talle;
+            //Actualiza el stock segun lo agregado al carrito
+            StockNegocio stock = new StockNegocio();
+            stock.modificarStock(id,talle,cantidad,false);
             Response.Redirect("Carrito.aspx", false);
         }
     }
