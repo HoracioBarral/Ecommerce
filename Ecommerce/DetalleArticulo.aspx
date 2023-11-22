@@ -67,7 +67,7 @@
                         </asp:DropDownList>
                     </td>
                 </tr>
-            
+            <asp:Button ID="btnCarrito" runat="server" Text="Agregar al carrito 🛒" OnClick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
             </table>
         </div>
     </div>

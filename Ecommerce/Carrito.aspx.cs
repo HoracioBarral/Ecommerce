@@ -34,7 +34,6 @@ namespace Ecommerce
         {
             repeaterCarrito.DataSource = carrito;
             repeaterCarrito.DataBind();
-
             updatePrecio(carrito);
             updateContador();
         }

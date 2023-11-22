@@ -66,8 +66,7 @@ namespace Ecommerce
                 }
                 else
                 {
-                   
-                    
+                    Response.Redirect("Productos.aspx", false); 
                 }
             }
         }
@@ -96,6 +95,18 @@ namespace Ecommerce
             {
                 ddlCantidad.Items.Add((i + 1).ToString());
             }
+        }
+
+        protected void btnCarrito_Click(object sender, EventArgs e)
+        {
+            int cantidad = int.Parse(ddlCantidad.SelectedValue);
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            Articulo articulo = articuloNegocio.buscarPorID(int.Parse(Request.QueryString["id"]));
+            articulo.precio = articulo.precio * cantidad;
+            List<Articulo> carrito = new List<Articulo>();
+            carrito = (List<Articulo>)Session["Carrito"];
+            carrito.Add(articulo);
+            Response.Redirect("Carrito.aspx", false);
         }
     }
 }
