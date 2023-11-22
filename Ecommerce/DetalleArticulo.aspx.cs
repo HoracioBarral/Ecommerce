@@ -57,7 +57,7 @@ namespace Ecommerce
                         StockNegocio stockNegocio = new StockNegocio();
                         List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
                         ddlTalles.DataSource= stock;
-                        ddlTalles.DataValueField = "idArticulo";
+                        ddlTalles.DataValueField = "talle";
                         ddlTalles.DataTextField = "talle";
                         ddlTalles.DataBind();
                     }
