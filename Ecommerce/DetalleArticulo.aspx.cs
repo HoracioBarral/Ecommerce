@@ -37,6 +37,12 @@ namespace Ecommerce
 
                 if (idArticulo > 0)
                 {
+                    if (Session["usuario"] == null)
+                    {
+                        btnCarrito.Visible = false;
+                        lblAdvertencia.Visible = true;
+                    }
+
                     ArticuloNegocio articulonegocio = new ArticuloNegocio();
                     Articulo articulo = articulonegocio.buscarPorID(idArticulo);
                     if (articulo != null)
@@ -91,6 +97,12 @@ namespace Ecommerce
             StockNegocio stockNegocio = new StockNegocio();
             List<StockTalles> stock = stockNegocio.listarPorID(int.Parse(Request.QueryString["id"]));
             List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle.Contains(ddlTalles.SelectedValue.ToString()));
+            if (stockFiltrado.Count == 0)
+            {
+                btnCarrito.Visible = false;
+                lblAdvertencia.Text = "Sin stock";
+                return;
+            }
             for (int i = 0; i < stockFiltrado[0].stock; i++)
             {
                 ddlCantidad.Items.Add((i + 1).ToString());

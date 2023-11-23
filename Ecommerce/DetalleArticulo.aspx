@@ -68,6 +68,7 @@
                     </td>
                 </tr>
             <asp:Button ID="btnCarrito" runat="server" Text="Agregar al carrito 🛒" OnClick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
+            <asp:Label ID="lblAdvertencia" Text="Debes loguearte para Comprar" runat="server" Visible="false" />
             </table>
         </div>
     </div>
