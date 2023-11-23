@@ -241,3 +241,35 @@ BEGIN
     END
 END;
 go
+
+
+CREATE PROCEDURE sp_ListarArticulos
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        A.ID_Articulo,
+        A.NombreArticulo,
+        A.Descripcion,
+        A.Estado,
+        C.NombreCategoria AS Categoria,
+        M.NombreMarca AS Marca,
+        A.Precio,
+        A.Stock,
+        STRING_AGG(I.Url_Imagen, ';') AS Imagenes
+    FROM
+        Articulos A
+        INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria
+        INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca
+        LEFT JOIN Imagenes I ON I.ID_Articulo = A.ID_Articulo
+    GROUP BY
+        A.ID_Articulo,
+        A.NombreArticulo,
+        A.Descripcion,
+        A.Estado,
+        C.NombreCategoria,
+        M.NombreMarca,
+        A.Precio,
+        A.Stock;
+END;
