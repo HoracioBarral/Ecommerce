@@ -12,6 +12,12 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                BtnAcesso.Visible = false;
+                BtnSalir.Visible = true;
+            }
+
             if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto)){
                 if (!Seguridad.esAdmin(Session["usuario"]))
                 {
@@ -27,6 +33,14 @@ namespace Ecommerce
 
         protected void BtnAcesso_Click(object sender, EventArgs e)
         {
+            Response.Redirect("Login.aspx", false);
+        }
+
+        protected void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            BtnSalir.Visible = false;
+            BtnAcesso.Visible = true;
             Response.Redirect("Login.aspx", false);
         }
     }

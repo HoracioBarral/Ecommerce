@@ -62,7 +62,8 @@ create table StockPorTalles(
 	Talle varchar(5) not null,
 	Stock int not null check(Stock>=0),
 	ID_Articulo int not null,
-	foreign key(ID_Articulo) references Articulos(ID_Articulo)
+	foreign key(ID_Articulo) references Articulos(ID_Articulo),
+	constraint UQ_talles_IDArticulo unique(ID_Articulo,Talle)
 )
 go
 
