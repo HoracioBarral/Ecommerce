@@ -29,6 +29,8 @@ namespace dominio
 
         public string talle { get; set; }
 
+        public int numeroPedido { get; set; }
+
         public List<Imagen> listaImagenes { get; set; }
  
     }

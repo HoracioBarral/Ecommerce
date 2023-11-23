@@ -117,11 +117,12 @@ namespace Ecommerce
             Articulo articulo = articuloNegocio.buscarPorID(id);
             articulo.cantidad = cantidad;
             articulo.precio = articulo.precio * cantidad;
-            List<Articulo> carrito = new List<Articulo>();
-            carrito = (List<Articulo>)Session["Carrito"];
-            carrito.Add(articulo);
             string talle = ddlTalles.SelectedValue.ToString();
             articulo.talle = talle;
+            Usuario usuario = (Usuario)(Session["usuario"]);
+            articulo.numeroPedido = articulNegocio.insertarCompra(articulo, usuario.idUsuario);
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            carrito.Add(articulo);
             //Actualiza el stock segun lo agregado al carrito
             StockNegocio stock = new StockNegocio();
             stock.modificarStock(id,talle,cantidad,false);

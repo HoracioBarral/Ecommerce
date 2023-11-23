@@ -27,6 +27,7 @@ namespace Negocio
                     }
 
                     usuario.rolUsuario.idRol = (int)datos.Lector["ID_Rol"];
+                    usuario.idUsuario = (int)datos.Lector["ID_Usuario"];
 
                     // Comprobar el rol aquí, ajusta según tus necesidades
                     if (usuario.rolUsuario.idRol > 0)

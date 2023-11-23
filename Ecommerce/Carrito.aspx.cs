@@ -65,6 +65,8 @@ namespace Ecommerce
             {
                 StockNegocio stock = new StockNegocio();
                 stock.modificarStock(articuloParaQuitar.idArticulo, articuloParaQuitar.talle, articuloParaQuitar.cantidad, true);
+                ArticuloNegocio articulo = new ArticuloNegocio();
+                articulonegocio.modificarEstadoCompra(articuloParaQuitar.numeroPedido,4);
                 carrito.Remove(articuloParaQuitar);
             }
 

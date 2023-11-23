@@ -154,6 +154,52 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int insertarCompra(Articulo compra,int idUsuario)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("insert into Pedidos(Cantidad,Talle,ID_Articulo,ID_Usuario,Importe) output inserted.ID_Pedido values(@cantidad,@talle,@idArticulo,@idUsuario,@importe)");
+                datos2.setearParametro("@cantidad",compra.cantidad);
+                datos2.setearParametro("@talle",compra.talle);
+                datos2.setearParametro("@idArticulo",compra.idArticulo);
+                datos2.setearParametro("@idUsuario",idUsuario);
+                datos2.setearParametro("@importe",compra.precio);
+                int idPedido=datos2.ejecutarAccionConOutput();
+                return idPedido;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
+        }
+
+        public void modificarEstadoCompra(int idPedido,int estado)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("update Pedidos set Estado=@estado where ID_Pedido=@idPedido");
+                datos2.setearParametro("@idPedido",idPedido);
+                datos2.setearParametro("@estado", estado);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
+        }
     }
 }
 
