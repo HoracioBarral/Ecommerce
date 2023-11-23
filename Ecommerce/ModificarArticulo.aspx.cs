@@ -37,6 +37,7 @@ namespace Ecommerce
                     ddlMarca.DataValueField = "idMarca";
                     ddlMarca.DataTextField = "nombreMArca";
                     ddlMarca.DataBind();
+                    
                     if (Request.QueryString["nuevo"] == "true")
                     {
                         
@@ -55,6 +56,7 @@ namespace Ecommerce
                         ddlMarca.SelectedValue = articulo.marca.idMarca.ToString();
                         txtPrecio.Text = articulo.precio.ToString();
                         txtStock.Text = articulo.stock.ToString();
+                        ddlEstado.SelectedValue = articulo.Estado ? "1" : "0";
                         ImagenNegocio imagenNegocio = new ImagenNegocio();
                         List<Imagen> imagenes = imagenNegocio.Listar(id);
                         RepeaterImagenes.DataSource = imagenes;

@@ -43,7 +43,14 @@
                 <label for="txtMarca">Marca</label>
                 <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="txtEstado">Estado</label>
+                <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                    <asp:ListItem Text="Activo" Value="1" />
+                    <asp:ListItem Text="Inactivo" Value="0" />
+                </asp:DropDownList>
+            </div>
+           </div>
 
         <div class="col-md-4">
             <!-- Columna 3 -->

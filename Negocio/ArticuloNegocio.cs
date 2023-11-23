@@ -97,7 +97,7 @@ namespace Negocio
 
             try
             {
-                datos.setConexion("SELECT A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.ID_Categoria ,C.NombreCategoria AS Categoria, M.ID_Marca ,M.NombreMarca AS Marca, A.Precio, A.Stock FROM Articulos A INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca WHERE A.ID_Articulo = @ID");
+                datos.setConexion("SELECT A.ID_Articulo, A.NombreArticulo, A.Descripcion, C.ID_Categoria ,C.NombreCategoria AS Categoria, M.ID_Marca ,M.NombreMarca AS Marca, A.Precio, A.Stock, A.Estado FROM Articulos A INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca WHERE A.ID_Articulo = @ID");
                 datos.setearParametro("@ID", Id);
                 datos.abrirConexion();
 
@@ -115,6 +115,7 @@ namespace Negocio
                     articulo.marca.nombreMarca = (string)datos.Lector["Marca"];
                     articulo.precio = (decimal)datos.Lector["Precio"];
                     articulo.stock = (int)datos.Lector["Stock"];
+                    articulo.Estado = (bool)datos.Lector["Estado"];
                     articulo.listaImagenes = new List<Imagen>(); ;
 
                     return articulo;
