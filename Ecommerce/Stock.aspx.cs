@@ -30,5 +30,11 @@ namespace Ecommerce
             //int id = int.Parse(Request.QueryString["id"]);
             Response.Redirect("AdmStock.aspx?id="+id,false);
         }
+
+        protected void dgvStock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session.Add("talle", dgvStock.SelectedValue.ToString());
+            Response.Redirect("AdmStock.aspx?id=" + id, false);
+        }
     }
 }

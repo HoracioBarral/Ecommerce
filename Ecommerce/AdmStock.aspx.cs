@@ -5,19 +5,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using System.Collections;
 
 namespace Ecommerce
 {
     public partial class AdmStock : System.Web.UI.Page
     {
         private int id;
+        private int cantAnterior;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
-            {
                 id = int.Parse(Request.QueryString["id"]);
-            }
-              
             if (!IsPostBack)
             {
                 ddlTalle.Items.Add("XS");
@@ -25,20 +25,23 @@ namespace Ecommerce
                 ddlTalle.Items.Add("M");
                 ddlTalle.Items.Add("L");
                 ddlTalle.Items.Add("XL");
+                if (id!= 0)
+                {
+                    id = int.Parse(Request.QueryString["id"]);
+                    StockNegocio stockNegocio = new StockNegocio();
+                    List<StockTalles> stockTalles = stockNegocio.listarPorID(id);
+                    string talle = (Session["talle"]).ToString();
+                    List<StockTalles> stockFiltrado = stockTalles.FindAll(x => x.talle.Contains(talle));
+                    txtCantidad.Text = stockFiltrado[0].stock.ToString();
+                    ListItem seleccion= ddlTalle.Items.FindByText(talle);
+                    seleccion.Selected = true;
+                    ddlTalle.Enabled = false;
+                    cantAnterior = int.Parse(txtCantidad.Text);
+                }
             }
         }
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
-        {
-            string talle = ddlTalle.SelectedValue.ToString();
-            if (ValidarNumero(txtCantidad.Text.ToString()))
-            {
-                int cantidad = int.Parse(txtCantidad.Text.ToString());
-                StockNegocio stockNegocio = new StockNegocio();
-                stockNegocio.insertarStock(talle,cantidad,id);
-            }
-        }
-
+        
         private bool ValidarNumero(string cant)
         {
             int resultado;
@@ -50,15 +53,29 @@ namespace Ecommerce
             Response.Redirect("Stock.aspx?id="+id, false);
         }
 
-        protected void btnAceptar_Click1(object sender, EventArgs e)
+
+        protected void btnAceptar_Click2(object sender, EventArgs e)
         {
-            string talle = ddlTalle.SelectedValue.ToString();
-            if (ValidarNumero(txtCantidad.Text.ToString()))
+            StockNegocio stockNegocio = new StockNegocio();
+            int cantidad = int.Parse(txtCantidad.Text.ToString());
+            if (Session["talle"] == null)
             {
-                int cantidad = int.Parse(txtCantidad.Text.ToString());
-                StockNegocio stockNegocio = new StockNegocio();
-                stockNegocio.insertarStock(talle, cantidad, id);
+                string talle = ddlTalle.SelectedValue.ToString();
+                if (ValidarNumero(txtCantidad.Text.ToString()))
+                {
+                    stockNegocio.insertarStock(talle, cantidad, id);
+                }
             }
+            else
+            {
+                string talle = (Session["talle"]).ToString();
+                if (ValidarNumero(txtCantidad.Text.ToString()))
+                {
+                    stockNegocio.actualizarStock(id,talle,cantidad);
+                }
+            }
+            
+            Response.Redirect("Stock.aspx?id=" + id, false);
         }
     }
 }

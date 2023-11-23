@@ -6,7 +6,7 @@
         <h3>Administracion de Stock</h3>
         <asp:Button ID="btnAltaStock" Text="Agregar Talle al stock" runat="server" CssClass="btn btn-primary" OnClick="btnAltaStock_Click" />
     </div>
-    <asp:GridView ID="dgvStock" runat="server" AutoGenerateColumns="false" CssClass="table" >
+    <asp:GridView ID="dgvStock" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="talle" OnSelectedIndexChanged="dgvStock_SelectedIndexChanged" >
         <Columns>
             <asp:BoundField HeaderText="ID Articulo" DataField="idArticulo"/>
             <asp:BoundField HeaderText="Talle" DataField="talle"/>

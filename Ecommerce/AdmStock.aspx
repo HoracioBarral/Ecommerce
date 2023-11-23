@@ -15,7 +15,7 @@
 
         <div class="form-group">
                 
-                     <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnAceptar_Click1" style="margin: 20px; padding: 10px;"/>
+                     <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-danger mt-2" runat="server" Onclick="btnAceptar_Click2" style="margin: 20px; padding: 10px;"/>
                     <asp:Button ID="btnVolver" Text="Volver" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnVolver_Click" style="margin: 20px; padding: 10px;"/>
                  
             </div>
