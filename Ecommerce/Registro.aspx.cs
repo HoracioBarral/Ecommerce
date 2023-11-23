@@ -19,10 +19,10 @@ namespace Ecommerce
 
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
-            if (TxtNombreUser.Text.Contains(" ") || TxtNombreUser.Text.Length<5)
+            if (TxtNombreUser.Text.Contains(" ") || TxtNombreUser.Text.Length<5 || !TxtNombreUser.Text.Contains("@") || !TxtNombreUser.Text.Contains("."))
             {
                 Label1.Visible = true;
-                Label1.Text = "El nombre de usuario debe tener al menos 4 caracteres y/o sin espaciones en blanco";
+                Label1.Text = "El nombre de usuario debe ser un mail valido";
                 return;
             }
             if (Txtpass.Text.Contains(" ") || Txtpass.Text.Length<5)
@@ -40,6 +40,7 @@ namespace Ecommerce
                 if (usuarioNegocio.Registrarse(nuevoUsuario)){
                     Label1.Visible = true;
                     Label1.Text = "Registro Exitoso";
+                    Response.Redirect("Login.aspx", false);
                 }
                 else
                 {

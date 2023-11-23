@@ -18,7 +18,7 @@ namespace Ecommerce
                 BtnSalir.Visible = true;
             }
 
-            if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto)){
+            if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto || Page is Registro)){
                 if (!Seguridad.esAdmin(Session["usuario"]))
                 {
                     Response.Redirect("Login.aspx", false);
