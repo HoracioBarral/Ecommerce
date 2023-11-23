@@ -60,11 +60,12 @@ namespace Ecommerce
                         MostrarImagenes(articulo.listaImagenes);
                         Repeater1.DataSource= imagenes;
                         Repeater1.DataBind();
-                        ddlTalles.SelectedIndex = 0;
-                        llenarddlCantidad();
                         StockNegocio stockNegocio = new StockNegocio();
                         List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
-                        ddlTalles.DataSource = stock;
+                        List<StockTalles> stockFiltrado = stock.FindAll(x => x.stock > 0);
+                        ddlTalles.SelectedIndex = 0;
+                        llenarddlCantidad();
+                        ddlTalles.DataSource = stockFiltrado;
                         ddlTalles.DataValueField = "talle";
                         ddlTalles.DataTextField = "talle";
                         ddlTalles.DataBind();
@@ -96,8 +97,8 @@ namespace Ecommerce
         {
             StockNegocio stockNegocio = new StockNegocio();
             List<StockTalles> stock = stockNegocio.listarPorID(int.Parse(Request.QueryString["id"]));
-            List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle.Contains(ddlTalles.SelectedValue.ToString()));
-            if (stockFiltrado.Count == 0)
+            List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle.Contains(ddlTalles.SelectedValue.ToString()) && x.stock>0);
+            if (stockFiltrado.Count==0)
             {
                 btnCarrito.Visible = false;
                 lblAdvertencia.Text = "Sin stock";

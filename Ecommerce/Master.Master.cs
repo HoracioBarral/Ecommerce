@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using dominio;
 
 namespace Ecommerce
 {
@@ -38,10 +39,22 @@ namespace Ecommerce
 
         protected void BtnSalir_Click(object sender, EventArgs e)
         {
-            Session.Clear();
+            Response.Redirect("Login.aspx", false);
+            Session.Remove("usuario");
             BtnSalir.Visible = false;
             BtnAcesso.Visible = true;
-            Response.Redirect("Login.aspx", false);
+            //actualizar stock y pedidos si se cierra la sesion sin efectuar la compra del carrito
+            if (Session["Carrito"] != null)
+            {
+                StockNegocio stockNegocio = new StockNegocio();
+                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                List<Articulo> articulos = (List<Articulo>)(Session["Carrito"]);
+                foreach (Articulo art in articulos)
+                {
+                    stockNegocio.modificarStock(art.idArticulo,art.talle,art.cantidad,true);
+                    articuloNegocio.modificarEstadoCompra(art.numeroPedido,4);
+                }
+            }
         }
     }
 }
