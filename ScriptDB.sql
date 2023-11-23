@@ -2,7 +2,7 @@ create database Ecommerce
 go
 
 
-use ecommerce
+use Ecommerce
 go
 
 
@@ -72,7 +72,8 @@ create table Imagenes(
 	ID_Imagen int not null primary key CLUSTERED identity(1,1),
 	Url_Imagen varchar(1500) not null,
 	ID_Articulo int not null,
-	foreign key(ID_Articulo) references Articulos(ID_Articulo)
+	foreign key(ID_Articulo) references Articulos(ID_Articulo),
+	Estado bit not null Default 1
 )
 go
 
@@ -158,7 +159,7 @@ VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=6382296
 
 insert into Roles values ('1'),('2')
 
-
+go
 
 CREATE PROCEDURE sp_ModificarArticulo
     @ID_Articulo INT,
@@ -195,7 +196,7 @@ BEGIN
     END CATCH;
 END;
 
-
+go
 
 
 CREATE PROCEDURE sp_GuardarImagen
@@ -222,7 +223,7 @@ BEGIN
     END CATCH
 END
 
-
+go
 
 CREATE PROCEDURE sp_EliminarArticulo
     @ID_Articulo INT
@@ -231,7 +232,7 @@ BEGIN
     SET NOCOUNT ON;
     IF EXISTS (SELECT 1 FROM Articulos WHERE ID_Articulo = @ID_Articulo)
     BEGIN
-        DELETE FROM Articulos WHERE ID_Articulo = @ID_Articulo;
+        UPDATE Articulos SET Estado = 0 WHERE ID_Articulo = @ID_Articulo;
         PRINT 'Artículo eliminado correctamente.';
     END
     ELSE
@@ -239,3 +240,4 @@ BEGIN
         PRINT 'El artículo no existe.';
     END
 END;
+go
