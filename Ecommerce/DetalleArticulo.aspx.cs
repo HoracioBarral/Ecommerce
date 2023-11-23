@@ -121,12 +121,18 @@ namespace Ecommerce
             string talle = ddlTalles.SelectedValue.ToString();
             articulo.talle = talle;
             Usuario usuario = (Usuario)(Session["usuario"]);
-            articulo.numeroPedido = articulNegocio.insertarCompra(articulo, usuario.idUsuario);
+            //genera un idPedido para insertar en la tabla DetallePedidos
+            if (Session["idPedido"]==null)
+            {
+                int idPedido = articulNegocio.generarNumPedido(articulo, usuario.idUsuario);
+                Session.Add("idPedido", idPedido);
+            }
             List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
             carrito.Add(articulo);
             //Actualiza el stock segun lo agregado al carrito
             StockNegocio stock = new StockNegocio();
             stock.modificarStock(id,talle,cantidad,false);
+            articuloNegocio.insertarDetallePedido(articulo, (int)(Session["idPedido"]));
             Response.Redirect("Carrito.aspx", false);
         }
     }

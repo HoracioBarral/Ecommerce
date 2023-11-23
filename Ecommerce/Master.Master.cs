@@ -41,6 +41,7 @@ namespace Ecommerce
         {
             Response.Redirect("Login.aspx", false);
             Session.Remove("usuario");
+            Session.Remove("idPedido");
             BtnSalir.Visible = false;
             BtnAcesso.Visible = true;
             //actualizar stock y pedidos si se cierra la sesion sin efectuar la compra del carrito
@@ -54,6 +55,8 @@ namespace Ecommerce
                     stockNegocio.modificarStock(art.idArticulo,art.talle,art.cantidad,true);
                     articuloNegocio.modificarEstadoCompra(art.numeroPedido,4);
                 }
+                List<Articulo> carritoLimpio = new List<Articulo>();
+                Session.Add("Carrito", carritoLimpio);
             }
         }
     }

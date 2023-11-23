@@ -197,15 +197,12 @@ namespace Negocio
             }
         }
 
-        public int insertarCompra(Articulo compra,int idUsuario)
+        public int generarNumPedido(Articulo compra,int idUsuario)
         {
             AccesoDatos datos2 = new AccesoDatos();
             try
             {
-                datos2.setConexion("insert into Pedidos(Cantidad,Talle,ID_Articulo,ID_Usuario,Importe) output inserted.ID_Pedido values(@cantidad,@talle,@idArticulo,@idUsuario,@importe)");
-                datos2.setearParametro("@cantidad",compra.cantidad);
-                datos2.setearParametro("@talle",compra.talle);
-                datos2.setearParametro("@idArticulo",compra.idArticulo);
+                datos2.setConexion("insert into Pedidos(ID_Usuario,Importe) output inserted.ID_Pedido values(@idUsuario,@importe)");
                 datos2.setearParametro("@idUsuario",idUsuario);
                 datos2.setearParametro("@importe",compra.precio);
                 int idPedido=datos2.ejecutarAccionConOutput();
@@ -230,6 +227,31 @@ namespace Negocio
                 datos2.setConexion("update Pedidos set Estado=@estado where ID_Pedido=@idPedido");
                 datos2.setearParametro("@idPedido",idPedido);
                 datos2.setearParametro("@estado", estado);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
+        }
+
+        public void insertarDetallePedido(Articulo articulo,int idPedido)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("insert into DetallePedidos(Cantidad,Talle,ID_Articulo,ID_Pedido,Importe) values(@cantidad,@talle,@idArticulo,@idPedido,@importe)");
+                //@cantidad,@talle,@idArticulo,@idPedido,@importe
+                datos2.setearParametro("@cantidad",articulo.cantidad);
+                datos2.setearParametro("@talle",articulo.talle);
+                datos2.setearParametro("@idArticulo",articulo.idArticulo);
+                datos2.setearParametro("@idPedido",idPedido);
+                datos2.setearParametro("@importe",articulo.precio);
                 datos2.ejecutarAccion();
             }
             catch (Exception ex)
