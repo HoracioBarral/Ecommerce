@@ -78,6 +78,20 @@ go
 
 
 
+create table Pedidos(
+	ID_Pedido int not null primary key CLUSTERED identity(1,1),
+	Cantidad int not null check(cantidad>0),
+	Talle varchar(5) not null,
+	ID_Articulo int not null,
+	ID_Usuario int not null,
+	Importe money not null check(importe>0),
+	Fecha date not null check(Fecha<=getdate()) default getdate(),
+	Estado int not null default 1 check(Estado>0 and Estado<6),
+	foreign key(ID_Articulo) references Articulos(ID_Articulo),
+	foreign key(ID_Usuario) references Usuarios(ID_Usuario)
+)
+go
+
 
 --Se insertan valores a la tabla de Categorias
 
