@@ -19,6 +19,7 @@
             <asp:BoundField HeaderText="Marca" DataField="marca.nombreMarca"/>
             <asp:BoundField HeaderText="Precio" DataField="precio"/>
             <asp:BoundField HeaderText="Stock" DataField="stock"/>
+            <asp:CheckBoxField HeaderText="Estado" DataField="Estado" />
             <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="&#128077;" ControlStyle-CssClass="btn btn-link"/>
         </Columns>
     </asp:GridView>

@@ -104,12 +104,12 @@ namespace Ecommerce
             }
             else
             {
-            }
                 int idArticuloGenerado = nuevo.idArticulo;
 
                 inegocio.GuardarImagen(txtUrlImagen.Text, idArticuloGenerado);
 
                 Response.Redirect("Administrador2.aspx");
+            }
 
         }
 

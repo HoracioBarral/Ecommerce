@@ -19,7 +19,7 @@ namespace Ecommerce
                 Response.Redirect("Login.aspx", false);
             }*/
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-            Session.Add("listaArticulos", articuloNegocio.listar());
+            Session.Add("listaArticulos", articuloNegocio.ListarconSP());
             if (!IsPostBack)
             {
                 dgvArticulos.DataSource = Session["listaArticulos"];
