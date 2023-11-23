@@ -1,25 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Contacto.aspx.cs" Inherits="Ecommerce.Contacto" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div class="container">
-        <h2>Contacto</h2>
-        <p>¿Tienes alguna pregunta o comentario? ¡Contáctanos!</p>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Columna 1 -->
+            <div class="form-group">
+                <label for="txtMail">Direccion de correo electronico</label>
+                <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" />
+            </div>
 
-        <form>
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
+            <div class="form-group">
+                <label for="txtAsunto">Mensaje</label>
+                <asp:TextBox runat="server" ID="txtAsunto" CssClass="form-control" />
             </div>
-            <div class="mb-3">
-                <label for="correo" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" id="correo" placeholder="tucorreo@example.com">
+            <div class="form-group">
+                <label for="txtMensaje">Mensaje</label>
+                <asp:TextBox runat="server" ID="txtMensaje" TextMode="MultiLine" CssClass="form-control" />
             </div>
-            <div class="mb-3">
-                <label for="mensaje" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="mensaje" rows="4" placeholder="Escribe tu mensaje"></textarea>
+            <div class="form-group">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <asp:Button ID="btnEnviarMensaje" Text="Enviar" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnEnviarMensaje_Click" style="margin: 20px; padding: 10px;"/>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
+        </div>
+        </div>
+        </div>
 </asp:Content>
