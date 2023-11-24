@@ -177,6 +177,8 @@ namespace Negocio
             }
             finally { datos.cerrarConexion();}
         }
+
+
         public void EliminarArticulo(int idArticulo)
         {
             AccesoDatos datos = new AccesoDatos();

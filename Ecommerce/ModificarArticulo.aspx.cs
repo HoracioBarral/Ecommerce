@@ -82,37 +82,57 @@ namespace Ecommerce
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            Articulo nuevo = new Articulo();
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            nuevo.nombreArticulo = txtNombreArticulo.Text;
-            nuevo.descripcion = txtDescripcion.Text;
-            nuevo.categoria = new Categoria();
-            nuevo.categoria.idCategoria = int.Parse(ddlCategoria.SelectedValue);
-            nuevo.marca = new Marca();
-            nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
-            nuevo.precio = decimal.Parse(txtPrecio.Text);
-            //nuevo.stock = int.Parse(txtStock.Text);
-            nuevo.listaImagenes = new List<Imagen>();
-            Imagen img = new Imagen();
-            ImagenNegocio inegocio = new ImagenNegocio();
-            img.UrlImagen = txtUrlImagen.Text;
-            nuevo.listaImagenes.Add(img);
-            //negocio.agregar(nuevo);
-
-            if (Request.QueryString["id"] != null)
+            if (txtNombreArticulo.Text.Trim()=="" || txtDescripcion.Text.Trim() == "" || !validarPrecio(txtPrecio.Text))
             {
-                nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
-                negocio.modificarConSP(nuevo);
-            }
-            else
-            {
-                int idArticuloGenerado = nuevo.idArticulo;
-
-                inegocio.GuardarImagen(txtUrlImagen.Text, idArticuloGenerado);
-
-                Response.Redirect("Administrador2.aspx");
+                txtAdvertencia.Text = "Verifique que los campos no esten vacios o sean datos validos";
+                txtAdvertencia.Visible = true;
+                return;
             }
 
+            try
+            {
+                Articulo nuevo = new Articulo();
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                nuevo.nombreArticulo = txtNombreArticulo.Text;
+                nuevo.descripcion = txtDescripcion.Text;
+                nuevo.categoria = new Categoria();
+                nuevo.categoria.idCategoria = int.Parse(ddlCategoria.SelectedValue);
+                nuevo.marca = new Marca();
+                nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
+                nuevo.precio = decimal.Parse(txtPrecio.Text);
+                //nuevo.stock = int.Parse(txtStock.Text);
+                nuevo.listaImagenes = new List<Imagen>();
+                Imagen img = new Imagen();
+                ImagenNegocio inegocio = new ImagenNegocio();
+                img.UrlImagen = txtUrlImagen.Text;
+                nuevo.listaImagenes.Add(img);
+                //negocio.agregar(nuevo);
+
+                if (Request.QueryString["id"] != null)
+                {
+                    nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
+                    negocio.modificarConSP(nuevo);
+                }
+                else
+                {
+                    int idArticuloGenerado = nuevo.idArticulo;
+
+                    inegocio.GuardarImagen(txtUrlImagen.Text, idArticuloGenerado);
+
+                    Response.Redirect("Administrador2.aspx");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private bool validarPrecio(string precio)
+        {
+            decimal resultado;
+            return decimal.TryParse(precio, out resultado);
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
