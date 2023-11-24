@@ -13,7 +13,6 @@ namespace Ecommerce
     public partial class AdmStock : System.Web.UI.Page
     {
         private int id;
-        private int cantAnterior;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
@@ -25,18 +24,19 @@ namespace Ecommerce
                 ddlTalle.Items.Add("M");
                 ddlTalle.Items.Add("L");
                 ddlTalle.Items.Add("XL");
-                if (id!= 0)
+                //if (id!= 0  Session["talle"]!=null)
+                if (Session["talle"] != null)
                 {
                     id = int.Parse(Request.QueryString["id"]);
                     StockNegocio stockNegocio = new StockNegocio();
                     List<StockTalles> stockTalles = stockNegocio.listarPorID(id);
-                    string talle = (Session["talle"]).ToString();
+                    //string talle = (Session["talle"]).ToString();
+                    string talle = (string)(Session["talle"]);
                     List<StockTalles> stockFiltrado = stockTalles.FindAll(x => x.talle.Contains(talle));
                     txtCantidad.Text = stockFiltrado[0].stock.ToString();
                     ListItem seleccion= ddlTalle.Items.FindByText(talle);
                     seleccion.Selected = true;
                     ddlTalle.Enabled = false;
-                    cantAnterior = int.Parse(txtCantidad.Text);
                 }
             }
         }
@@ -58,23 +58,32 @@ namespace Ecommerce
         {
             StockNegocio stockNegocio = new StockNegocio();
             int cantidad = int.Parse(txtCantidad.Text.ToString());
-            if (Session["talle"] == null)
+
+            try
             {
-                string talle = ddlTalle.SelectedValue.ToString();
-                if (ValidarNumero(txtCantidad.Text.ToString()))
+                if (Session["talle"] == null)
                 {
-                    stockNegocio.insertarStock(talle, cantidad, id);
+                    string talle = ddlTalle.SelectedValue.ToString();
+                    if (ValidarNumero(txtCantidad.Text.ToString()))
+                    {
+                        stockNegocio.insertarStock(talle, cantidad, id);
+                    }
+                }
+                else
+                {
+                    string talle = (Session["talle"]).ToString();
+                    if (ValidarNumero(txtCantidad.Text.ToString()))
+                    {
+                        stockNegocio.actualizarStock(id, talle, cantidad);
+                    }
                 }
             }
-            else
+            catch (Exception)
             {
-                string talle = (Session["talle"]).ToString();
-                if (ValidarNumero(txtCantidad.Text.ToString()))
-                {
-                    stockNegocio.actualizarStock(id,talle,cantidad);
-                }
+                txtAdvertencia.Text = "Ya hay una fila con el mismo talle";
+                txtAdvertencia.Visible = true;
+                return;
             }
-            
             Response.Redirect("Stock.aspx?id=" + id, false);
         }
     }

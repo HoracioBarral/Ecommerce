@@ -13,6 +13,7 @@ namespace Ecommerce
         private int id;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Remove("talle");
             if (Request.QueryString["id"] != null)
             {
                 id= int.Parse(Request.QueryString["id"]);
