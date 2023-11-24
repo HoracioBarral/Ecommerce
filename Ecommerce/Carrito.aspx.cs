@@ -87,7 +87,18 @@ namespace Ecommerce
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-
+            List<Articulo> carrito = new List<Articulo>();
+            carrito = (List<Articulo>)Session["Carrito"];
+            if (carrito.Count>0)
+            {
+                int idPedido = (int)Session["idPedido"];
+                PedidoNegocio pedidoNegocio = new PedidoNegocio();
+                pedidoNegocio.actualizarEstado(2, idPedido);
+                List<Articulo> carritoVacio = new List<Articulo>();
+                Session.Add("Carrito", carritoVacio);
+                Session.Remove("idPedido");
+                lblPrecioTotal.Text = "0";
+            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
