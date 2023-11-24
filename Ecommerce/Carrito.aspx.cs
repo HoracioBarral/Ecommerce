@@ -12,7 +12,7 @@ namespace Ecommerce
     public partial class Carrito : System.Web.UI.Page
     {
         private ArticuloNegocio articulonegocio = new ArticuloNegocio();
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -94,6 +94,11 @@ namespace Ecommerce
                 int idPedido = (int)Session["idPedido"];
                 PedidoNegocio pedidoNegocio = new PedidoNegocio();
                 pedidoNegocio.actualizarEstado(2, idPedido);
+                ServicioEmail mail = new ServicioEmail();
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                mail.armarCorreo(usuario.nombreUsuario, "Compra confirmada", "Su compra por "+lblPrecioTotal.Text+" ha sido confirmada, nos contactaremos para realizar el pago");
+                mail.enviarMail();
                 List<Articulo> carritoVacio = new List<Articulo>();
                 Session.Add("Carrito", carritoVacio);
                 Session.Remove("idPedido");
