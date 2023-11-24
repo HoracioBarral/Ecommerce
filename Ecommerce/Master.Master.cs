@@ -24,7 +24,12 @@ namespace Ecommerce
                 {
                     Response.Redirect("Login.aspx", false);
                 }
-            } 
+            }
+
+            if (Session["usuario"]!=null && Page is Login)
+            {
+                Response.Redirect("Productos.aspx", false);
+            }
         }
 
         protected void BtnCarrito_Click(object sender, EventArgs e)
