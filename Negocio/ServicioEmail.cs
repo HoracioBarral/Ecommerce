@@ -16,16 +16,16 @@ namespace Negocio
         public ServicioEmail()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("pruebasutn@outlook.com","Pruebas2023");
+            server.Credentials = new NetworkCredential("90a1b3d2a55fe2", "8f9b2d2ad821fc");
             server.EnableSsl = true;
             server.Port = 587;
-            server.Host = "smtp.office365.com";
+            server.Host = "sandbox.smtp.mailtrap.io";
         }
 
         public void armarCorreo(string destino,string asunto,string cuerpo)
         {
             mail = new MailMessage();
-            mail.From=new MailAddress("pruebasutn@outlook.com");
+            mail.From=new MailAddress("noresponder@tienda30.com");
             mail.To.Add(destino);
             mail.Subject = asunto;
             mail.Body = cuerpo;

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
 using System.Drawing;
+using System.Net;
 
 namespace Ecommerce
 {
@@ -19,6 +20,8 @@ namespace Ecommerce
 
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
+            string asunto;
+            string mensaje;
             if (TxtNombreUser.Text.Contains(" ") || TxtNombreUser.Text.Length<5 || !TxtNombreUser.Text.Contains("@") || !TxtNombreUser.Text.Contains("."))
             {
                 Label1.Visible = true;
@@ -40,6 +43,11 @@ namespace Ecommerce
                 if (usuarioNegocio.Registrarse(nuevoUsuario)){
                     Label1.Visible = true;
                     Label1.Text = "Registro Exitoso";
+                    ServicioEmail bienvenida = new ServicioEmail();
+                    mensaje = "Bienvenido a la tienda del Equipo 30, podra ingresar con su direccion de correo registrada y su clave";
+                    asunto = "Alta de usuario";
+                    bienvenida.armarCorreo(TxtNombreUser.Text, asunto, mensaje);
+                    bienvenida.enviarMail();
                     Response.Redirect("Login.aspx", false);
                 }
                 else

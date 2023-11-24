@@ -20,8 +20,8 @@ namespace Ecommerce
         {
             if (txtMail.Text.Trim() == "" || txtAsunto.Text.Trim() == "" || txtMensaje.Text.Trim() == "")
             {
-                //Label1.Visible = true;
-                //Label1.Text = "Verifique que no haya casilleros en blanco";
+                txtAdvertencia.Text = "Debe completar los campos con datos validos";
+                txtAdvertencia.Visible = true;
                 return;
             }
             else
@@ -29,6 +29,11 @@ namespace Ecommerce
                 ServicioEmail servicioEmail = new ServicioEmail();
                 servicioEmail.armarCorreo(txtMail.Text, txtAsunto.Text, txtMensaje.Text);
                 servicioEmail.enviarMail();
+                txtAdvertencia.Text = "Mensaje enviado, nos contactaremos lo antes posible";
+                txtAdvertencia.Visible = true;
+                txtMail.Text = string.Empty;
+                txtAsunto.Text = string.Empty;
+                txtMensaje.Text = string.Empty;
             }
         }
     }
