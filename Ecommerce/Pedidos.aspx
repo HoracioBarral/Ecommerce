@@ -16,7 +16,6 @@
             <asp:BoundField HeaderText="Cantidad de Articulos" DataField="cantidad" />
             <asp:BoundField HeaderText="Importe" DataField="importe" />
             <asp:BoundField HeaderText="Estado" DataField="estado" />
-            <asp:CommandField HeaderText="Ver Detalles" ShowSelectButton="true" SelectText="&#128077;" ControlStyle-CssClass="btn btn-link" />
             <asp:TemplateField HeaderText="Seleccione nuevo estado">
                 <ItemTemplate>
                     <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control">

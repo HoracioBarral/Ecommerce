@@ -76,6 +76,7 @@
     <Content Include="Contacto.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleArticulo.aspx" />
+    <Content Include="DetallePedidos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="ModificarArticulo.aspx" />
@@ -150,6 +151,13 @@
     </Compile>
     <Compile Include="DetalleArticulo.aspx.designer.cs">
       <DependentUpon>DetalleArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedidos.aspx.cs">
+      <DependentUpon>DetallePedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedidos.aspx.designer.cs">
+      <DependentUpon>DetallePedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
