@@ -89,5 +89,35 @@ namespace Negocio
             }
         }
 
+        public List<DetallePedido> listarConInnerJoin()
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            List<DetallePedido> lista = new List<DetallePedido>();
+            try
+            {
+                datos2.setConexion("select p.ID_Pedido,u.NombreUsuario,a.NombreArticulo,m.NombreMarca,dp.Talle,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad',p.Estado from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido inner join Articulos a on a.ID_Articulo=dp.id_Articulo inner join Marcas m on a.ID_Marca=m.ID_Marca inner join Usuarios u on u.ID_Usuario=p.ID_Usuario group by p.ID_Pedido,u.NombreUsuario,p.Estado,a.NombreArticulo,m.NombreMarca,p.Estado,dp.Talle order by p.ID_Pedido");
+                datos2.abrirConexion();
+                while (datos2.Lector.Read())
+                {
+                    DetallePedido detallePedido = new DetallePedido();
+                    detallePedido.idPedido = (int)datos2.Lector["ID_Pedido"];
+                    detallePedido.nombreUsuario = (string)datos2.Lector["NombreUsuario"];
+                    detallePedido.nombreArticulo = (string)datos2.Lector["NombreArticulo"];
+                    detallePedido.nombreMarca = (string)datos2.Lector["NombreMarca"];
+                    detallePedido.talle = (string)datos2.Lector["Talle"];
+                    detallePedido.cantidad = (int)datos2.Lector["Cantidad"];
+                    detallePedido.importe = (decimal)datos2.Lector["Importe"];
+                    detallePedido.estado = (int)datos2.Lector["Estado"];
+                    lista.Add(detallePedido);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

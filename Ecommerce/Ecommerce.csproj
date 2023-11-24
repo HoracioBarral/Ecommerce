@@ -72,12 +72,14 @@
     <Content Include="AdminMarcas.aspx" />
     <Content Include="AdmStock.aspx" />
     <Content Include="Carrito.aspx" />
+    <Content Include="Carrousel.aspx" />
     <Content Include="CategoriasMarcas.aspx" />
     <Content Include="Contacto.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleArticulo.aspx" />
     <Content Include="DetallePedidos.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="ListadoPedidos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ModificarArticulo.aspx" />
     <Content Include="Pedidos.aspx" />
@@ -124,6 +126,13 @@
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Carrousel.aspx.cs">
+      <DependentUpon>Carrousel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Carrousel.aspx.designer.cs">
+      <DependentUpon>Carrousel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CategoriasMarcas.aspx.cs">
       <DependentUpon>CategoriasMarcas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,6 +170,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoPedidos.aspx.cs">
+      <DependentUpon>ListadoPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoPedidos.aspx.designer.cs">
+      <DependentUpon>ListadoPedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

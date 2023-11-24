@@ -5,11 +5,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
     <div class="d-flex justify-content-between mb-3">
-        <h3>Listado de Articulos</h3>
+        <asp:Button runat="server" ID="btnPedidos" Text="Administrar Estado de Pedidos" CssClass="btn btn-primary" OnClick="btnPedidos_Click" />
+        <asp:Button runat="server" ID="btnDetallePedidos" Text="Listado de Pedidos" CssClass="btn btn-primary" OnClick="btnDetallePedidos_Click" />
+        <asp:Button runat="server" ID="btnCarrousel" Text="Administrar Carrousel" CssClass="btn btn-primary" OnClick="btnCarrousel_Click"/>
+    </div>
+    <div class="d-flex justify-content-between mb-3">
         <asp:Button runat="server" ID="btnNuevoArticulo" Text="Nuevo Articulo" CssClass="btn btn-primary" OnClick="btnNuevoArticulo_Click" />
         <asp:Button runat="server" ID="btnMarcaCategoria" Text="Administrar Categorias y Marcas" CssClass="btn btn-primary" OnClick="btnMarcaCategoria_Click"/>
         <asp:Button runat="server" ID="BtnUsuarios" Text="Administrar Usuarios" CssClass="btn btn-primary" OnClick="BtnUsuarios_Click" />
-        <asp:Button runat="server" ID="btnPedidos" Text="Administrar Pedidos" CssClass="btn btn-primary" OnClick="btnPedidos_Click" />
+    </div>
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Listado de Articulos</h3>
     </div>
 
     <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idArticulo" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">

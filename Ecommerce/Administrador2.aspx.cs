@@ -53,5 +53,15 @@ namespace Ecommerce
         {
             Response.Redirect("Pedidos.aspx", false);
         }
+
+        protected void btnDetallePedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoPedidos.aspx",false);
+        }
+
+        protected void btnCarrousel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrousel.aspx", false);
+        }
     }
 }

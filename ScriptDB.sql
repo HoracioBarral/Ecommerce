@@ -107,6 +107,18 @@ create table DetallePedidos(
 go
 
 
+create table Carrousel(
+	ID_Registro int not null primary key CLUSTERED identity(1,1),
+	Texto1 varchar(100) null default 'Bienvenidos',
+	Texto2 varchar(100) null default 'Aprovecha las Ofertas',
+	Texto3 varchar(100) null default 'Tienda Grupo 30'
+)
+go
+
+
+insert into Usuarios(NombreUsuario,Pass,ID_Rol,Estado) values('Administrador','Prueba2023',1,1) 
+
+
 --Se insertan valores a la tabla de Categorias
 
 INSERT INTO Categorias (NombreCategoria)

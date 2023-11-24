@@ -10,9 +10,10 @@
     </div>
     <asp:GridView ID="dgvDetalles" runat="server" AutoGenerateColumns="false" CssClass="table" >
         <Columns>
-            <asp:BoundField HeaderText="idPedido" DataField="idPedido" />
+            <asp:BoundField HeaderText="id Pedido" DataField="idPedido" />
+            <asp:BoundField HeaderText="Nombre de Usuario" DataField="nombreUsuario" />
             <asp:BoundField HeaderText="Nombre de Articulo" DataField="nombreArticulo" />
-            <asp:BoundField HeaderText="Marca" DataField="marca.nombreMarca"/>
+            <asp:BoundField HeaderText="Marca" DataField="nombreMarca"/>
             <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
             <asp:BoundField HeaderText="Talle" DataField="talle" />
             <asp:BoundField HeaderText="Importe" DataField="importe" />
