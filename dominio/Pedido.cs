@@ -14,9 +14,10 @@ namespace dominio
 
         public int idUsuario { get; set; }
 
-        public bool Estado { get; set; }
+        public int estado { get; set; }
 
-        public int numeroPedido { get; set; }
+        public int cantidad { get; set; }
+
 
     }
 }

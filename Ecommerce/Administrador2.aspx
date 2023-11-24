@@ -9,6 +9,7 @@
         <asp:Button runat="server" ID="btnNuevoArticulo" Text="Nuevo Articulo" CssClass="btn btn-primary" OnClick="btnNuevoArticulo_Click" />
         <asp:Button runat="server" ID="btnMarcaCategoria" Text="Administrar Categorias y Marcas" CssClass="btn btn-primary" OnClick="btnMarcaCategoria_Click"/>
         <asp:Button runat="server" ID="BtnUsuarios" Text="Administrar Usuarios" CssClass="btn btn-primary" OnClick="BtnUsuarios_Click" />
+        <asp:Button runat="server" ID="btnPedidos" Text="Administrar Pedidos" CssClass="btn btn-primary" OnClick="btnPedidos_Click" />
     </div>
 
     <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idArticulo" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">

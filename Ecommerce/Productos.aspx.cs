@@ -78,6 +78,11 @@ namespace Ecommerce
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo articulo = new Articulo();
             articulo = articulonegocio.buscarPorID(id);
+            Response.Redirect("DetalleArticulo.aspx?id=" + id, false);
+            /*
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Articulo articulo = new Articulo();
+            articulo = articulonegocio.buscarPorID(id);
             if (!estaEnCarrito(articulo))
             {
                 Label1.Text = articulo.nombreArticulo + " añadido al carrito";
@@ -91,7 +96,7 @@ namespace Ecommerce
             {
                 Label1.Text = articulo.nombreArticulo + " ya añadido en carrito";
                 Label1.CssClass = "alert alert-danger";
-            }
+            }*/
 
 
         }

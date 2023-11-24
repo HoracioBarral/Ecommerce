@@ -47,7 +47,7 @@
                     <p class="card-text"><%# Eval("Categoria") %></p>
                     <p class="card-text"><%# Eval("Marca") %></p>
                     <div style="display: flex; justify-content: space-evenly;">
-                    <asp:Button ID="btnCarrito" runat="server" Text="Agregar al carrito 🛒" onclick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
+                    <asp:Button ID="btnCarrito" runat="server" Text="Ver Detalles" onclick="btnCarrito_Click" CommandArgument='<%#Eval("idArticulo") %>' CommandName="idArticulo" />
                     </div>
                 </div>
             </div>

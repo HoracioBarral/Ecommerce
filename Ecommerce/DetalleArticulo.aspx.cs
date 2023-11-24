@@ -125,6 +125,7 @@ namespace Ecommerce
             if (Session["idPedido"]==null)
             {
                 int idPedido = articulNegocio.generarNumPedido(articulo, usuario.idUsuario);
+                articulo.numeroPedido = idPedido;
                 Session.Add("idPedido", idPedido);
             }
             List<Articulo> carrito = (List<Articulo>)Session["Carrito"];

@@ -100,7 +100,7 @@ create table DetallePedidos(
 	ID_Articulo int not null,
 	ID_Pedido int not null,
 	Importe money not null check(importe>0),
-	Estado bit not null default 1 check(Estado<=0 and Estado<=1),
+	Estado bit not null default 1 check(Estado>=0 and Estado<=1),
 	foreign key(ID_Articulo) references Articulos(ID_Articulo),
 	foreign key(ID_Pedido) references Pedidos(ID_Pedido)
 )

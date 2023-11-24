@@ -237,6 +237,31 @@ namespace Negocio
             finally
             {
                 datos2.cerrarConexion();
+                if (estado == 4)
+                {
+                    modificarDetalleCompra(idPedido,0);
+                }
+            }
+        }
+
+        private void modificarDetalleCompra(int idPedido, int estado)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("update DetallePedidos set Estado=0 where ID_Pedido=@idPedido");
+                datos2.setearParametro("@idPedido", idPedido);
+                datos2.setearParametro("@estado", estado);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
             }
         }
 

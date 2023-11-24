@@ -79,6 +79,7 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="ModificarArticulo.aspx" />
+    <Content Include="Pedidos.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Stock.aspx" />
@@ -173,6 +174,13 @@
     </Compile>
     <Compile Include="ModificarArticulo.aspx.designer.cs">
       <DependentUpon>ModificarArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>

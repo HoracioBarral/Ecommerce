@@ -48,5 +48,10 @@ namespace Ecommerce
         {
             Response.Redirect("UsuariosRegistrados.aspx",false);
         }
+
+        protected void btnPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Pedidos.aspx", false);
+        }
     }
 }
