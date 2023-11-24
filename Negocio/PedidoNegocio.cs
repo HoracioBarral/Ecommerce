@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,27 @@ namespace Negocio
                     lista.Add(pedido);
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void actualizarEstado(int estado,int idPedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update Pedidos set Estado=@estado where ID_Pedido=@idPedido");
+                datos.setearParametro("@estado",estado);
+                datos.setearParametro("@idPedido", idPedido);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

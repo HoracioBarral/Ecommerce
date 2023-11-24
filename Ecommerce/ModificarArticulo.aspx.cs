@@ -55,7 +55,7 @@ namespace Ecommerce
                         ddlCategoria.SelectedValue = articulo.categoria.idCategoria.ToString();
                         ddlMarca.SelectedValue = articulo.marca.idMarca.ToString();
                         txtPrecio.Text = articulo.precio.ToString();
-                        txtStock.Text = articulo.stock.ToString();
+                        //txtStock.Text = articulo.stock.ToString();
                         ddlEstado.SelectedValue = articulo.Estado ? "1" : "0";
                         ImagenNegocio imagenNegocio = new ImagenNegocio();
                         List<Imagen> imagenes = imagenNegocio.Listar(id);
@@ -77,7 +77,7 @@ namespace Ecommerce
             txtNombreArticulo.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
             txtPrecio.Text = string.Empty;
-            txtStock.Text = string.Empty;
+            //txtStock.Text = string.Empty;
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace Ecommerce
             nuevo.marca = new Marca();
             nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
             nuevo.precio = decimal.Parse(txtPrecio.Text);
-            nuevo.stock = int.Parse(txtStock.Text);
+            //nuevo.stock = int.Parse(txtStock.Text);
             nuevo.listaImagenes = new List<Imagen>();
             Imagen img = new Imagen();
             ImagenNegocio inegocio = new ImagenNegocio();

@@ -60,8 +60,6 @@
             </div>
 
             <div class="form-group">
-                <label for="txtStock">Stock</label>
-                <asp:TextBox runat="server" ID="txtStock" CssClass="form-control" />
                 <asp:Button ID="btnStock" Text="Administrar stock" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnStock_Click" style="margin: 20px; padding: 10px;"/>
             </div>
 
