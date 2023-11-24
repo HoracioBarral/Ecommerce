@@ -37,11 +37,28 @@ namespace Ecommerce
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
             pedidoNegocio.actualizarEstado(estado, idPedido);
             recargarPedidos();
+            if (estado == 4)
+            {
+                actualizarStock(idPedido);
+            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Administrador2.aspx", false);
+        }
+
+        private void actualizarStock(int idPedido)
+        {
+            List<Articulo> articulosEliminados = new List<Articulo>();
+            PedidoNegocio pedidoNegocio = new PedidoNegocio();
+            articulosEliminados = pedidoNegocio.listarDetallePedido(idPedido);
+
+            foreach(Articulo articulo in articulosEliminados)
+            {
+                StockNegocio stockNegocio = new StockNegocio();
+                stockNegocio.modificarStock(articulo.idArticulo, articulo.talle, articulo.cantidad,true);
+            }
         }
     }
 }

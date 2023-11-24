@@ -63,5 +63,31 @@ namespace Negocio
             }
         }
 
+        public List<Articulo> listarDetallePedido(int idPedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Articulo> lista = new List<Articulo>();
+            try
+            {
+                datos.setConexion("select * from detallePedidos where id_Pedido=@idPedido");
+                datos.setearParametro("idPedido", idPedido);
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    Articulo articulo = new Articulo();
+                    articulo.idArticulo = (int)datos.Lector["ID_Articulo"];
+                    articulo.cantidad = (int)datos.Lector["Cantidad"];
+                    articulo.talle = (string)datos.Lector["Talle"];
+                    lista.Add(articulo);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }
