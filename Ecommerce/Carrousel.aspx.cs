@@ -13,5 +13,20 @@ namespace Ecommerce
         {
 
         }
+
+        protected void btnGuardarCarrusel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarCarrusel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarCarrusel3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
