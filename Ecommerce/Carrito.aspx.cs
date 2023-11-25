@@ -11,7 +11,7 @@ namespace Ecommerce
 {
     public partial class Carrito : System.Web.UI.Page
     {
-        private ArticuloNegocio articulonegocio = new ArticuloNegocio();
+        //private ArticuloNegocio articulonegocio = new ArticuloNegocio();
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace Ecommerce
                 StockNegocio stock = new StockNegocio();
                 stock.modificarStock(articuloParaQuitar.idArticulo, articuloParaQuitar.talle, articuloParaQuitar.cantidad, true);
                 ArticuloNegocio articulo = new ArticuloNegocio();
-                articulonegocio.modificarEstadoCompra(articuloParaQuitar.numeroPedido,4);
+                articulo.modificarEstadoCompra(articuloParaQuitar.numeroPedido,4);
                 carrito.Remove(articuloParaQuitar);
             }
 

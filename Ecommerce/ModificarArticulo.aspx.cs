@@ -13,6 +13,7 @@ namespace Ecommerce
     public partial class ModificarArticulo : System.Web.UI.Page
     {
         public bool ConfirmaEliminacion { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ConfirmaEliminacion = false;
@@ -25,6 +26,8 @@ namespace Ecommerce
                 }*/
                 if (!IsPostBack)
                 {
+                    List<Imagen> imagenesNuevas = new List<Imagen>();
+                    Session.Add("imagenesNuevas", imagenesNuevas);
                     CategoriaNegocio cat = new CategoriaNegocio();
                     List<Categoria> listaC = cat.listarCategorias();
                     MarcaNegocio mar = new MarcaNegocio();
@@ -84,7 +87,16 @@ namespace Ecommerce
         {
             if (txtNombreArticulo.Text.Trim()=="" || txtDescripcion.Text.Trim() == "" || !validarPrecio(txtPrecio.Text))
             {
+                txtAdvertencia.Text = string.Empty;
                 txtAdvertencia.Text = "Verifique que los campos no esten vacios o sean datos validos";
+                txtAdvertencia.Visible = true;
+                return;
+            }
+            List<Imagen> imagenes = (List<Imagen>)(Session["imagenesNuevas"]);
+            if (imagenes.Count == 0 && Request.QueryString["id"]==null)
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "El articulo nuevo tiene que tener al menos una imagen";
                 txtAdvertencia.Visible = true;
                 return;
             }
@@ -101,31 +113,43 @@ namespace Ecommerce
                 nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
                 nuevo.precio = decimal.Parse(txtPrecio.Text);
                 //nuevo.stock = int.Parse(txtStock.Text);
-                nuevo.listaImagenes = new List<Imagen>();
-                Imagen img = new Imagen();
+                //nuevo.listaImagenes = new List<Imagen>();
+                //Imagen img = new Imagen();
+                //img.UrlImagen = txtUrlImagen.Text;
+                //nuevo.listaImagenes.Add(img);
+                nuevo.listaImagenes = imagenes;
                 ImagenNegocio inegocio = new ImagenNegocio();
-                img.UrlImagen = txtUrlImagen.Text;
-                nuevo.listaImagenes.Add(img);
-                //negocio.agregar(nuevo);
-
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
                     negocio.modificarConSP(nuevo);
+                    if (imagenes.Count > 0)
+                    {
+                        foreach(Imagen imagen in imagenes)
+                        {
+                            inegocio.GuardarImagen(imagen.UrlImagen, nuevo.idArticulo);
+                        }
+                    }
                 }
                 else
                 {
-                    int idArticuloGenerado = nuevo.idArticulo;
+                    int idArticuloGenerado=negocio.agregar(nuevo);
 
-                    inegocio.GuardarImagen(txtUrlImagen.Text, idArticuloGenerado);
+                    foreach(Imagen imagen in imagenes)
+                    {
+                        inegocio.GuardarImagen(imagen.UrlImagen, idArticuloGenerado);
+                    }
 
                     Response.Redirect("Administrador2.aspx");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
+                /*
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "Verifique que los campos no esten vacios o sean datos validos";
+                txtAdvertencia.Visible = true;*/
             }
         }
 
@@ -137,6 +161,11 @@ namespace Ecommerce
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] == null)
+            {
+                txtAdvertencia.Text = string.Empty;
+                return;
+            }
             ConfirmaEliminacion = true;
         }
 
@@ -163,17 +192,36 @@ namespace Ecommerce
 
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
-
+            List<Imagen> imagenes = (List<Imagen>)(Session["imagenesNuevas"]);
+            Imagen img = new Imagen();
+            if (txtUrlImagen.Text.Trim() != "")
+            {
+                img.UrlImagen = txtUrlImagen.Text;
+                imagenes.Add(img);
+            }
+            Session["imagenesNuevas"]=imagenes;
         }
 
         protected void btnStock_Click(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] == null)
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "Debe crear el articulo antes de administrar el stock";
+                txtAdvertencia.Visible = true;
+                return;
+            }
+
             int id = int.Parse(Request.QueryString["id"]);
             Response.Redirect("Stock.aspx?id=" + id, false);
         }
 
         protected void btnEliminar2_Click(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] == null)
+            {
+                return;
+            }
             try
             {
                 ArticuloNegocio negocio =  new ArticuloNegocio();

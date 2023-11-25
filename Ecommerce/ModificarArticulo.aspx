@@ -18,12 +18,12 @@
                     <asp:TextBox runat="server" ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="txtUrlImagen">Url Imagen</label>
-                    <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" />
-                </div>
-                <div class="form-group">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
+                            <div class="form-group">
+                                <label for="txtUrlImagen">Url Imagen</label>
+                                <asp:TextBox runat="server" ID="txtUrlImagen" AutoPostBack="true" CssClass="form-control" OnTextChanged="txtUrlImagen_TextChanged" />
+                            </div>
                             <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnAgregarImagen_Click" Style="margin: 20px; padding: 10px;" />
                             <asp:Image ImageUrl=" " ID="Image1" runat="server" Width="60%" />
                         </ContentTemplate>
@@ -78,8 +78,8 @@
                         <%} %>
             </div>
                         <div class="row">
-                    <asp:Label ID="txtAdvertencia" runat="server" CssClass="form-control" Visible="false" ForeColor="Red" />
-                </div>
+                            <asp:Label ID="txtAdvertencia" runat="server" CssClass="form-control" Visible="false" ForeColor="Red" />
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

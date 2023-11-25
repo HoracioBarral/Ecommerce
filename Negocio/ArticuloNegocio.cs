@@ -132,21 +132,21 @@ namespace Negocio
             }
 
         }
-        public void agregar(Articulo nuevo)
+        public int agregar(Articulo nuevo)
         {
 
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConexion("INSERT INTO Articulos (NombreArticulo, Descripcion, Precio, Stock, ID_Categoria, ID_Marca) " + "VALUES (@NombreArticulo, @Descripcion, @Precio, @Stock, @ID_Categoria, @ID_Marca);");
+                datos.setConexion("INSERT INTO Articulos (NombreArticulo, Descripcion, Precio, Stock, ID_Categoria, ID_Marca) output inserted.ID_Articulo VALUES (@NombreArticulo, @Descripcion, @Precio, @Stock, @ID_Categoria, @ID_Marca);");
                 datos.setearParametro("@NombreArticulo",nuevo.nombreArticulo);
                 datos.setearParametro("@Descripcion", nuevo.descripcion);
                 datos.setearParametro("@Precio", nuevo.precio);
                 datos.setearParametro("@Stock", nuevo.stock);
                 datos.setearParametro("@ID_Categoria", nuevo.categoria.idCategoria);
                 datos.setearParametro("@ID_Marca", nuevo.marca.idMarca);
-                datos.ejecutarAccion();
-
+                int ultimaFila = datos.ejecutarAccionConOutput();
+                return ultimaFila;
             }
             catch (Exception ex)
             {

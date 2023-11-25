@@ -12,9 +12,9 @@ namespace Ecommerce
 {
     public partial class Productos : System.Web.UI.Page
     {
-        List<Articulo> listadoArticulos;
-        public List<Articulo> listaarticulos = new List<Articulo>();
-        private ArticuloNegocio articulonegocio = new ArticuloNegocio();
+        //List<Articulo> listadoArticulos;
+        //public List<Articulo> listaarticulos = new List<Articulo>();
+        //private ArticuloNegocio articulonegocio = new ArticuloNegocio();
         public bool EvaluarEstadoDelEnlace(string url)
         {
             try
@@ -46,7 +46,7 @@ namespace Ecommerce
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            listaarticulos = articulonegocio.listar();
+            //listaarticulos = articulonegocio.listar();
             if (Session["Carrito"] == null)
             {
                 List<Articulo> carrito = new List<Articulo>();
@@ -75,9 +75,10 @@ namespace Ecommerce
 
         protected void btnCarrito_Click(object sender, EventArgs e)
         {
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo articulo = new Articulo();
-            articulo = articulonegocio.buscarPorID(id);
+            articulo = articuloNegocio.buscarPorID(id);
             Response.Redirect("DetalleArticulo.aspx?id=" + id, false);
             /*
             int id = int.Parse(((Button)sender).CommandArgument);

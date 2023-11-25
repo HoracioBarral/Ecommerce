@@ -14,7 +14,7 @@ namespace Ecommerce
 {
     public partial class DetalleArticulo : System.Web.UI.Page
     {
-        ArticuloNegocio articulNegocio = new ArticuloNegocio();
+        //ArticuloNegocio articulNegocio = new ArticuloNegocio();
         private int ObtenerElIdDelArticuloDesdeLaURL()
         {
             int idArticulo = -1;
@@ -125,7 +125,7 @@ namespace Ecommerce
             //genera un idPedido para insertar en la tabla DetallePedidos
             if (Session["idPedido"]==null)
             {
-                int idPedido = articulNegocio.generarNumPedido(articulo, usuario.idUsuario);
+                int idPedido = articuloNegocio.generarNumPedido(articulo, usuario.idUsuario);
                 articulo.numeroPedido = idPedido;
                 Session.Add("idPedido", idPedido);
             }
