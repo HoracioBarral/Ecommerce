@@ -97,7 +97,9 @@ namespace Ecommerce
                 ServicioEmail mail = new ServicioEmail();
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["usuario"];
-                mail.armarCorreo(usuario.nombreUsuario, "Compra confirmada", "Su compra por "+lblPrecioTotal.Text+" ha sido confirmada, nos contactaremos para realizar el pago");
+                mail.armarCorreo(usuario.nombreUsuario, "Compra confirmada", "Su compra con registro "+idPedido.ToString()+" por "+lblPrecioTotal.Text+" ha sido confirmada, nos contactaremos para realizar el pago");
+                mail.enviarMail();
+                mail.armarCorreo("pruebasUTN2023@gmail.com","Nueva compra","Se confirma la compra con ID "+idPedido+" del usuario "+usuario.nombreUsuario);
                 mail.enviarMail();
                 List<Articulo> carritoVacio = new List<Articulo>();
                 Session.Add("Carrito", carritoVacio);

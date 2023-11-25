@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -36,11 +37,22 @@ namespace Ecommerce
             int estado =int.Parse(ddlEstado.SelectedValue);
             int idPedido = (int)(dgvPedidos.SelectedDataKey.Value);
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
+            List<Pedido> lista = pedidoNegocio.listar();
             pedidoNegocio.actualizarEstado(estado, idPedido);
             recargarPedidos();
             if (estado == 4)
             {
+                List<Pedido> pedido = lista.FindAll(x => x.idPedido == idPedido);
                 actualizarStock(idPedido);
+                if (pedido[0].estado != 1)
+                {
+                    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                    List<Usuario> usuarios = usuarioNegocio.Listar();
+                    List<Usuario> usuarioFiltrado = usuarios.FindAll(x => x.idUsuario == pedido[0].idUsuario);
+                    ServicioEmail mail = new ServicioEmail();
+                    mail.armarCorreo(usuarioFiltrado[0].nombreUsuario, "Compra Cancelada", "Su compra numero "+idPedido.ToString()+" fue cancelada");
+                    mail.enviarMail();
+                }
             }
         }
 

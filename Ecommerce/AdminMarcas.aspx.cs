@@ -23,21 +23,30 @@ namespace Ecommerce
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (txtMarca.Text.Trim() == "")
+            try
             {
+                if (txtMarca.Text.Trim() == "")
+                {
+                    Label1.Visible = true;
+                    Label1.Text = "No puede Ingresar la Marca en Blanco";
+                    return;
+                }
+                string marca = txtMarca.Text;
+                MarcaNegocio marcaNegocio = new MarcaNegocio();
+                if (Request.QueryString["id"] != null)
+                {
+                    marcaNegocio.modificarMarca(int.Parse(Request.QueryString["id"]), txtMarca.Text);
+                }
+                else
+                    marcaNegocio.agregarMarca(txtMarca.Text);
+                Response.Redirect("CategoriasMarcas.aspx", false);
+            }
+            catch (Exception)
+            {
+
+                Label1.Text="La marca que ingreso ya existe";
                 Label1.Visible = true;
-                Label1.Text = "No puede Ingresar la Marca en Blanco";
-                return;
             }
-            string marca = txtMarca.Text;
-            MarcaNegocio marcaNegocio = new MarcaNegocio();
-            if (Request.QueryString["id"] != null)
-            {
-                marcaNegocio.modificarMarca(int.Parse(Request.QueryString["id"]), txtMarca.Text);
-            }
-            else
-                marcaNegocio.agregarMarca(txtMarca.Text);
-            Response.Redirect("CategoriasMarcas.aspx", false);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
