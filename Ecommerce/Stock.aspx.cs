@@ -37,5 +37,13 @@ namespace Ecommerce
             Session.Add("talle", dgvStock.SelectedValue.ToString());
             Response.Redirect("AdmStock.aspx?id=" + id, false);
         }
+
+        protected void dgvStock_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string talle = dgvStock.DataKeys[e.RowIndex]["talle"].ToString();
+            StockNegocio stock = new StockNegocio();
+            stock.bajarStock0(id, talle, 0);
+            Response.Redirect(Request.RawUrl);
+        }
     }
 }

@@ -106,5 +106,26 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void bajarStock0(int idArticulo, string talle, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update StockPorTalles set Stock=@cantidad where ID_Articulo=@idArticulo and Talle like @talle");
+                datos.setearParametro("@cantidad", 0);
+                datos.setearParametro("@idArticulo", idArticulo);
+                datos.setearParametro("@talle", talle);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
