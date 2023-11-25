@@ -4,6 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <script type="text/javascript">
+    function showMessage() {
+        alert('Cambios guardados correctamente');
+        window.location.href = 'Administrador2.aspx';
+    }
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-md-4">

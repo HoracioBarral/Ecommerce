@@ -40,10 +40,10 @@ namespace Ecommerce
                     ddlMarca.DataValueField = "idMarca";
                     ddlMarca.DataTextField = "nombreMArca";
                     ddlMarca.DataBind();
-                    
+
                     if (Request.QueryString["nuevo"] == "true")
                     {
-                        
+
                         LimpiarControles();
                     }
                     if (Request.QueryString["id"] != null && !IsPostBack)
@@ -85,7 +85,7 @@ namespace Ecommerce
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            if (txtNombreArticulo.Text.Trim()=="" || txtDescripcion.Text.Trim() == "" || !validarPrecio(txtPrecio.Text))
+            if (txtNombreArticulo.Text.Trim() == "" || txtDescripcion.Text.Trim() == "" || !validarPrecio(txtPrecio.Text))
             {
                 txtAdvertencia.Text = string.Empty;
                 txtAdvertencia.Text = "Verifique que los campos no esten vacios o sean datos validos";
@@ -93,7 +93,7 @@ namespace Ecommerce
                 return;
             }
             List<Imagen> imagenes = (List<Imagen>)(Session["imagenesNuevas"]);
-            if (imagenes.Count == 0 && Request.QueryString["id"]==null)
+            if (imagenes.Count == 0 && Request.QueryString["id"] == null)
             {
                 txtAdvertencia.Text = string.Empty;
                 txtAdvertencia.Text = "El articulo nuevo tiene que tener al menos una imagen";
@@ -126,7 +126,7 @@ namespace Ecommerce
                     negocio.modificarConSP(nuevo);
                     if (imagenes.Count > 0)
                     {
-                        foreach(Imagen imagen in imagenes)
+                        foreach (Imagen imagen in imagenes)
                         {
                             inegocio.GuardarImagen(imagen.UrlImagen, nuevo.idArticulo);
                         }
@@ -134,15 +134,16 @@ namespace Ecommerce
                 }
                 else
                 {
-                    int idArticuloGenerado=negocio.agregar(nuevo);
+                    int idArticuloGenerado = negocio.agregar(nuevo);
 
-                    foreach(Imagen imagen in imagenes)
+                    foreach (Imagen imagen in imagenes)
                     {
                         inegocio.GuardarImagen(imagen.UrlImagen, idArticuloGenerado);
                     }
 
                     Response.Redirect("Administrador2.aspx");
                 }
+                ScriptManager.RegisterStartupScript(this, GetType(), "showMessage", "showMessage();", true);
             }
             catch (Exception ex)
             {
@@ -151,6 +152,7 @@ namespace Ecommerce
                 txtAdvertencia.Text = string.Empty;
                 txtAdvertencia.Text = "Verifique que los campos no esten vacios o sean datos validos";
                 txtAdvertencia.Visible = true;*/
+
             }
         }
 

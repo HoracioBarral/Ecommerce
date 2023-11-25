@@ -192,7 +192,8 @@ CREATE PROCEDURE sp_ModificarArticulo
     @Precio MONEY,
     @Stock INT,
     @ID_Categoria INT,
-    @ID_Marca INT
+    @ID_Marca INT,
+	@Estado BIT
 AS
 BEGIN
     BEGIN TRY
@@ -205,7 +206,8 @@ BEGIN
             Precio = @Precio,
             Stock = @Stock,
             ID_Categoria = @ID_Categoria,
-            ID_Marca = @ID_Marca
+            ID_Marca = @ID_Marca,
+			Estado = @Estado
         WHERE
             ID_Articulo = @ID_Articulo;
 
