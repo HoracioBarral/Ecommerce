@@ -102,6 +102,7 @@ namespace Ecommerce
             {
                 btnCarrito.Visible = false;
                 lblAdvertencia.Text = "Sin stock";
+                lblAdvertencia.Visible = true;
                 return;
             }
             for (int i = 0; i < stockFiltrado[0].stock; i++)
