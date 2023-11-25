@@ -111,10 +111,16 @@ create table Carrousel(
 )
 go
 
+--Se insertan valores a la tabla Roles
+
+insert into Roles values ('1'),('2')
+
+go
+
 
 insert into Usuarios(NombreUsuario,Pass,ID_Rol,Estado) values('Administrador','Prueba2023',1,1) 
 
-
+go
 --Se insertan valores a la tabla de Categorias
 
 INSERT INTO Categorias (NombreCategoria)
@@ -160,12 +166,14 @@ go
 
 INSERT INTO Categorias (NombreCategoria)
 VALUES('Zapatillas')
+go
 INSERT INTO Articulos (NombreArticulo, Descripcion, Precio, Stock, ID_Categoria, ID_Marca)
 VALUES ('Zapatillas deportivas', 'Zapatillas para correr Nike', 25000, 50, 9, 1),
        ('Camiseta deportiva', 'Camiseta para entrenamiento Adidas', 10000, 100, 8, 2),
        ('Jeans clásicos', 'Jeans de mezclilla ',30000, 60, 7, 3),
        ('Gorra deportiva ', 'Gorra de béisbol Puma', 8000, 80, 6, 7),
        ('Buzo con capucha', 'Buzo cálido con capucha', 6000, 70, 4, 6);
+go
 
 INSERT INTO Imagenes (Url_Imagen, ID_Articulo)
 VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=638229666028100000&width=800&height=800&aspect=true', 1),
@@ -174,13 +182,8 @@ VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=6382296
        ('https://levisarg.vtexassets.com/arquivos/ids/593707/272_6310356e0eb94.jpg?v=637976702233070000', 3),
        ('https://sporting.vtexassets.com/arquivos/ids/300847-1200-1200?width=1200&height=1200&aspect=true', 4),
        ('https://www.stockcenter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwd6185bf0/products/UBU11L187-1841/UBU11L187-1841-1.JPG', 5);
-
-
---Se insertan valores a la tabla Roles
-
-insert into Roles values ('1'),('2')
-
 go
+
 
 CREATE PROCEDURE sp_ModificarArticulo
     @ID_Articulo INT,

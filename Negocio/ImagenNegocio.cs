@@ -64,7 +64,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConexion("update Imagenes set Estado=0 where ID_Articulo=@id and Url_Imagen like @url");
+                datos.setConexion("delete Imagenes where ID_Articulo=@id and Url_Imagen like @url");
                 datos.setearParametro("@id", id);
                 datos.setearParametro("@url", url);
                 datos.abrirConexion();
