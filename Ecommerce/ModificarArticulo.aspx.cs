@@ -111,6 +111,7 @@ namespace Ecommerce
                 nuevo.categoria.idCategoria = int.Parse(ddlCategoria.SelectedValue);
                 nuevo.marca = new Marca();
                 nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
+                nuevo.Estado = ddlEstado.SelectedValue == "1";
                 nuevo.precio = decimal.Parse(txtPrecio.Text);
                 //nuevo.stock = int.Parse(txtStock.Text);
                 //nuevo.listaImagenes = new List<Imagen>();

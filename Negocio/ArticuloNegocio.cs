@@ -168,6 +168,7 @@ namespace Negocio
                 datos.setearParametro("@Stock", arti.stock);
                 datos.setearParametro("@ID_Categoria", arti.categoria.idCategoria);
                 datos.setearParametro("@ID_Marca", arti.marca.idMarca);
+                datos.setearParametro("@Estado", arti.Estado);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
