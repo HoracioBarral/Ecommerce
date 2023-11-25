@@ -12,11 +12,14 @@ namespace Ecommerce
 {
     public partial class AdmStock : System.Web.UI.Page
     {
-        private int id;
         protected void Page_Load(object sender, EventArgs e)
         {
+            int id;
             if (Request.QueryString["id"] != null)
+            {
                 id = int.Parse(Request.QueryString["id"]);
+            }
+            else Response.Redirect("Administrador2.aspx", false);
             if (!IsPostBack)
             {
                 ddlTalle.Items.Add("XS");
@@ -24,13 +27,11 @@ namespace Ecommerce
                 ddlTalle.Items.Add("M");
                 ddlTalle.Items.Add("L");
                 ddlTalle.Items.Add("XL");
-                //if (id!= 0  Session["talle"]!=null)
                 if (Session["talle"] != null)
                 {
                     id = int.Parse(Request.QueryString["id"]);
                     StockNegocio stockNegocio = new StockNegocio();
                     List<StockTalles> stockTalles = stockNegocio.listarPorID(id);
-                    //string talle = (Session["talle"]).ToString();
                     string talle = (string)(Session["talle"]);
                     List<StockTalles> stockFiltrado = stockTalles.FindAll(x => x.talle.Contains(talle));
                     txtCantidad.Text = stockFiltrado[0].stock.ToString();
@@ -50,36 +51,55 @@ namespace Ecommerce
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(Request.QueryString["id"]);
             Response.Redirect("Stock.aspx?id="+id, false);
         }
 
 
         protected void btnAceptar_Click2(object sender, EventArgs e)
         {
+            int id = int.Parse(Request.QueryString["id"]);
             StockNegocio stockNegocio = new StockNegocio();
-            int cantidad = int.Parse(txtCantidad.Text.ToString());
+            int cantidad;
+            if (txtCantidad.Text.Trim() == "")
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "El campo no puede estar en blanco";
+                txtAdvertencia.Visible = true;
+                return;
+            }
+            if (ValidarNumero(txtCantidad.Text.ToString()))
+            {
+                cantidad = int.Parse(txtCantidad.Text.ToString());
+            }
+            else
+            {
+                return;
+            }
+            if (cantidad <= 0)
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "El numero debe ser mayor a cero y entero";
+                txtAdvertencia.Visible = true;
+                return;
+            }
 
             try
             {
                 if (Session["talle"] == null)
                 {
                     string talle = ddlTalle.SelectedValue.ToString();
-                    if (ValidarNumero(txtCantidad.Text.ToString()))
-                    {
-                        stockNegocio.insertarStock(talle, cantidad, id);
-                    }
+                    stockNegocio.insertarStock(talle, cantidad, id);
                 }
                 else
                 {
                     string talle = (Session["talle"]).ToString();
-                    if (ValidarNumero(txtCantidad.Text.ToString()))
-                    {
-                        stockNegocio.actualizarStock(id, talle, cantidad);
-                    }
+                    stockNegocio.actualizarStock(id, talle, cantidad);
                 }
             }
             catch (Exception)
-            {
+            {   
+                txtAdvertencia.Text = string.Empty;
                 txtAdvertencia.Text = "Ya hay una fila con el mismo talle";
                 txtAdvertencia.Visible = true;
                 return;

@@ -11,15 +11,18 @@
         </div>
         <div class="form-group">
             <label for="txtCantidad">Cantidad</label>
-            <asp:TextBox runat="server" ID="txtCantidad" CssClass="form-control" AutoPostBack="true" />
+            <asp:TextBox runat="server" ID="txtCantidad" CssClass="form-control" />
         </div>
-
-        <div class="form-group">
-            <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnAceptar_Click2" Style="margin: 20px; padding: 10px;" />
-            <asp:Button ID="btnVolver" Text="Volver" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnVolver_Click" Style="margin: 20px; padding: 10px;" />
-        </div>
-    </div>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="form-group">
+                    <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnAceptar_Click2" Style="margin: 20px; padding: 10px;" />
+                    <asp:Button ID="btnVolver" Text="Volver" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnVolver_Click" Style="margin: 20px; padding: 10px;" />
+                </div>
+                </div>
     <div class="form-group">
         <asp:Label ID="txtAdvertencia" runat="server" CssClass="form-control" Visible="false" ForeColor="Red" />
     </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 </asp:Content>
