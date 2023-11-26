@@ -240,14 +240,14 @@ namespace Negocio
             finally
             {
                 datos2.cerrarConexion();
-                if (estado == 4)
+                /*if (estado == 4)
                 {
                     modificarDetalleCompra(idPedido,0);
-                }
+                }*/
             }
         }
 
-        private void modificarDetalleCompra(int idPedido, int estado)
+        /*private void modificarDetalleCompra(int idPedido, int estado)
         {
             AccesoDatos datos2 = new AccesoDatos();
             try
@@ -266,7 +266,7 @@ namespace Negocio
             {
                 datos2.cerrarConexion();
             }
-        }
+        }*/
 
         public void insertarDetallePedido(Articulo articulo,int idPedido)
         {

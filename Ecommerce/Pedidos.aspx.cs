@@ -73,7 +73,5 @@ namespace Ecommerce
                 stockNegocio.modificarStock(articulo.idArticulo, articulo.talle, articulo.cantidad,true);
             }
         }
-
-
     }
 }

@@ -122,10 +122,27 @@ namespace Negocio
             }
         }
 
-        public void actualizarDetallePedido()
+        public void actualizarDetallePedido(Articulo articulo, int estado)
         {
             AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update DetallePedidos set Estado=@estado where ID_Pedido=@idPedido and ID_Articulo=@idArticulo and Talle like @talle");
+                datos.setearParametro("@estado", estado);
+                datos.setearParametro("@idPedido", articulo.numeroPedido);
+                datos.setearParametro("@idArticulo", articulo.idArticulo);
+                datos.setearParametro("@talle", articulo.talle);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
     }

@@ -50,7 +50,7 @@
                     <td><a href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalle</a></td>
                     <td><asp:Button ID="btnRestar" runat="server" CssClass="btn btn-secondary" OnClick="btnRestar_Click" Text="-" CommandName="Restar" CommandArgument='<%# String.Format("{0}_{1}", Eval("idArticulo"), Eval("talle")) %>' /></td>
                     <td><asp:Button ID="btnSumar" runat="server" CssClass="btn btn-secondary" OnClick="btnSumar_Click"  Text="+" CommandName="Sumar" CommandArgument='<%# String.Format("{0}_{1}", Eval("idArticulo"), Eval("talle")) %>' /></td>
-                    <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-secondary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# Eval("idArticulo") %>' /></td>
+                    <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-secondary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# String.Format("{0}_{1}", Eval("idArticulo"), Eval("talle")) %>' /></td>
                     </tr>
             </ItemTemplate>
         </asp:Repeater>

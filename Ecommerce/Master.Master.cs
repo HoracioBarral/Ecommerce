@@ -17,7 +17,7 @@ namespace Ecommerce
             {
                 BtnAcesso.Visible = false;
                 BtnSalir.Visible = true;
-                if (Session["Carrito"] == null)
+                /*if (Session["Carrito"] == null)
                 {
                     Usuario usuario = (Usuario)Session["usuario"];
                     usuario = (Usuario)Session["usuario"];
@@ -27,6 +27,7 @@ namespace Ecommerce
                     if (pedidoFiltrado.Count() > 0)
                     {
                         List<Articulo> carrito = pedidoNegocio.listarDetallePedido(pedidoFiltrado[0].idPedido);
+                        carrito = carrito.FindAll(x => x.Estado == true);
                         ArticuloNegocio articuloNegocio = new ArticuloNegocio();
                         foreach (Articulo articulo in carrito)
                         {
@@ -45,7 +46,7 @@ namespace Ecommerce
                         Session["Carrito"] = carrito;
                         Session["idPedido"] = pedidoFiltrado[0].idPedido;
                     }
-                }
+                }*/
             }
 
             if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto || Page is Registro)){
@@ -88,6 +89,7 @@ namespace Ecommerce
                 {
                     stockNegocio.modificarStock(art.idArticulo,art.talle,art.cantidad,true);
                     articuloNegocio.modificarEstadoCompra(art.numeroPedido,4);
+
                 }
                 List<Articulo> carritoLimpio = new List<Articulo>();
                 Session.Add("Carrito", carritoLimpio);
