@@ -17,6 +17,33 @@ namespace Ecommerce
             {
                 BtnAcesso.Visible = false;
                 BtnSalir.Visible = true;
+                if (Session["Carrito"] == null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    usuario = (Usuario)Session["usuario"];
+                    PedidoNegocio pedidoNegocio = new PedidoNegocio();
+                    List<Pedido> pedidos = pedidoNegocio.listar();
+                    List<Pedido> pedidoFiltrado = pedidos.FindAll(x => x.estado == 1 && x.idUsuario == usuario.idUsuario);
+                    if (pedidoFiltrado.Count() > 0)
+                    {
+                        List<Articulo> carrito = pedidoNegocio.listarDetallePedido(pedidoFiltrado[0].idPedido);
+                        ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                        foreach (Articulo articulo in carrito)
+                        {
+                            Articulo art = new Articulo();
+                            int id = articulo.idArticulo;
+                            art = articuloNegocio.buscarPorID(id);
+                            articulo.descripcion = art.descripcion;
+                            articulo.marca = art.marca;
+                            articulo.descripcion = art.descripcion;
+                            articulo.categoria = art.categoria;
+                            articulo.nombreArticulo = art.nombreArticulo;
+                        }
+
+                        Session["Carrito"] = carrito;
+                        Session["idPedido"] = pedidoFiltrado[0].idPedido;
+                    }
+                }
             }
 
             if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto || Page is Registro)){

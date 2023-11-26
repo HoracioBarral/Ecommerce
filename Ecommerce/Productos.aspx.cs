@@ -47,11 +47,11 @@ namespace Ecommerce
         protected void Page_Load(object sender, EventArgs e)
         {
             //listaarticulos = articulonegocio.listar();
-            if (Session["Carrito"] == null)
+            /*if (Session["Carrito"] == null)
             {
                 List<Articulo> carrito = new List<Articulo>();
                 Session.Add("Carrito", carrito);
-            }
+            }*/
             if (!IsPostBack)
             {
                 ArticuloNegocio articulonegocio = new ArticuloNegocio();

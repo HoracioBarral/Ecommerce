@@ -22,14 +22,12 @@ namespace Ecommerce
                     List<Articulo> newCarrito = new List<Articulo>();
                     Session.Add("Carrito", newCarrito);
                 }
-
                 List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
                 cargarLista(carrito);
                 updateContador();
             }
-
-
         }
+
         private void cargarLista(List<Articulo> carrito)
         {
             repeaterCarrito.DataSource = carrito;
@@ -172,5 +170,37 @@ namespace Ecommerce
                 }
             }
         }
+
+        private void verificarPedidos()
+        {
+            /*
+            if (Session["carrito"] != null) return;
+            Usuario usuario = (Usuario)Session["usuario"];
+            usuario = (Usuario)Session["usuario"];
+            PedidoNegocio pedidoNegocio = new PedidoNegocio();
+            List<Pedido> pedidos = pedidoNegocio.listar();
+            List<Pedido> pedidoFiltrado = pedidos.FindAll(x => x.estado == 1 && x.idUsuario == usuario.idUsuario);
+            if (pedidoFiltrado.Count() > 0)
+            {
+                List<Articulo> carrito = pedidoNegocio.listarDetallePedido(pedidoFiltrado[0].idPedido);
+                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                foreach (Articulo articulo in carrito)
+                {
+                    Articulo art = new Articulo();
+                    int id = articulo.idArticulo;
+                    art = articuloNegocio.buscarPorID(id);
+                    articulo.descripcion = art.descripcion;
+                    articulo.marca = art.marca;
+                    articulo.descripcion = art.descripcion;
+                    articulo.categoria = art.categoria;
+                    articulo.nombreArticulo = art.nombreArticulo;
+                }
+
+                Session["Carrito"] = carrito;
+                Session["idPedido"] = pedidoFiltrado[0].idPedido;
+            }
+            cargarLista((List<Articulo>)Session["Carrito"]);*/
+        }
+
     }
 }
