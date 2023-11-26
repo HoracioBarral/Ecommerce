@@ -15,8 +15,10 @@
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Marca</th>
+        <th>Talle</th>
         <th>Categoría</th>
         <th>Precio</th>
+        <th>Cantidad</th>
         <th>Ver Más</th>
         <th>Quitar</th>
     </tr>
@@ -38,8 +40,10 @@
                     <td><%# Eval("NombreArticulo") %></td>
                     <td><%# Eval("Descripcion") %></td>
                     <td><%# Eval("Marca") %></td>
+                    <td><%# Eval("Talle") %></td>
                     <td><%# Eval("Categoria") %></td>
                     <td><%# Eval("Precio") %></td>
+                    <td><%# Eval("Cantidad") %></td>
                     <td><a href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalle</a></td>
                     <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-secondary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# Eval("idArticulo") %>' /></td>
                     </tr>

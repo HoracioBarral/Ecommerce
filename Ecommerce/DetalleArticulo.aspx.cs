@@ -14,7 +14,6 @@ namespace Ecommerce
 {
     public partial class DetalleArticulo : System.Web.UI.Page
     {
-        //ArticuloNegocio articulNegocio = new ArticuloNegocio();
         private int ObtenerElIdDelArticuloDesdeLaURL()
         {
             int idArticulo = -1;
@@ -113,10 +112,21 @@ namespace Ecommerce
 
         protected void btnCarrito_Click(object sender, EventArgs e)
         {
+            List<Articulo> carrito;
+            if (Session["Carrito"] == null)
+            {
+                carrito = new List<Articulo>();
+            }
+            else
+            {
+                carrito = (List<Articulo>)Session["Carrito"];
+            }
+
             int cantidad = int.Parse(ddlCantidad.SelectedValue);
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             int id = int.Parse(Request.QueryString["id"]);
             Articulo articulo = articuloNegocio.buscarPorID(id);
+            decimal precioPorUnidad = articulo.precio;
             articulo.cantidad = cantidad;
             articulo.precio = articulo.precio * cantidad;
             string talle = ddlTalles.SelectedValue.ToString();
@@ -129,13 +139,38 @@ namespace Ecommerce
                 articulo.numeroPedido = idPedido;
                 Session.Add("idPedido", idPedido);
             }
-            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
-            carrito.Add(articulo);
-            //Actualiza el stock segun lo agregado al carrito
             StockNegocio stock = new StockNegocio();
             stock.modificarStock(id,talle,cantidad,false);
-            articuloNegocio.insertarDetallePedido(articulo, (int)(Session["idPedido"]));
+            if (!buscarEnCarrito(articulo, precioPorUnidad, carrito)){
+                articuloNegocio.insertarDetallePedido(articulo, (int)(Session["idPedido"]));
+                carrito.Add(articulo);
+            }
+            else
+            {
+                articuloNegocio.actualizarDetallePedido(articulo, (int)(Session["idPedido"]));
+            }
             Response.Redirect("Carrito.aspx", false);
+        }
+
+        //Busca si el producto seleccionado esta en el carrito con el mismo id y talle y lo suma
+        private bool buscarEnCarrito(Articulo articulo,decimal precioPorUnidad, List<Articulo> carrito)
+        {
+            if (carrito.Count() == 0)
+            {
+                return false;
+            }
+            foreach (Articulo art in carrito)
+            {
+                if(art.idArticulo==articulo.idArticulo && art.talle == articulo.talle)
+                {
+                    art.cantidad += articulo.cantidad;
+                    art.precio = precioPorUnidad * art.cantidad;
+                    articulo = art;
+                    Session["Carrito"] = carrito;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

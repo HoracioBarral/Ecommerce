@@ -11,8 +11,6 @@ namespace Ecommerce
 {
     public partial class Carrito : System.Web.UI.Page
     {
-        //private ArticuloNegocio articulonegocio = new ArticuloNegocio();
-        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -274,12 +274,36 @@ namespace Negocio
             try
             {
                 datos2.setConexion("insert into DetallePedidos(Cantidad,Talle,ID_Articulo,ID_Pedido,Importe) values(@cantidad,@talle,@idArticulo,@idPedido,@importe)");
-                //@cantidad,@talle,@idArticulo,@idPedido,@importe
                 datos2.setearParametro("@cantidad",articulo.cantidad);
                 datos2.setearParametro("@talle",articulo.talle);
                 datos2.setearParametro("@idArticulo",articulo.idArticulo);
                 datos2.setearParametro("@idPedido",idPedido);
                 datos2.setearParametro("@importe",articulo.precio);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
+        }
+
+
+        public void actualizarDetallePedido(Articulo articulo,int idPedido)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("update DetallePedidos set Cantidad=@cantidad,Importe=@importe where ID_Articulo=@idArticulo and Talle like @talle and ID_Pedido=@idPedido");
+                datos2.setearParametro("@cantidad", articulo.cantidad);
+                datos2.setearParametro("@talle", articulo.talle);
+                datos2.setearParametro("@idArticulo", articulo.idArticulo);
+                datos2.setearParametro("@idPedido", idPedido);
+                datos2.setearParametro("@importe", articulo.precio);
                 datos2.ejecutarAccion();
             }
             catch (Exception ex)
