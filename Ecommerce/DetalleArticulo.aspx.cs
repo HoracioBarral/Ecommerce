@@ -116,6 +116,7 @@ namespace Ecommerce
             if (Session["Carrito"] == null)
             {
                 carrito = new List<Articulo>();
+                Session.Add("Carrito", carrito);
             }
             else
             {
@@ -165,7 +166,8 @@ namespace Ecommerce
                 {
                     art.cantidad += articulo.cantidad;
                     art.precio = precioPorUnidad * art.cantidad;
-                    articulo = art;
+                    articulo.cantidad = art.cantidad;
+                    articulo.precio = art.precio;
                     Session["Carrito"] = carrito;
                     return true;
                 }

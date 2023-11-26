@@ -20,6 +20,7 @@
         <th>Precio</th>
         <th>Cantidad</th>
         <th>Ver Más</th>
+        <th>Restar</th>
         <th>Quitar</th>
     </tr>
 </thead>
@@ -37,6 +38,7 @@
             <ItemTemplate>
                 <tr>
                     <td class="d-none" name="id"<%# Eval("idArticulo") %></td>
+                    <td class="d-none" name="id"<%# Eval("talle") %></td>
                     <td><%# Eval("NombreArticulo") %></td>
                     <td><%# Eval("Descripcion") %></td>
                     <td><%# Eval("Marca") %></td>
@@ -45,6 +47,7 @@
                     <td><%# Eval("Precio") %></td>
                     <td><%# Eval("Cantidad") %></td>
                     <td><a href="DetalleArticulo.aspx?id=<%# Eval("idArticulo") %>">Detalle</a></td>
+                    <td><asp:Button ID="btnRestar" runat="server" CssClass="btn btn-secondary" OnClick="btnRestar_Click" Text="-" CommandName="Restar" CommandArgument='<%# String.Format("{0}_{1}", Eval("idArticulo"), Eval("talle")) %>' /></td>
                     <td><asp:Button ID="btnQuitar" runat="server" CssClass="btn btn-secondary" OnClick="btnQuitar_Click1" Text="X" CommandName="Quitar" CommandArgument='<%# Eval("idArticulo") %>' /></td>
                     </tr>
             </ItemTemplate>

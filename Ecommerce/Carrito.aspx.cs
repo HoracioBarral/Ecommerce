@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using System.Collections;
+using System.Web.UI.WebControls.WebParts;
 
 namespace Ecommerce
 {
@@ -109,6 +111,31 @@ namespace Ecommerce
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx", false);
+        }
+
+        protected void btnRestar_Click(object sender, EventArgs e)
+        {
+            string[] argumento = ((Button)sender).CommandArgument.Split('_');
+            int idArticulo = int.Parse(argumento[0]);
+            string talle = argumento[1];
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            Articulo articuloMenos = carrito.Find(a => a.idArticulo == idArticulo && a.talle==talle);
+            if (articuloMenos.cantidad == 1 || articuloMenos == null) return;
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio(); 
+            StockNegocio stock = new StockNegocio();
+            foreach (Articulo articulo in carrito)
+            {
+                if (articulo.idArticulo == idArticulo && articulo.talle == articuloMenos.talle)
+                {
+                    articulo.cantidad--;
+                    stock.modificarStock(idArticulo, articulo.talle, 1, true);
+                    articulo.numeroPedido = (int)Session["idPedido"];
+                    articuloNegocio.actualizarDetallePedido(articulo, articulo.numeroPedido);
+                    Session["Carrito"] = carrito;
+                    cargarLista(carrito);
+                    return;
+                }
+            }
         }
     }
 }
