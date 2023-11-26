@@ -80,6 +80,7 @@
     <Content Include="DetallePedidos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListadoPedidos.aspx" />
+    <Content Include="ListadoPedidos2.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ModificarArticulo.aspx" />
     <Content Include="Pedidos.aspx" />
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="ListadoPedidos.aspx.designer.cs">
       <DependentUpon>ListadoPedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoPedidos2.aspx.cs">
+      <DependentUpon>ListadoPedidos2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoPedidos2.aspx.designer.cs">
+      <DependentUpon>ListadoPedidos2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
