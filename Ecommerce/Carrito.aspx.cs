@@ -119,9 +119,9 @@ namespace Ecommerce
             int idArticulo = int.Parse(argumento[0]);
             string talle = argumento[1];
             List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
-            Articulo articuloMenos = carrito.Find(a => a.idArticulo == idArticulo && a.talle==talle);
+            Articulo articuloMenos = carrito.Find(a => a.idArticulo == idArticulo && a.talle == talle);
             if (articuloMenos.cantidad == 1 || articuloMenos == null) return;
-            ArticuloNegocio articuloNegocio = new ArticuloNegocio(); 
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             StockNegocio stock = new StockNegocio();
             foreach (Articulo articulo in carrito)
             {
@@ -130,6 +130,41 @@ namespace Ecommerce
                     articulo.cantidad--;
                     stock.modificarStock(idArticulo, articulo.talle, 1, true);
                     articulo.numeroPedido = (int)Session["idPedido"];
+                    Articulo precioUnitario = articuloNegocio.buscarPorID(idArticulo);
+                    articulo.precio -= precioUnitario.precio;
+                    articuloNegocio.actualizarDetallePedido(articulo, articulo.numeroPedido);
+                    Session["Carrito"] = carrito;
+                    cargarLista(carrito);
+                    return;
+                }
+            }
+        }
+
+        
+        protected void btnSumar_Click(object sender, EventArgs e)
+        {
+            string[] argumento = ((Button)sender).CommandArgument.Split('_');
+            int idArticulo = int.Parse(argumento[0]);
+            string talle = argumento[1];
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            Articulo articuloMas = carrito.Find(a => a.idArticulo == idArticulo && a.talle == talle);
+            if (articuloMas == null) return;
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            StockNegocio stockNegocio = new StockNegocio();
+            List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
+            List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle==talle && x.stock >= 1);
+            //int cantidadActual = stockFiltrado[0].stock;
+            if (stockFiltrado.Count == 0 || stockFiltrado[0].stock >= (stockFiltrado[0].stock)+1) return;
+
+            foreach (Articulo articulo in carrito)
+            {
+                if (articulo.idArticulo == idArticulo && articulo.talle == articuloMas.talle)
+                {
+                    articulo.cantidad++;
+                    stockNegocio.modificarStock(idArticulo, articulo.talle, 1, false);
+                    articulo.numeroPedido = (int)Session["idPedido"];
+                    Articulo precioUnitario = articuloNegocio.buscarPorID(idArticulo);
+                    articulo.precio += precioUnitario.precio;
                     articuloNegocio.actualizarDetallePedido(articulo, articulo.numeroPedido);
                     Session["Carrito"] = carrito;
                     cargarLista(carrito);
