@@ -30,16 +30,18 @@ namespace Ecommerce
                         ArticuloNegocio articuloNegocio = new ArticuloNegocio();
                         foreach (Articulo articulo in carrito)
                         {
-                            Articulo art = new Articulo();
-                            int id = articulo.idArticulo;
-                            art = articuloNegocio.buscarPorID(id);
-                            articulo.descripcion = art.descripcion;
-                            articulo.marca = art.marca;
-                            articulo.descripcion = art.descripcion;
-                            articulo.categoria = art.categoria;
-                            articulo.nombreArticulo = art.nombreArticulo;
+                            if (articulo.Estado == true)
+                            {
+                                Articulo art = new Articulo();
+                                int id = articulo.idArticulo;
+                                art = articuloNegocio.buscarPorID(id);
+                                articulo.descripcion = art.descripcion;
+                                articulo.marca = art.marca;
+                                articulo.descripcion = art.descripcion;
+                                articulo.categoria = art.categoria;
+                                articulo.nombreArticulo = art.nombreArticulo;
+                            } 
                         }
-
                         Session["Carrito"] = carrito;
                         Session["idPedido"] = pedidoFiltrado[0].idPedido;
                     }

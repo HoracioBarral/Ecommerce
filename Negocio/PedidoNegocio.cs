@@ -78,8 +78,9 @@ namespace Negocio
                     articulo.idArticulo = (int)datos.Lector["ID_Articulo"];
                     articulo.cantidad = (int)datos.Lector["Cantidad"];
                     articulo.talle = (string)datos.Lector["Talle"];
-                    articulo.idArticulo = (int)datos.Lector["ID_Articulo"];
+                    articulo.numeroPedido = (int)datos.Lector["ID_Pedido"];
                     articulo.precio = (decimal)datos.Lector["Importe"];
+                    articulo.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(articulo);
                 }
                 return lista;
@@ -119,6 +120,12 @@ namespace Negocio
 
                 throw ex;
             }
+        }
+
+        public void actualizarDetallePedido()
+        {
+            AccesoDatos datos = new AccesoDatos();
+
         }
 
     }
