@@ -32,7 +32,7 @@ namespace Ecommerce
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ListadoPedidos.aspx", false);
+            Response.Redirect("ListadoPedidos2.aspx", false);
         }
     }
 }

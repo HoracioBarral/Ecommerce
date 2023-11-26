@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
     <div class="d-flex justify-content-between mb-3">
-        <asp:Button runat="server" ID="btnPedidos" Text="Administrar Estado de Pedidos" CssClass="btn btn-primary" OnClick="btnPedidos_Click" />
+        <%--<asp:Button runat="server" ID="btnPedidos" Text="Administrar Estado de Pedidos" CssClass="btn btn-primary" OnClick="btnPedidos_Click" />--%>
         <asp:Button runat="server" ID="btnDetallePedidos" Text="Listado de Pedidos" CssClass="btn btn-primary" OnClick="btnDetallePedidos_Click" />
         <asp:Button runat="server" ID="btnCarrousel" Text="Administrar Carrousel" CssClass="btn btn-primary" OnClick="btnCarrousel_Click"/>
     </div>

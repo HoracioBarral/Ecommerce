@@ -174,5 +174,10 @@ namespace Ecommerce
             }
             return false;
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Productos.aspx", false);
+        }
     }
 }
