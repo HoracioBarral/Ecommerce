@@ -29,34 +29,7 @@ namespace Ecommerce
             dgvPedidos.DataBind();
         }
 
-        /*protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //GridViewRow row = dgvPedidos.SelectedRow;
-            //DropDownList ddlEstado = (DropDownList)row.FindControl("ddlEstado");
-            //int estado = int.Parse(ddlEstado.SelectedValue);
-            DropDownList ddlEstado = (DropDownList)sender;
-            int estado = int.Parse(ddlEstado.SelectedValue);
-            int idPedido = (int)(dgvPedidos.SelectedDataKey.Value);
-            PedidoNegocio pedidoNegocio = new PedidoNegocio();
-            List<Pedido> lista = pedidoNegocio.listar();
-            pedidoNegocio.actualizarEstado(estado, idPedido);
-            recargarPedidos();
-            if (estado == 4)
-            {
-                List<Pedido> pedido = lista.FindAll(x => x.idPedido == idPedido);
-                actualizarStock(idPedido);
-                if (pedido[0].estado != 1)
-                {
-                    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-                    List<Usuario> usuarios = usuarioNegocio.Listar();
-                    List<Usuario> usuarioFiltrado = usuarios.FindAll(x => x.idUsuario == pedido[0].idUsuario);
-                    ServicioEmail mail = new ServicioEmail();
-                    mail.armarCorreo(usuarioFiltrado[0].nombreUsuario, "Compra Cancelada", "Su compra numero " + idPedido.ToString() + " fue cancelada");
-                    mail.enviarMail();
-                }
-            }
-        }*/
-
+        
         protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("DetallePedidos.aspx?id=" + dgvPedidos.SelectedValue, false);

@@ -17,7 +17,7 @@ namespace Negocio
             List<Pedido> lista = new List<Pedido>();
             try
             {
-                datos.setConexion("select p.ID_Pedido,p.ID_Usuario,p.Estado,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad' from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido group by p.ID_Pedido,p.ID_Usuario,p.Estado");
+                datos.setConexion("select p.ID_Pedido,p.ID_Usuario,p.Estado,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad' from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido where dp.Estado=1 group by p.ID_Pedido,p.ID_Usuario,p.Estado");
                 datos.abrirConexion();
                 while (datos.Lector.Read())
                 {
@@ -98,7 +98,7 @@ namespace Negocio
             List<DetallePedido> lista = new List<DetallePedido>();
             try
             {
-                datos2.setConexion("select p.ID_Pedido,u.NombreUsuario,a.NombreArticulo,m.NombreMarca,dp.Talle,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad',p.Estado from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido inner join Articulos a on a.ID_Articulo=dp.id_Articulo inner join Marcas m on a.ID_Marca=m.ID_Marca inner join Usuarios u on u.ID_Usuario=p.ID_Usuario group by p.ID_Pedido,u.NombreUsuario,p.Estado,a.NombreArticulo,m.NombreMarca,p.Estado,dp.Talle order by p.ID_Pedido");
+                datos2.setConexion("select p.ID_Pedido,u.NombreUsuario,a.NombreArticulo,m.NombreMarca,dp.Talle,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad',p.Estado from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido inner join Articulos a on a.ID_Articulo=dp.id_Articulo inner join Marcas m on a.ID_Marca=m.ID_Marca inner join Usuarios u on u.ID_Usuario=p.ID_Usuario where dp.Estado=1 group by p.ID_Pedido,u.NombreUsuario,p.Estado,a.NombreArticulo,m.NombreMarca,p.Estado,dp.Talle order by p.ID_Pedido");
                 datos2.abrirConexion();
                 while (datos2.Lector.Read())
                 {
