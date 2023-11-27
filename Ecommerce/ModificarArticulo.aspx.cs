@@ -143,8 +143,15 @@ namespace Ecommerce
 
         private bool validarPrecio(string precio)
         {
-            decimal resultado;
-            return decimal.TryParse(precio, out resultado);
+            if (!string.IsNullOrWhiteSpace(precio) && decimal.TryParse(precio, out decimal numero))
+            {
+                if(numero > 0)
+                {
+                    return true;
+                }
+            }
+            return false; 
+            //return decimal.TryParse(precio, out resultado);
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
