@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -71,6 +72,13 @@ namespace Ecommerce
             int nuevoEstado = int.Parse(ddlEstado.SelectedValue);
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
             List<Pedido> lista = pedidoNegocio.listar();
+            //Insertar aqui la logica para evitar los siguientes cambios de estado de Pedidos
+            //Comparar el estado del pedido a modificar con el estado seleccionado por el admin
+            //usar List<Pedido> lista y nuevoEstado para esta comparacion
+            //Un Pedido con ID=4,5 no puede cambiarse el estado
+            //Un Pedido con ID=2 solo puede modificarse a estado 3,4 o 5
+            //Un Pedido con ID=1 solo puede modificarse a estado 4
+            //Un Pedido con ID=3 solo puede modificarse a estado 4 o 5
             pedidoNegocio.actualizarEstado(nuevoEstado, idPedido);
             recargarPedidos();
             if (nuevoEstado == 4)
