@@ -76,6 +76,8 @@ namespace Ecommerce
             }
             pedidoNegocio.actualizarEstado(nuevoEstado, idPedido);
             recargarPedidos();
+            Label1.Text = "Cambio de estado Realizado";
+            Label1.Visible = true;
             if (nuevoEstado == 4)
             {
                 actualizarStock(idPedido);
@@ -111,7 +113,7 @@ namespace Ecommerce
                 Label1.Visible = true;
                 return false;
             }
-            if(pedido.estado==3 && (nuevoEstado!=4 || nuevoEstado != 5))
+            if(pedido.estado==3 && (nuevoEstado<4))
             {
                 Label1.Text = "Una compra abonada solo puede cancelarse o dada por entregada";
                 Label1.Visible = true;

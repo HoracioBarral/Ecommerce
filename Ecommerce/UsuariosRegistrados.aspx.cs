@@ -12,11 +12,6 @@ namespace Ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
-            if (Session["usuario"] == null)
-            {
-                Response.Redirect("Login.aspx", false);
-            }*/
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             if (!IsPostBack)
             {
@@ -30,6 +25,8 @@ namespace Ecommerce
             int id = (int)(dgvUsuarios.SelectedDataKey.Value);
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             usuarioNegocio.resetContraseña(id);
+            Label1.Text = "Contraseña restablecida, la nueva pass es 'nuevaClave'";
+            Label1.Visible = true;
         }
     }
 }
