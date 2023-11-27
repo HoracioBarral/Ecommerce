@@ -20,10 +20,6 @@ namespace Ecommerce
             try
             {
                 ArticuloNegocio negocio = new ArticuloNegocio();
-                /*if (Session["usuario"] == null)
-                {
-                    Response.Redirect("Login.aspx", false);
-                }*/
                 if (!IsPostBack)
                 {
                     List<Imagen> imagenesNuevas = new List<Imagen>();
@@ -58,7 +54,6 @@ namespace Ecommerce
                         ddlCategoria.SelectedValue = articulo.categoria.idCategoria.ToString();
                         ddlMarca.SelectedValue = articulo.marca.idMarca.ToString();
                         txtPrecio.Text = articulo.precio.ToString();
-                        //txtStock.Text = articulo.stock.ToString();
                         ddlEstado.SelectedValue = articulo.Estado ? "1" : "0";
                         ImagenNegocio imagenNegocio = new ImagenNegocio();
                         List<Imagen> imagenes = imagenNegocio.Listar(id);
@@ -80,7 +75,6 @@ namespace Ecommerce
             txtNombreArticulo.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
             txtPrecio.Text = string.Empty;
-            //txtStock.Text = string.Empty;
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
@@ -113,11 +107,6 @@ namespace Ecommerce
                 nuevo.marca.idMarca = int.Parse(ddlMarca.SelectedValue);
                 nuevo.Estado = ddlEstado.SelectedValue == "1";
                 nuevo.precio = decimal.Parse(txtPrecio.Text);
-                //nuevo.stock = int.Parse(txtStock.Text);
-                //nuevo.listaImagenes = new List<Imagen>();
-                //Imagen img = new Imagen();
-                //img.UrlImagen = txtUrlImagen.Text;
-                //nuevo.listaImagenes.Add(img);
                 nuevo.listaImagenes = imagenes;
                 ImagenNegocio inegocio = new ImagenNegocio();
                 if (Request.QueryString["id"] != null)
@@ -148,11 +137,6 @@ namespace Ecommerce
             catch (Exception ex)
             {
                 throw ex;
-                /*
-                txtAdvertencia.Text = string.Empty;
-                txtAdvertencia.Text = "Verifique que los campos no esten vacios o sean datos validos";
-                txtAdvertencia.Visible = true;*/
-
             }
         }
 
@@ -229,6 +213,7 @@ namespace Ecommerce
             {
                 ArticuloNegocio negocio =  new ArticuloNegocio();
                 negocio.EliminarArticulo(int.Parse(Request.QueryString["id"]));
+                ScriptManager.RegisterStartupScript(this, GetType(), "showMessage", "showMessage();", true);
             }
             catch (Exception ex)
             {
