@@ -25,6 +25,7 @@ namespace Ecommerce
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
             List<Pedido> pedidos = new List<Pedido>();
             pedidos = pedidoNegocio.listar();
+            pedidos = pedidos.FindAll(x => x.estado != 4);
             dgvPedidos.DataSource = pedidos;
             dgvPedidos.DataBind();
         }
@@ -45,7 +46,7 @@ namespace Ecommerce
             List<Articulo> articulosEliminados = new List<Articulo>();
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
             articulosEliminados = pedidoNegocio.listarDetallePedido(idPedido);
-
+            articulosEliminados = articulosEliminados.FindAll(x => x.Estado == true);
             foreach (Articulo articulo in articulosEliminados)
             {
                 StockNegocio stockNegocio = new StockNegocio();

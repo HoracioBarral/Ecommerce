@@ -89,7 +89,7 @@ namespace Ecommerce
                 {
                     stockNegocio.modificarStock(art.idArticulo,art.talle,art.cantidad,true);
                     articuloNegocio.modificarEstadoCompra(art.numeroPedido,4);
-
+                    articuloNegocio.modificarDetalleCompra(art.numeroPedido, 0);
                 }
                 List<Articulo> carritoLimpio = new List<Articulo>();
                 Session.Add("Carrito", carritoLimpio);

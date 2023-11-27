@@ -26,6 +26,7 @@ namespace Ecommerce
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
             List<Pedido> pedidos = new List<Pedido>();
             pedidos = pedidoNegocio.listar();
+            //pedidos = pedidos.FindAll(x => x.estado != 4);
             dgvPedidos.DataSource = pedidos;
             dgvPedidos.DataBind();
         }

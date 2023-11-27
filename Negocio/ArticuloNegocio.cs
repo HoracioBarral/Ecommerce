@@ -247,12 +247,12 @@ namespace Negocio
             }
         }
 
-        /*private void modificarDetalleCompra(int idPedido, int estado)
+        public void modificarDetalleCompra(int idPedido, int estado)
         {
             AccesoDatos datos2 = new AccesoDatos();
             try
             {
-                datos2.setConexion("update DetallePedidos set Estado=0 where ID_Pedido=@idPedido");
+                datos2.setConexion("update DetallePedidos set Estado=@estado where ID_Pedido=@idPedido");
                 datos2.setearParametro("@idPedido", idPedido);
                 datos2.setearParametro("@estado", estado);
                 datos2.ejecutarAccion();
@@ -266,7 +266,7 @@ namespace Negocio
             {
                 datos2.cerrarConexion();
             }
-        }*/
+        }
 
         public void insertarDetallePedido(Articulo articulo,int idPedido)
         {
