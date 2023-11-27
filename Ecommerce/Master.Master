@@ -11,6 +11,33 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 50px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -93,7 +120,7 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <div style="background-color: #333; color: white; padding: 10px; text-align: center;">
+        <div id="footer">
             <p>© 2023 Grupo30. Todos los derechos reservados.</p>
         </div>
     </form>

@@ -2,7 +2,7 @@ create database Ecommerce
 go
 
 
-use ecommerce
+use Ecommerce
 go
 
 
@@ -62,7 +62,8 @@ create table StockPorTalles(
 	Talle varchar(5) not null,
 	Stock int not null check(Stock>=0),
 	ID_Articulo int not null,
-	foreign key(ID_Articulo) references Articulos(ID_Articulo)
+	foreign key(ID_Articulo) references Articulos(ID_Articulo),
+	constraint UQ_talles_IDArticulo unique(ID_Articulo,Talle)
 )
 go
 
@@ -71,27 +72,55 @@ create table Imagenes(
 	ID_Imagen int not null primary key CLUSTERED identity(1,1),
 	Url_Imagen varchar(1500) not null,
 	ID_Articulo int not null,
-	Estado bit not null default 1,
-	foreign key(ID_Articulo) references Articulos(ID_Articulo)
+	foreign key(ID_Articulo) references Articulos(ID_Articulo),
+	Estado bit not null Default 1
 )
 go
 
 
 create table Pedidos(
 	ID_Pedido int not null primary key CLUSTERED identity(1,1),
-	Cantidad int not null check(cantidad>0),
-	Talle varchar(5) not null,
-	ID_Articulo int not null,
 	ID_Usuario int not null,
 	Importe money not null check(importe>0),
 	Fecha date not null check(Fecha<=getdate()) default getdate(),
 	Estado int not null default 1 check(Estado>0 and Estado<6),
-	foreign key(ID_Articulo) references Articulos(ID_Articulo),
 	foreign key(ID_Usuario) references Usuarios(ID_Usuario)
 )
 go
 
 
+create table DetallePedidos(
+	ID_Registro int not null primary key CLUSTERED identity(1,1),
+	Cantidad int not null check(cantidad>0),
+	Talle varchar(5) not null,
+	ID_Articulo int not null,
+	ID_Pedido int not null,
+	Importe money not null check(importe>0),
+	Estado bit not null default 1,
+	foreign key(ID_Articulo) references Articulos(ID_Articulo),
+	foreign key(ID_Pedido) references Pedidos(ID_Pedido)
+)
+go
+
+
+create table Carrousel(
+	ID_Registro int not null primary key CLUSTERED identity(1,1),
+	Texto1 varchar(100) null default 'Bienvenidos',
+	Texto2 varchar(100) null default 'Aprovecha las Ofertas',
+	Texto3 varchar(100) null default 'Tienda Grupo 30'
+)
+go
+
+--Se insertan valores a la tabla Roles
+
+insert into Roles values ('1'),('2')
+
+go
+
+
+insert into Usuarios(NombreUsuario,Pass,ID_Rol,Estado) values('Administrador','Prueba2023',1,1) 
+
+go
 --Se insertan valores a la tabla de Categorias
 
 INSERT INTO Categorias (NombreCategoria)
@@ -137,12 +166,14 @@ go
 
 INSERT INTO Categorias (NombreCategoria)
 VALUES('Zapatillas')
+go
 INSERT INTO Articulos (NombreArticulo, Descripcion, Precio, Stock, ID_Categoria, ID_Marca)
 VALUES ('Zapatillas deportivas', 'Zapatillas para correr Nike', 25000, 50, 9, 1),
        ('Camiseta deportiva', 'Camiseta para entrenamiento Adidas', 10000, 100, 8, 2),
        ('Jeans clásicos', 'Jeans de mezclilla ',30000, 60, 7, 3),
        ('Gorra deportiva ', 'Gorra de béisbol Puma', 8000, 80, 6, 7),
        ('Buzo con capucha', 'Buzo cálido con capucha', 6000, 70, 4, 6);
+go
 
 INSERT INTO Imagenes (Url_Imagen, ID_Articulo)
 VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=638229666028100000&width=800&height=800&aspect=true', 1),
@@ -151,15 +182,7 @@ VALUES ('https://nikearprod.vtexassets.com/arquivos/ids/699261-800-800?v=6382296
        ('https://levisarg.vtexassets.com/arquivos/ids/593707/272_6310356e0eb94.jpg?v=637976702233070000', 3),
        ('https://sporting.vtexassets.com/arquivos/ids/300847-1200-1200?width=1200&height=1200&aspect=true', 4),
        ('https://www.stockcenter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwd6185bf0/products/UBU11L187-1841/UBU11L187-1841-1.JPG', 5);
-
-
---Se insertan valores a la tabla Roles
-
-insert into Roles values ('1'),('2')
-
-
---Se inserta usuario Admin
-
+go
 
 
 CREATE PROCEDURE sp_ModificarArticulo
@@ -169,7 +192,8 @@ CREATE PROCEDURE sp_ModificarArticulo
     @Precio MONEY,
     @Stock INT,
     @ID_Categoria INT,
-    @ID_Marca INT
+    @ID_Marca INT,
+	@Estado BIT
 AS
 BEGIN
     BEGIN TRY
@@ -182,7 +206,8 @@ BEGIN
             Precio = @Precio,
             Stock = @Stock,
             ID_Categoria = @ID_Categoria,
-            ID_Marca = @ID_Marca
+            ID_Marca = @ID_Marca,
+			Estado = @Estado
         WHERE
             ID_Articulo = @ID_Articulo;
 
@@ -197,7 +222,7 @@ BEGIN
     END CATCH;
 END;
 
-
+go
 
 
 CREATE PROCEDURE sp_GuardarImagen
@@ -224,7 +249,7 @@ BEGIN
     END CATCH
 END
 
-
+go
 
 CREATE PROCEDURE sp_EliminarArticulo
     @ID_Articulo INT
@@ -233,11 +258,44 @@ BEGIN
     SET NOCOUNT ON;
     IF EXISTS (SELECT 1 FROM Articulos WHERE ID_Articulo = @ID_Articulo)
     BEGIN
-        DELETE FROM Articulos WHERE ID_Articulo = @ID_Articulo;
+        UPDATE Articulos SET Estado = 0 WHERE ID_Articulo = @ID_Articulo;
         PRINT 'Artículo eliminado correctamente.';
     END
     ELSE
     BEGIN
         PRINT 'El artículo no existe.';
     END
+END;
+go
+
+
+CREATE PROCEDURE sp_ListarArticulos
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        A.ID_Articulo,
+        A.NombreArticulo,
+        A.Descripcion,
+        A.Estado,
+        C.NombreCategoria AS Categoria,
+        M.NombreMarca AS Marca,
+        A.Precio,
+        A.Stock,
+        STRING_AGG(I.Url_Imagen, ';') AS Imagenes
+    FROM
+        Articulos A
+        INNER JOIN Categorias C ON C.ID_Categoria = A.ID_Categoria
+        INNER JOIN Marcas M ON M.ID_Marca = A.ID_Marca
+        LEFT JOIN Imagenes I ON I.ID_Articulo = A.ID_Articulo
+    GROUP BY
+        A.ID_Articulo,
+        A.NombreArticulo,
+        A.Descripcion,
+        A.Estado,
+        C.NombreCategoria,
+        M.NombreMarca,
+        A.Precio,
+        A.Stock;
 END;
