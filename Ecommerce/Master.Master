@@ -88,10 +88,13 @@
                 </div>
             </nav>
         </header>
-
         <div class="container">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+        </div>
+
+        <div style="background-color: #333; color: white; padding: 10px; text-align: center;">
+            <p>© 2023 Grupo30. Todos los derechos reservados.</p>
         </div>
     </form>
 </body>
