@@ -31,7 +31,7 @@ namespace Ecommerce
             dgvPedidos.DataBind();
         }
 
-        
+
         protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("DetallePedidos.aspx?id=" + dgvPedidos.SelectedValue, false);
@@ -72,18 +72,15 @@ namespace Ecommerce
             int nuevoEstado = int.Parse(ddlEstado.SelectedValue);
             PedidoNegocio pedidoNegocio = new PedidoNegocio();
             List<Pedido> lista = pedidoNegocio.listar();
-            //Insertar aqui la logica para evitar los siguientes cambios de estado de Pedidos
-            //Comparar el estado del pedido a modificar con el estado seleccionado por el admin
-            //usar List<Pedido> lista y nuevoEstado para esta comparacion
-            //Un Pedido con ID=4,5 no puede cambiarse el estado
-            //Un Pedido con ID=2 solo puede modificarse a estado 3,4 o 5
-            //Un Pedido con ID=1 solo puede modificarse a estado 4
-            //Un Pedido con ID=3 solo puede modificarse a estado 4 o 5
+            List<Pedido> pedido = lista.FindAll(x => x.idPedido == idPedido);
+            if (!validarEstadoPedido(pedido[0], nuevoEstado))
+            {
+                return;
+            }
             pedidoNegocio.actualizarEstado(nuevoEstado, idPedido);
             recargarPedidos();
             if (nuevoEstado == 4)
             {
-                List<Pedido> pedido = lista.FindAll(x => x.idPedido == idPedido);
                 actualizarStock(idPedido);
                 if (pedido[0].estado != 1)
                 {
@@ -95,6 +92,35 @@ namespace Ecommerce
                     mail.enviarMail();
                 }
             }
+        }
+
+        private bool validarEstadoPedido(Pedido pedido, int nuevoEstado)
+        {
+            if (pedido.estado == 4 || pedido.estado == 5)
+            {
+                Label1.Text = "No se puede modificar un pedido cancelado o entregado";
+                Label1.Visible = true;
+                return false;
+            }
+            if (pedido.estado == 2 && nuevoEstado == 1)
+            {
+                Label1.Text = "No se puede enviar al carrito un pedido confirmado";
+                Label1.Visible = true;
+                return false;
+            }
+            if(pedido.estado == 1 && nuevoEstado != 4)
+            {
+                Label1.Text = "Un pedido que esta en carrito solo se puede cancelar";
+                Label1.Visible = true;
+                return false;
+            }
+            if(pedido.estado==3 && (nuevoEstado!=4 || nuevoEstado != 5))
+            {
+                Label1.Text = "Una compra abonada solo puede cancelarse o dada por entregada";
+                Label1.Visible = true;
+                return false;
+            }
+            return true;
         }
     }
 }

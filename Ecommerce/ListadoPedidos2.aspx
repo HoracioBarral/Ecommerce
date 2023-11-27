@@ -6,11 +6,16 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
+            <div>
+                <div class="alertita" id="alertita" style="display: flex; justify-content: flex-start;">
+                    <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
+                </div>
+            </div>
             <div class="d-flex justify-content-between mb-3">
                 <h3>Listado de pedidos</h3>
             </div>
             <div class="d-flex justify-content-between mb-3">
-                <asp:Button runat="server" ID="btnVolver" Text="Volver" CssClass="btn btn-primary" OnClick="btnVolver_Click"/>
+                <asp:Button runat="server" ID="btnVolver" Text="Volver" CssClass="btn btn-primary" OnClick="btnVolver_Click" />
             </div>
             <asp:GridView ID="dgvPedidos" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="idPedido" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" OnRowCommand="dgvPedidos_RowCommand">
                 <Columns>
