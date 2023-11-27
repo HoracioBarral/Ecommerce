@@ -15,6 +15,6 @@
         <asp:Button ID="btnRegistro" runat="server" Text="Registrarse" OnClick="btnRegistro_Click" />
     </div>
     <div>
-            <asp:Label ID="Label1" runat="server" CssClass="mensaje" Visible="false"></asp:Label>
-        </div>
+        <asp:Label ID="Label1" runat="server" CssClass="mensaje" Visible="false"></asp:Label>
+    </div>
 </asp:Content>
