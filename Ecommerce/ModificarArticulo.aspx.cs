@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Policy;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,6 +17,10 @@ namespace Ecommerce
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] == null && Request.QueryString["nuevo"]==null)
+            {
+                Response.Redirect("Administrador2.aspx");
+            }
             ConfirmaEliminacion = false;
             try
             {
@@ -112,11 +117,22 @@ namespace Ecommerce
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
-                    if (imagenes.Count > 0)
+                    if (imagenes.Count > 0 && Session["imagenesEliminadas"]==null)
                     {
                         foreach (Imagen imagen in imagenes)
                         {
                             inegocio.GuardarImagen(imagen.UrlImagen, nuevo.idArticulo);
+                        }
+                    }
+                    else
+                    {
+                        if (Session["imagenesEliminadas"]!=null)
+                        {
+                            List<Imagen> imagenesEliminadas = (List<Imagen>)Session["imagenesEliminadas"];
+                            foreach (Imagen imagen in imagenesEliminadas)
+                            {
+                                inegocio.EliminarImagen(imagen.idArticulo, imagen.UrlImagen);
+                            }
                         }
                     }
                     negocio.modificarConSP(nuevo);
@@ -151,7 +167,6 @@ namespace Ecommerce
                 }
             }
             return false; 
-            //return decimal.TryParse(precio, out resultado);
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -166,6 +181,8 @@ namespace Ecommerce
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
+            Session.Remove("imagenesNuevas");
+            Session.Remove("imagenesEliminadas");
             Response.Redirect("Administrador2.aspx");
         }
 
@@ -173,11 +190,27 @@ namespace Ecommerce
         {
             Button btnStringUrl = (Button)sender;
             string url=btnStringUrl.CommandArgument;
-            ImagenNegocio imagenNegocio = new ImagenNegocio();
             int id = int.Parse(Request.QueryString["id"].ToString());
-            imagenNegocio.EliminarImagen(id, url);
-            RepeaterImagenes.DataSource = imagenNegocio.Listar(id);
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            List<Imagen> imagenesSinEliminar = imagenNegocio.Listar(id);
+            List<Imagen> imagenesEliminadas = new List<Imagen>();
+            if (Session["imagenesEliminadas"] == null)
+            {
+                Session.Add("imagenesEliminadas", imagenesEliminadas);
+            }
+            else
+            {
+                imagenesEliminadas = (List<Imagen>)Session["imagenesEliminadas"];
+            }
+            Imagen imagen = new Imagen();
+            imagen.idArticulo= id;
+            imagen.UrlImagen = url;
+            imagenesEliminadas.Add(imagen);
+            imagenesSinEliminar.RemoveAll(x => x.idArticulo == id && x.UrlImagen == url);
+            Session["imagenesEliminadas"] = imagenesEliminadas;
+            RepeaterImagenes.DataSource = imagenesSinEliminar;
             RepeaterImagenes.DataBind();
+            //imagenNegocio.EliminarImagen(id, url);
         }
 
         protected void txtUrlImagen_TextChanged(object sender, EventArgs e)
