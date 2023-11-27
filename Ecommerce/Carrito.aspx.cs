@@ -117,6 +117,7 @@ namespace Ecommerce
                 Session.Add("Carrito", carritoVacio);
                 Session.Remove("idPedido");
                 lblPrecioTotal.Text = "0";
+                Label1.Text = "Gracias por tu compra, te llegara un mail para proceder con el pago y la entrega o retiro de la compra";
             }
         }
 

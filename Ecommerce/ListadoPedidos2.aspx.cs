@@ -57,9 +57,6 @@ namespace Ecommerce
 
         protected void dgvPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //GridViewRow row = dgvPedidos.SelectedRow;
-            //DropDownList ddlEstado = (DropDownList)row.FindControl("ddlEstado");
-            //int estado = int.Parse(ddlEstado.SelectedValue);
             if (e.CommandName != "ModificarEstado")
             {
                 return;

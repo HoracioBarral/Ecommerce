@@ -13,8 +13,8 @@
             <asp:TextBox ID="Txtpass" runat="server" placeholder="*****" CssClass="form-control" TextMode="Password"> </asp:TextBox>
         </div>
         <asp:Button ID="btnRegistro" runat="server" Text="Registrarse" OnClick="btnRegistro_Click" />
-        <div>
+    </div>
+    <div>
             <asp:Label ID="Label1" runat="server" CssClass="mensaje" Visible="false"></asp:Label>
         </div>
-    </div>
 </asp:Content>
