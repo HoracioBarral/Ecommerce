@@ -86,6 +86,7 @@ namespace Ecommerce
                 txtAdvertencia.Visible = true;
                 return;
             }
+
             List<Imagen> imagenes = (List<Imagen>)(Session["imagenesNuevas"]);
             if (imagenes.Count == 0 && Request.QueryString["id"] == null)
             {
@@ -94,7 +95,6 @@ namespace Ecommerce
                 txtAdvertencia.Visible = true;
                 return;
             }
-
             try
             {
                 Articulo nuevo = new Articulo();
@@ -112,7 +112,6 @@ namespace Ecommerce
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
-                    negocio.modificarConSP(nuevo);
                     if (imagenes.Count > 0)
                     {
                         foreach (Imagen imagen in imagenes)
@@ -120,6 +119,7 @@ namespace Ecommerce
                             inegocio.GuardarImagen(imagen.UrlImagen, nuevo.idArticulo);
                         }
                     }
+                    negocio.modificarConSP(nuevo);
                 }
                 else
                 {
@@ -127,6 +127,7 @@ namespace Ecommerce
 
                     foreach (Imagen imagen in imagenes)
                     {
+                        imagen.idImagen=idArticuloGenerado;
                         inegocio.GuardarImagen(imagen.UrlImagen, idArticuloGenerado);
                     }
 

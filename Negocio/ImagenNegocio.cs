@@ -78,5 +78,21 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int obtenerUltimoId()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("select top 1 ID_Articulo from imagenes order by id_Articulo desc");
+                int ultimoId=datos.ejecutarAccionConOutput();
+                return ultimoId;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
