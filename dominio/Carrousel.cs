@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Carruosel
+    public class Carrousel
     {
         public int idCarrousel { get; set; }
         public string textoCarrousel { get; set; }
