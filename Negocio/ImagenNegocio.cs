@@ -9,10 +9,11 @@ namespace Negocio
 {
     public class ImagenNegocio
     {
-        AccesoDatos datos = new AccesoDatos();
+        
         public List <Imagen> Listar(int id)
         {
             List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setConexion("SELECT * FROM IMAGENES WHERE ID_Articulo = @idArticulo and Estado=1");

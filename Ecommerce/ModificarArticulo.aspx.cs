@@ -93,7 +93,7 @@ namespace Ecommerce
             }
 
             List<Imagen> imagenes = (List<Imagen>)(Session["imagenesNuevas"]);
-            if (imagenes.Count == 0 && Request.QueryString["id"] == null)
+            if (imagenes.Count == 0 && Request.QueryString["nuevo"] == "true")
             {
                 txtAdvertencia.Text = string.Empty;
                 txtAdvertencia.Text = "El articulo nuevo tiene que tener al menos una imagen";
@@ -117,7 +117,7 @@ namespace Ecommerce
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.idArticulo = int.Parse(Request.QueryString["id"].ToString());
-                    if (imagenes.Count > 0 && Session["imagenesEliminadas"]==null)
+                    if (imagenes.Count > 0)
                     {
                         foreach (Imagen imagen in imagenes)
                         {
@@ -146,9 +146,10 @@ namespace Ecommerce
                         imagen.idImagen=idArticuloGenerado;
                         inegocio.GuardarImagen(imagen.UrlImagen, idArticuloGenerado);
                     }
-
-                    Response.Redirect("Administrador2.aspx");
                 }
+                Session.Remove("imagenesNuevas");
+                Session.Remove("imagenesEliminadas");
+                Session.Remove("imagenesSinEliminar");
                 ScriptManager.RegisterStartupScript(this, GetType(), "showMessage", "showMessage();", true);
             }
             catch (Exception ex)
@@ -183,6 +184,7 @@ namespace Ecommerce
         {
             Session.Remove("imagenesNuevas");
             Session.Remove("imagenesEliminadas");
+            Session.Remove("imagenesSinEliminar");
             Response.Redirect("Administrador2.aspx");
         }
 
@@ -192,25 +194,46 @@ namespace Ecommerce
             string url=btnStringUrl.CommandArgument;
             int id = int.Parse(Request.QueryString["id"].ToString());
             ImagenNegocio imagenNegocio = new ImagenNegocio();
-            List<Imagen> imagenesSinEliminar = imagenNegocio.Listar(id);
+            List<Imagen> cantidadImagenesenDB = imagenNegocio.Listar(id);
+            List<Imagen> imagenesSinEliminar;
+            if (cantidadImagenesenDB.Count == 1)
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "El articulo tiene que tener al menos una imagen";
+                txtAdvertencia.Visible = true;
+                Session.Remove("imagenesEliminadas");
+                return;
+            }
             List<Imagen> imagenesEliminadas = new List<Imagen>();
             if (Session["imagenesEliminadas"] == null)
             {
                 Session.Add("imagenesEliminadas", imagenesEliminadas);
+                imagenesSinEliminar = imagenNegocio.Listar(id);
+                Session.Add("imagenesSinEliminar", imagenesSinEliminar);
             }
             else
             {
                 imagenesEliminadas = (List<Imagen>)Session["imagenesEliminadas"];
+                imagenesSinEliminar = (List<Imagen>)Session["imagenesSinEliminar"];
             }
             Imagen imagen = new Imagen();
             imagen.idArticulo= id;
             imagen.UrlImagen = url;
             imagenesEliminadas.Add(imagen);
+            if (imagenesEliminadas.Count == cantidadImagenesenDB.Count)
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "El articulo tiene que tener al menos una imagen";
+                txtAdvertencia.Visible = true;
+                int indice = imagenesEliminadas.Count;
+                imagenesEliminadas.RemoveAt(indice-1);
+                Session["imagenesEliminadas"] = imagenesEliminadas;
+                return;
+            }
             imagenesSinEliminar.RemoveAll(x => x.idArticulo == id && x.UrlImagen == url);
             Session["imagenesEliminadas"] = imagenesEliminadas;
             RepeaterImagenes.DataSource = imagenesSinEliminar;
             RepeaterImagenes.DataBind();
-            //imagenNegocio.EliminarImagen(id, url);
         }
 
         protected void txtUrlImagen_TextChanged(object sender, EventArgs e)
@@ -220,14 +243,22 @@ namespace Ecommerce
 
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
+            if (txtUrlImagen.Text.Trim() == "")
+            {
+                txtAdvertencia.Text = string.Empty;
+                txtAdvertencia.Text = "El campo URL no puede estar vacio";
+                txtAdvertencia.Visible = true;
+                return;
+            }
             List<Imagen> imagenes = (List<Imagen>)(Session["imagenesNuevas"]);
             Imagen img = new Imagen();
-            if (txtUrlImagen.Text.Trim() != "")
-            {
-                img.UrlImagen = txtUrlImagen.Text;
-                imagenes.Add(img);
-            }
+            img.UrlImagen = txtUrlImagen.Text;
+            imagenes.Add(img);
             Session["imagenesNuevas"]=imagenes;
+            txtAdvertencia.Text = string.Empty;
+            txtAdvertencia.Text = "Imagen Agregada con exito";
+            txtAdvertencia.Visible = true;
+            txtUrlImagen.Text = string.Empty;
         }
 
         protected void btnStock_Click(object sender, EventArgs e)
