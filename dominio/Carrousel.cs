@@ -9,6 +9,10 @@ namespace dominio
     public class Carrousel
     {
         public int idCarrousel { get; set; }
-        public string textoCarrousel { get; set; }
+        public string Texto { get; set; }
+        public override string ToString()
+        {
+            return Texto;     
+        }
     }
 }
