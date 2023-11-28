@@ -38,7 +38,15 @@ namespace Ecommerce
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            int idSeleccionado = Convert.ToInt32(ddlCarrousel1.SelectedValue);
 
+            // Crear una cookie para almacenar el ID del carrusel
+            HttpCookie cookie = new HttpCookie("IDCarrusel");
+            cookie.Value = idSeleccionado.ToString();
+            cookie.Expires = DateTime.Now.AddDays(30); // Puedes ajustar la expiración según tus necesidades
+
+            // Agregar la cookie a la respuesta
+            Response.Cookies.Add(cookie);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)

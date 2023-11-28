@@ -48,7 +48,8 @@
                     <div id="textCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="10000">
-                                <h5>Texto 1</h5>
+                                <h5>
+                                    <asp:Label ID="lblCarrusel" runat="server"></asp:Label></h5>
                             </div>
                             <div class="carousel-item" data-bs-interval="10000">
                                 <h5>Texto 2</h5>

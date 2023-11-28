@@ -30,6 +30,18 @@ namespace Ecommerce
             {
                 Response.Redirect("Productos.aspx", false);
             }
+            if (Request.Cookies["IDCarrusel"] != null)
+            {
+                // Obtener el valor de la cookie
+                int idCarrusel = Convert.ToInt32(Request.Cookies["IDCarrusel"].Value);
+
+                // Utilizar el ID para obtener el texto desde la base de datos (usando tu lógica de negocio)
+                CarrouselNegocio negocio = new CarrouselNegocio();
+                dominio.Carrousel carrouselSeleccionado = negocio.ObtenerTextoPorID(idCarrusel);
+
+                // Asignar el texto a la propiedad en la MasterPage
+                TextoCarrusel = carrouselSeleccionado.Texto;
+            }
         }
 
         protected void BtnCarrito_Click(object sender, EventArgs e)
@@ -64,6 +76,15 @@ namespace Ecommerce
                 List<Articulo> carritoLimpio = new List<Articulo>();
                 Session.Add("Carrito", carritoLimpio);
             }
+        }
+        public string TextoCarrusel
+        {
+            get { return lblCarrusel.Text; }
+            set { lblCarrusel.Text = value; }
+        }
+        public void ActualizarCarrusel(string nuevoTexto)
+        {
+            TextoCarrusel = nuevoTexto;
         }
 
     }

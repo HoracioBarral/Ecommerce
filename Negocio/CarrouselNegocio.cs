@@ -72,5 +72,32 @@ namespace Negocio
             }
             finally { datos2.cerrarConexion(); }
         }
+        public Carrousel ObtenerTextoPorID(int id)
+        {
+            try
+            {
+                datos.setConexion("select * from Carrousel where idCarrousel=@id");
+                datos.setearParametro("@id", id);
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    Carrousel carrousel = new Carrousel();
+                    carrousel.idCarrousel = (int)datos.Lector["idCarrousel"];
+                    carrousel.Texto = (string)datos.Lector["Texto"];
+                    return carrousel;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
+    
 }
