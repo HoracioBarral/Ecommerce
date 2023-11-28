@@ -2,18 +2,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
- <div>
-        <!-- TextBox para ingresar el nuevo contenido del carrusel 1 -->
-        <asp:TextBox ID="txtCarrusel1" runat="server"></asp:TextBox>
-        <asp:Button ID="btnGuardarCarrusel1" runat="server" Text="Guardar1" OnClick="btnGuardarCarrusel1_Click" />
 
-        <!-- TextBox para ingresar el nuevo contenido del carrusel 2 -->
-        <asp:TextBox ID="txtCarrusel2" runat="server"></asp:TextBox>
-        <asp:Button ID="btnGuardarCarrusel2" runat="server" Text="Guardar2" OnClick="btnGuardarCarrusel2_Click" />
-
-        <!-- TextBox para ingresar el nuevo contenido del carrusel 3 -->
-        <asp:TextBox ID="txtCarrusel3" runat="server"></asp:TextBox>
-        <asp:Button ID="btnGuardarCarrusel3" runat="server" Text="Guardar3" OnClick="btnGuardarCarrusel3_Click" />
+    <div class="col-md-4">
+    <!-- Columna 2 -->
+    <div class="form-group">
+        <label for="txtCarr1">Carrousel t1</label>
+        <asp:DropDownList ID="ddlCarrousel1" runat="server" CssClass="form-control"></asp:DropDownList>
     </div>
+
+    <div class="form-group">
+        <label for="txtCarr2">Carrousel t2</label>
+        <asp:DropDownList ID="ddlCarrousel2" runat="server" CssClass="form-control"></asp:DropDownList>
+    </div>
+        <div class="form-group">
+            <label for="txtCarr3">Carrousel t3</label>
+            <asp:DropDownList ID="ddlCarrousel3" runat="server" CssClass="form-control"></asp:DropDownList>
+        </div>
+
+    </div>
+
+                <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnAceptar_Click" Style="margin: 20px; padding: 10px;" />
+                <asp:Button ID="btnVolver" Text="Volver" CssClass="btn btn-danger mt-2" runat="server" OnClick="btnVolver_Click" Style="margin: 20px; padding: 10px;" />
+     
 </asp:Content>

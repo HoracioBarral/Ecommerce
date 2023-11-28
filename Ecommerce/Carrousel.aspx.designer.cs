@@ -15,57 +15,48 @@ namespace Ecommerce
     {
 
         /// <summary>
-        /// Control txtCarrusel1.
+        /// Control ddlCarrousel1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCarrusel1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCarrousel1;
 
         /// <summary>
-        /// Control btnGuardarCarrusel1.
+        /// Control ddlCarrousel2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarCarrusel1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCarrousel2;
 
         /// <summary>
-        /// Control txtCarrusel2.
+        /// Control ddlCarrousel3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCarrusel2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCarrousel3;
 
         /// <summary>
-        /// Control btnGuardarCarrusel2.
+        /// Control btnAceptar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarCarrusel2;
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
 
         /// <summary>
-        /// Control txtCarrusel3.
+        /// Control btnVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCarrusel3;
-
-        /// <summary>
-        /// Control btnGuardarCarrusel3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarCarrusel3;
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }
