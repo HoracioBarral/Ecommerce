@@ -10,9 +10,9 @@ namespace Negocio
     public class CarrouselNegocio
     {
         AccesoDatos datos = new AccesoDatos();
-        public List<Carrousel> listarOfertas()
+        public List<Carrousel> listarCarrousel()
         {
-            List<Carrousel> listarCarrousel = new List<Carrousel>();
+            List<Carrousel> listaCarrousel = new List<Carrousel>();
             datos.setConexion("SELECT * FROM Carrousel");
             try
             {
@@ -20,11 +20,11 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Carrousel car = new Carrousel();
-                    car.idCarrousel = (int)datos.Lector["ID_Registro"];
-                    car.textoCarrousel = (string)datos.Lector["Texto"];
-                    listarCarrousel.Add(car);
+                    car.idCarrousel = (int)datos.Lector["idCarrousel"];
+                    car.Texto = (string)datos.Lector["Texto"];
+                    listaCarrousel.Add(car);
                 }
-                return listarCarrousel;
+                return listaCarrousel;
             }
             catch (Exception ex)
             {
@@ -35,6 +35,42 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public void agregarTexCarr(string nuevoText)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("insert into Carrousel(Texto) values(@nuevoText)");
+                datos2.setearParametro("@nuevoText", nuevoText);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
+        }
+        public void modificarCategoria(int idCarrousel, string Texto)
+        {
+            AccesoDatos datos2 = new AccesoDatos();
+            try
+            {
+                datos2.setConexion("update Carrousel set Texto=@Texto where idCarrousel=@idCarrousel");
+                datos2.setearParametro("@Texto", Texto);
+                datos2.setearParametro("@idCarrousel", idCarrousel);
+                datos2.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos2.cerrarConexion(); }
         }
     }
 }
