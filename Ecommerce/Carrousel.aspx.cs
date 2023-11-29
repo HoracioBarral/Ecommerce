@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -99,6 +100,21 @@ namespace Ecommerce
             string textoCarrusel3 = negocio.ObtenerTextoPorID(idSeleccionado3)?.Texto;
 
             ((Ecommerce.Master)Master).TextoCarrusel3 = textoCarrusel3;
+        }
+
+        protected void btnAgregarNuevo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nuevoTexto = txtNuevoTexto.Text;
+                CarrouselNegocio negocio = new CarrouselNegocio();
+                negocio.agregarTexCarr(nuevoTexto);
+                Response.Redirect(Request.Url.AbsoluteUri, false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
