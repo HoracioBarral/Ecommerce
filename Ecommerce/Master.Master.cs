@@ -53,7 +53,6 @@ namespace Ecommerce
                 CarrouselNegocio negocio = new CarrouselNegocio();
                 dominio.Carrousel carrouselSeleccionado = negocio.ObtenerTextoPorID(idCarrusel);
 
-                // Asignar el texto a las propiedades en la MasterPage
                 TextoCarrusel = carrouselSeleccionado.Texto;
                 
             }

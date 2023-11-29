@@ -116,5 +116,20 @@ namespace Ecommerce
                 throw ex;
             }
         }
+
+        protected void btnEliminar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminar2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminar3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

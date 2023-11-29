@@ -33,6 +33,15 @@ namespace Ecommerce
         protected global::System.Web.UI.WebControls.Button btnAgregar1;
 
         /// <summary>
+        /// Control btnEliminar1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminar1;
+
+        /// <summary>
         /// Control ddlCarrousel2.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace Ecommerce
         protected global::System.Web.UI.WebControls.Button btnAgregar2;
 
         /// <summary>
+        /// Control btnEliminar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminar2;
+
+        /// <summary>
         /// Control ddlCarrousel3.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace Ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregar3;
+
+        /// <summary>
+        /// Control btnEliminar3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminar3;
 
         /// <summary>
         /// Control btnVolver.
