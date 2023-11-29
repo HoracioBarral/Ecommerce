@@ -47,10 +47,15 @@ namespace Ecommerce
             {
                 ArticuloNegocio articulonegocio = new ArticuloNegocio();
                 Session.Add("listadoArticulos",articulonegocio.listar());
-                Repeater1.DataSource = articulonegocio.listar();
+                Repeater1.DataSource = Session["listadoArticulos"];
                 Repeater1.DataBind();
             }
             updateContador();
+        }
+        public void ActualizarRepeater(List<Articulo> lista)
+        {
+            Repeater1.DataSource = lista;
+            Repeater1.DataBind();
         }
 
         protected string GetImageUrl(object dataItem)

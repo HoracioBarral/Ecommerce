@@ -75,6 +75,7 @@ namespace Ecommerce
                 TextoCarrusel3 = carrouselSeleccionado.Texto; // Puedes cambiar esto según tus necesidades
             }
 
+
         }
 
         protected void BtnCarrito_Click(object sender, EventArgs e)
@@ -116,5 +117,15 @@ namespace Ecommerce
             TextoCarrusel = nuevoTexto;
         }
 
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Productos produc = Page as Productos;
+            if (produc != null)
+            {
+                List<Articulo> lista = (List<Articulo>)Session["listadoArticulos"];
+                List<Articulo> listafiltrada = lista.FindAll(x => x.descripcion.ToUpper().Contains(txtSearch.Text.ToUpper()));
+                produc.ActualizarRepeater(listafiltrada);
+            }
+        }
     }
 }
