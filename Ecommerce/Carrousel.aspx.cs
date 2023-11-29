@@ -132,12 +132,24 @@ namespace Ecommerce
 
         protected void btnEliminar2_Click(object sender, EventArgs e)
         {
+            int idSeleccionado1 = Convert.ToInt32(ddlCarrousel2.SelectedValue);
 
+            CarrouselNegocio negocio = new CarrouselNegocio();
+            negocio.eliminarCarrousel(idSeleccionado1);
+
+            ddlCarrousel2.ClearSelection();
+            Response.Redirect(Request.Url.AbsoluteUri, false);
         }
 
         protected void btnEliminar3_Click(object sender, EventArgs e)
         {
+            int idSeleccionado1 = Convert.ToInt32(ddlCarrousel3.SelectedValue);
 
+            CarrouselNegocio negocio = new CarrouselNegocio();
+            negocio.eliminarCarrousel(idSeleccionado1);
+
+            ddlCarrousel3.ClearSelection();
+            Response.Redirect(Request.Url.AbsoluteUri, false);
         }
     }
 }
