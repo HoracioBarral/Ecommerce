@@ -24,6 +24,15 @@ namespace Ecommerce
         protected global::System.Web.UI.WebControls.DropDownList ddlCarrousel1;
 
         /// <summary>
+        /// Control btnAgregar1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregar1;
+
+        /// <summary>
         /// Control ddlCarrousel2.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace Ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCarrousel2;
+
+        /// <summary>
+        /// Control btnAgregar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregar2;
 
         /// <summary>
         /// Control ddlCarrousel3.
@@ -42,13 +60,13 @@ namespace Ecommerce
         protected global::System.Web.UI.WebControls.DropDownList ddlCarrousel3;
 
         /// <summary>
-        /// Control btnAceptar.
+        /// Control btnAgregar3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar;
+        protected global::System.Web.UI.WebControls.Button btnAgregar3;
 
         /// <summary>
         /// Control btnVolver.

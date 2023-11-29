@@ -42,6 +42,24 @@ namespace Ecommerce
         protected global::System.Web.UI.WebControls.Label lblCarrusel;
 
         /// <summary>
+        /// Control lblCarrusel2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCarrusel2;
+
+        /// <summary>
+        /// Control lblCarrusel3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCarrusel3;
+
+        /// <summary>
         /// Control txtSearch.
         /// </summary>
         /// <remarks>

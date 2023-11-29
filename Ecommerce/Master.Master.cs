@@ -11,6 +11,22 @@ namespace Ecommerce
 {
     public partial class Master : System.Web.UI.MasterPage
     {
+        public string TextoCarrusel
+        {
+            get { return lblCarrusel.Text; }
+            set { lblCarrusel.Text = value; }
+        }
+        public string TextoCarrusel2
+        {
+            get { return lblCarrusel2.Text; }
+            set { lblCarrusel2.Text = value; }
+        }
+
+        public string TextoCarrusel3
+        {
+            get { return lblCarrusel3.Text; }
+            set { lblCarrusel3.Text = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] != null)
@@ -30,18 +46,36 @@ namespace Ecommerce
             {
                 Response.Redirect("Productos.aspx", false);
             }
-            if (Request.Cookies["IDCarrusel"] != null)
+            if (Request.Cookies["IDCarrusel1"] != null)
             {
-                // Obtener el valor de la cookie
-                int idCarrusel = Convert.ToInt32(Request.Cookies["IDCarrusel"].Value);
+                int idCarrusel = Convert.ToInt32(Request.Cookies["IDCarrusel1"].Value);
 
-                // Utilizar el ID para obtener el texto desde la base de datos (usando tu lógica de negocio)
                 CarrouselNegocio negocio = new CarrouselNegocio();
                 dominio.Carrousel carrouselSeleccionado = negocio.ObtenerTextoPorID(idCarrusel);
 
-                // Asignar el texto a la propiedad en la MasterPage
+                // Asignar el texto a las propiedades en la MasterPage
                 TextoCarrusel = carrouselSeleccionado.Texto;
+                
             }
+            if (Request.Cookies["IDCarrusel2"] != null)
+            {
+                int idCarrusel = Convert.ToInt32(Request.Cookies["IDCarrusel2"].Value);
+
+                CarrouselNegocio negocio = new CarrouselNegocio();
+                dominio.Carrousel carrouselSeleccionado = negocio.ObtenerTextoPorID(idCarrusel);
+
+                TextoCarrusel2 = carrouselSeleccionado.Texto; // Puedes cambiar esto según tus necesidades
+                
+            }
+            if (Request.Cookies["IDCarrusel3"] != null)
+            {
+                int idCarrusel = Convert.ToInt32(Request.Cookies["IDCarrusel3"].Value);
+
+                CarrouselNegocio negocio = new CarrouselNegocio();
+                dominio.Carrousel carrouselSeleccionado = negocio.ObtenerTextoPorID(idCarrusel);
+                TextoCarrusel3 = carrouselSeleccionado.Texto; // Puedes cambiar esto según tus necesidades
+            }
+
         }
 
         protected void BtnCarrito_Click(object sender, EventArgs e)
@@ -77,11 +111,7 @@ namespace Ecommerce
                 Session.Add("Carrito", carritoLimpio);
             }
         }
-        public string TextoCarrusel
-        {
-            get { return lblCarrusel.Text; }
-            set { lblCarrusel.Text = value; }
-        }
+        
         public void ActualizarCarrusel(string nuevoTexto)
         {
             TextoCarrusel = nuevoTexto;
