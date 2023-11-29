@@ -49,7 +49,7 @@ namespace Ecommerce
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Administrador2.aspx");
         }
 
         protected void btnAgregar1_Click(object sender, EventArgs e)
