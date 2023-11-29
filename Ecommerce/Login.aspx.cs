@@ -67,5 +67,32 @@ namespace Ecommerce
         {
             Response.Redirect("Registro.aspx", false);
         }
+
+        protected void lnkNuevaClave_Click(object sender, EventArgs e)
+        {
+            if (Txtusuario.Text.Trim() == "")
+            {
+                Label1.Visible = true;
+                Label1.Text = "Debe ingresar nombre de usuario";
+                return;
+            }
+            Usuario usuario = new Usuario();
+            usuario.nombreUsuario = Txtusuario.Text.ToLower();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            if (!usuarioNegocio.existeUsuario(usuario.nombreUsuario))
+            {
+                Label1.Text = string.Empty;
+                Label1.Visible = true;
+                Label1.Text = "El nombre de usuario no existe";
+                return;
+            }
+            usuarioNegocio.resetContraseña2(usuario.nombreUsuario);
+            ServicioEmail mail = new ServicioEmail();
+            mail.armarCorreo(usuario.nombreUsuario, "Clave Reseteada", "El nombre de su nueva clave es nuevaClave");
+            mail.enviarMail();
+            Label1.Text = string.Empty;
+            Label1.Visible = true;
+            Label1.Text = "Se le envio la clave nueva a su direccion de correo";
+        }
     }
 }

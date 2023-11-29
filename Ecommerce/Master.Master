@@ -19,6 +19,14 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-image: url('Imagen/fondo.jpg');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
         }
 
         #content {
@@ -36,6 +44,10 @@
             width: 100%;
             margin-top: 50px;
         }
+
+        #textCarousel {
+            height: 50px;
+        }
     </style>
 
 </head>
@@ -48,13 +60,16 @@
                     <div id="textCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="10000">
-                                <h5><asp:Label ID="lblCarrusel" runat="server"></asp:Label></h5>
+                                <h5>
+                                    <asp:Label ID="lblCarrusel" runat="server"></asp:Label></h5>
                             </div>
                             <div class="carousel-item" data-bs-interval="10000">
-                                <h5><asp:Label ID="lblCarrusel2" runat="server"></asp:Label></h5>
+                                <h5>
+                                    <asp:Label ID="lblCarrusel2" runat="server"></asp:Label></h5>
                             </div>
                             <div class="carousel-item" data-bs-interval="10000">
-                                <h5><asp:Label ID="lblCarrusel3" runat="server"></asp:Label></h5>
+                                <h5>
+                                    <asp:Label ID="lblCarrusel3" runat="server"></asp:Label></h5>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#textCarousel" data-bs-slide="prev">
@@ -93,7 +108,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Contacto.aspx">Contacto</a>
                             </li>
-                            <% if(Session ["usuario"]!= null && ((dominio.Usuario) Session["usuario"]).rolUsuario.idRol == 1 ) {  %>
+                            <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).rolUsuario.idRol == 1)
+                                {  %>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="Administrador2.aspx">Administrador</a>
@@ -108,9 +124,9 @@
                         </ul>
                     </div>
                     <div class="col" style="text-align: right; position: center">
-                        <asp:Button ID="BtnSalir" runat="server" Text="✖" OnClick="BtnSalir_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" Visible="false" title="Cerrar Sesión"/>
-                        <asp:Button ID="BtnAcesso" runat="server" Text="👤" onclick="BtnAcesso_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" title="Iniciar Sesión" />
-                        <asp:Button ID="BtnCarrito" runat="server" Text="🛒" OnClick="BtnCarrito_Click" CssClass="btn btn-outline-light" BorderColor="Black"  Width="45" Height="35" title="Carrito"/>
+                        <asp:Button ID="BtnSalir" runat="server" Text="✖" OnClick="BtnSalir_Click" CssClass="btn btn-outline-light" BorderColor="Black" Width="45" Height="35" Visible="false" title="Cerrar Sesión" />
+                        <asp:Button ID="BtnAcesso" runat="server" Text="👤" OnClick="BtnAcesso_Click" CssClass="btn btn-outline-light" BorderColor="Black" Width="45" Height="35" title="Iniciar Sesión" />
+                        <asp:Button ID="BtnCarrito" runat="server" Text="🛒" OnClick="BtnCarrito_Click" CssClass="btn btn-outline-light" BorderColor="Black" Width="45" Height="35" title="Carrito" />
                     </div>
                 </div>
             </nav>
