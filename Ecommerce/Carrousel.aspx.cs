@@ -119,6 +119,14 @@ namespace Ecommerce
 
         protected void btnEliminar1_Click(object sender, EventArgs e)
         {
+     
+            int idSeleccionado1 = Convert.ToInt32(ddlCarrousel1.SelectedValue);
+
+            CarrouselNegocio negocio = new CarrouselNegocio();
+            negocio.eliminarCarrousel(idSeleccionado1);
+
+            ddlCarrousel1.ClearSelection();
+            Response.Redirect(Request.Url.AbsoluteUri, false);
 
         }
 

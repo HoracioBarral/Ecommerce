@@ -55,22 +55,23 @@ namespace Negocio
                 datos2.cerrarConexion();
             }
         }
-        public void modificarCategoria(int idCarrousel, string Texto)
+        public void eliminarCarrousel(int idCarrousel)
         {
             AccesoDatos datos2 = new AccesoDatos();
             try
             {
-                datos2.setConexion("update Carrousel set Texto=@Texto where idCarrousel=@idCarrousel");
-                datos2.setearParametro("@Texto", Texto);
+                datos2.setConexion("DELETE FROM Carrousel WHERE idCarrousel=@idCarrousel");
                 datos2.setearParametro("@idCarrousel", idCarrousel);
                 datos2.ejecutarAccion();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-            finally { datos2.cerrarConexion(); }
+            finally
+            {
+                datos2.cerrarConexion();
+            }
         }
         public Carrousel ObtenerTextoPorID(int id)
         {
