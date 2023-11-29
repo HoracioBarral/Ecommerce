@@ -72,7 +72,7 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
         }
 
-        private bool existeUsuario(string nombreUsuario)
+        public bool existeUsuario(string nombreUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -138,6 +138,26 @@ namespace Negocio
             {
                 datos.setConexion("update Usuarios set Pass='nuevaClave' where ID_Usuario=@idUsuario");
                 datos.setearParametro("@idUsuario", idUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void resetContraseña2(string nombreUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update Usuarios set Pass='nuevaClave' where NombreUsuario=@nombreUsuario");
+                datos.setearParametro("@nombreUsuario", nombreUsuario);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
