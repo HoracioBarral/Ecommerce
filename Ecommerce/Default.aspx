@@ -13,7 +13,8 @@
                 </div>
                 <div class="col s12 l3">
                     <div class="splash-image-container">
-                        <img src="Imagen/Showroom1.jpg" class="splash-image" width="800" height="800">
+                        
+                        <img src="" class="splash-image" width="800" height="800">
                     </div>
                 </div>
             </div>
