@@ -33,7 +33,7 @@ namespace Ecommerce
                     StockNegocio stockNegocio = new StockNegocio();
                     List<StockTalles> stockTalles = stockNegocio.listarPorID(id);
                     string talle = (string)(Session["talle"]);
-                    List<StockTalles> stockFiltrado = stockTalles.FindAll(x => x.talle.Contains(talle));
+                    List<StockTalles> stockFiltrado = stockTalles.FindAll(x => x.talle==talle);
                     txtCantidad.Text = stockFiltrado[0].stock.ToString();
                     ListItem seleccion= ddlTalle.Items.FindByText(talle);
                     seleccion.Selected = true;

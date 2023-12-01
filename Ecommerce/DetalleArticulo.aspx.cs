@@ -62,12 +62,12 @@ namespace Ecommerce
                         StockNegocio stockNegocio = new StockNegocio();
                         List<StockTalles> stock = stockNegocio.listarPorID(idArticulo);
                         List<StockTalles> stockFiltrado = stock.FindAll(x => x.stock > 0);
-                        ddlTalles.SelectedIndex = 0;
-                        llenarddlCantidad();
                         ddlTalles.DataSource = stockFiltrado;
                         ddlTalles.DataValueField = "talle";
                         ddlTalles.DataTextField = "talle";
                         ddlTalles.DataBind();
+                        ddlTalles.SelectedIndex = 0;
+                        llenarddlCantidad();
                     }
                 }
                 else
@@ -95,8 +95,17 @@ namespace Ecommerce
         private void llenarddlCantidad()
         {
             StockNegocio stockNegocio = new StockNegocio();
-            List<StockTalles> stock = stockNegocio.listarPorID(int.Parse(Request.QueryString["id"]));
-            List<StockTalles> stockFiltrado = stock.FindAll(x => x.talle.Contains(ddlTalles.SelectedValue.ToString()) && x.stock>0);
+            int id = int.Parse(Request.QueryString["id"]);
+            List<StockTalles> stock = stockNegocio.listarPorID(id);
+            List<StockTalles> stockFiltrado=new List<StockTalles>();
+            foreach(StockTalles st in stock)
+            {
+                if(st.talle==ddlTalles.SelectedValue.ToString() && st.stock > 0)
+                {
+                    stockFiltrado.Add(st);
+                }
+            }
+
             if (stockFiltrado.Count==0)
             {
                 btnCarrito.Visible = false;

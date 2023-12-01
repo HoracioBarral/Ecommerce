@@ -127,5 +127,32 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int listarPorTalle(string talle,int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int cantidad=0;
+            try
+            {
+                datos.setConexion("select * from StockPorTalles where ID_Articulo=@idArticulo and talle like @talle and stock>0");
+                datos.setearParametro("@idArticulo", id);
+                datos.setearParametro("@talle", talle);
+                datos.abrirConexion();
+                while (datos.Lector.Read())
+                {
+                    cantidad = (int)datos.Lector["Stock"];
+                }
+                return cantidad;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
