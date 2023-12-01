@@ -24,6 +24,15 @@ namespace Ecommerce
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// Control numeroEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField numeroEnvio;
+
+        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>

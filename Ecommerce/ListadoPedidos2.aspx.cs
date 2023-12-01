@@ -91,6 +91,14 @@ namespace Ecommerce
                     mail.enviarMail();
                 }
             }
+            if (nuevoEstado == 3)
+            {
+                string envio = numeroEnvio.Value;
+                if (string.IsNullOrEmpty(envio))
+                {
+                    envio = "0";
+                }
+            }
         }
 
         private bool validarEstadoPedido(Pedido pedido, int nuevoEstado)

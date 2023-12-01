@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+    <asp:HiddenField runat="server" ID="numeroEnvio" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div>
@@ -26,7 +27,7 @@
                     <asp:BoundField HeaderText="Estado" DataField="estado" />
                     <asp:TemplateField HeaderText="Seleccione nuevo estado">
                         <ItemTemplate>
-                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control" AutoPostBack="true">
+                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control" AutoPostBack="true" onchange="handleEstadoChange(this);">
                                 <asp:ListItem Text="1 - En carrito" Value="1" />
                                 <asp:ListItem Text="2 - Compra Confirmada" Value="2" />
                                 <asp:ListItem Text="3 - Compra Abonada" Value="3" />
@@ -42,4 +43,40 @@
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    <div class="modal fade" id="modalEnvio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNumero">Tipo de envio o retiro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="txtEnvio">Ingrese el numero de envio o 0 para retiro en tienda:</label>
+                    <input type="text" id="txtEnvio" class="form-control" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="obtenerEnvio()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleEstadoChange(ddlEstado) {
+            var nuevoEstado = ddlEstado.value;
+            if (nuevoEstado === "3") {
+                $('#modalEnvio').modal('show');
+            }
+        }
+
+        function obtenerEnvio() {
+            var envio = document.getElementById('txtEnvio').value;
+            document.getElementById('<%= numeroEnvio.ClientID %>').value = envio;
+            $('#modalEnvio').modal('hide');
+        }
+    </script>
 </asp:Content>
