@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
     <asp:HiddenField runat="server" ID="numeroEnvio" />
+    <asp:HiddenField runat="server" ID="nombreProveedor" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div>
@@ -36,9 +37,10 @@
                             </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
-
                     <asp:ButtonField ButtonType="Button" Text="Modificar Estado" CommandName="ModificarEstado" ControlStyle-CssClass="btn btn-link" />
                     <asp:CommandField HeaderText="Ver Detalle" ShowSelectButton="true" SelectText="&#128077;" ControlStyle-CssClass="btn btn-link" />
+                    <asp:BoundField HeaderText="Numero de envio" DataField="numeroEnvio" />
+                    <asp:BoundField HeaderText="Proveedor" DataField="proveedor" />
                 </Columns>
             </asp:GridView>
         </ContentTemplate>
@@ -54,8 +56,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <label for="txtEnvio">Ingrese el numero de envio o 0 para retiro en tienda:</label>
+                    <label for="txtEnvio">Ingrese el numero de envio o deje en blanco en caso de retiro en tienda:</label>
                     <input type="text" id="txtEnvio" class="form-control" />
+                    <label for="txtProveedor">Ingrese el nombre del proveedor del envio o deje en blanco en caso de retiro en tienda:</label>
+                    <input type="text" id="txtProveedor" class="form-control" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -75,7 +79,9 @@
 
         function obtenerEnvio() {
             var envio = document.getElementById('txtEnvio').value;
+            var proveedor = document.getElementById('txtProveedor').value;
             document.getElementById('<%= numeroEnvio.ClientID %>').value = envio;
+            document.getElementById('<%= nombreProveedor.ClientID %>').value = proveedor;
             $('#modalEnvio').modal('hide');
         }
     </script>

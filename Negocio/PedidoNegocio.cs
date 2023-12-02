@@ -17,7 +17,7 @@ namespace Negocio
             List<Pedido> lista = new List<Pedido>();
             try
             {
-                datos.setConexion("select p.ID_Pedido,p.ID_Usuario,p.Estado,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad' from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido where dp.Estado=1 group by p.ID_Pedido,p.ID_Usuario,p.Estado");
+                datos.setConexion("select p.ID_Pedido,p.ID_Usuario,p.Estado,SUM(dp.importe) as 'Importe',SUM(dp.cantidad) as 'Cantidad',p.NumeroEnvio,p.Proveedor from pedidos p left join detallePedidos dp on dp.ID_Pedido=p.ID_Pedido where dp.Estado=1 group by p.ID_Pedido,p.ID_Usuario,p.Estado,p.NumeroEnvio,p.Proveedor");
                 datos.abrirConexion();
                 while (datos.Lector.Read())
                 {
@@ -27,6 +27,8 @@ namespace Negocio
                     pedido.estado = (int)datos.Lector["Estado"];
                     pedido.importe = (decimal)datos.Lector["Importe"];
                     pedido.cantidad = (int)datos.Lector["Cantidad"];
+                    pedido.numeroEnvio = (string)datos.Lector["NumeroEnvio"];
+                    pedido.proveedor = (string)datos.Lector["Proveedor"];
                     lista.Add(pedido);
                 }
                 return lista;
@@ -132,6 +134,28 @@ namespace Negocio
                 datos.setearParametro("@idPedido", articulo.numeroPedido);
                 datos.setearParametro("@idArticulo", articulo.idArticulo);
                 datos.setearParametro("@talle", articulo.talle);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void actualizarEnvio(string numeroEnvio,string proveedor, int idPedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConexion("update Pedidos set Estado=3,NumeroEnvio=@numeroEnvio, Proveedor=@proveedor where ID_Pedido=@idPedido");
+                datos.setearParametro("@numeroEnvio", numeroEnvio);
+                datos.setearParametro("@idPedido", idPedido);
+                datos.setearParametro("@proveedor", proveedor);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

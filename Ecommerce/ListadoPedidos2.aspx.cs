@@ -91,13 +91,17 @@ namespace Ecommerce
                     mail.enviarMail();
                 }
             }
-            if (nuevoEstado == 3)
+            string envio = numeroEnvio.Value;
+            string proveedor = nombreProveedor.Value;
+            if (nuevoEstado == 3 && (!string.IsNullOrEmpty(envio)))
             {
-                string envio = numeroEnvio.Value;
-                if (string.IsNullOrEmpty(envio))
-                {
-                    envio = "0";
-                }
+                pedidoNegocio.actualizarEnvio(envio, proveedor, idPedido);
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                List<Usuario> usuarios = usuarioNegocio.Listar();
+                List<Usuario> usuarioFiltrado = usuarios.FindAll(x => x.idUsuario == pedido[0].idUsuario);
+                ServicioEmail mail = new ServicioEmail();
+                mail.armarCorreo(usuarioFiltrado[0].nombreUsuario, "Envio exitoso","Su compra "+ idPedido.ToString()+ " fue despachada con el numero "+envio+" de "+proveedor);
+                mail.enviarMail();
             }
         }
 
@@ -126,6 +130,17 @@ namespace Ecommerce
                 Label1.Text = "Una compra abonada solo puede cancelarse o dada por entregada";
                 Label1.Visible = true;
                 return false;
+            }
+            if (nuevoEstado == 3)
+            {
+                string envio = numeroEnvio.Value;
+                string proveedor = nombreProveedor.Value;
+                if (!string.IsNullOrEmpty(envio) && string.IsNullOrEmpty(proveedor) || (string.IsNullOrEmpty(envio) && !string.IsNullOrEmpty(proveedor)))
+                {
+                    Label1.Text = "Debe completar ambos campos en caso que tenga un numero de envio. Si la opcion es retiro en tienda debe dejar los datos en blanco";
+                    Label1.Visible = true;
+                    return false;
+                }
             }
             return true;
         }

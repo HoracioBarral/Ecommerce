@@ -47,7 +47,7 @@ namespace Ecommerce
                     mensaje = "Bienvenido a la tienda del Equipo 30, podra ingresar con su direccion de correo registrada y su clave";
                     asunto = "Alta de usuario";
                     bienvenida.armarCorreo(TxtNombreUser.Text, asunto, mensaje);
-                    bienvenida.enviarMail();
+                    //bienvenida.enviarMail();
                     //Response.Redirect("Login.aspx", false);
                 }
                 else

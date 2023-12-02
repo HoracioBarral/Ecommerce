@@ -35,7 +35,7 @@ namespace Ecommerce
                 BtnSalir.Visible = true;
             }
 
-            if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto || Page is Registro)){
+            if(!(Page is Login || Page is Carrito || Page is Default || Page is DetalleArticulo || Page is Productos || Page is Contacto || Page is Registro || Page is HistorialPedidos)){
                 if (!Seguridad.esAdmin(Session["usuario"]))
                 {
                     Response.Redirect("Login.aspx", false);
@@ -46,6 +46,7 @@ namespace Ecommerce
             {
                 Response.Redirect("Productos.aspx", false);
             }
+
             if (Request.Cookies["IDCarrusel1"] != null)
             {
                 int idCarrusel = Convert.ToInt32(Request.Cookies["IDCarrusel1"].Value);

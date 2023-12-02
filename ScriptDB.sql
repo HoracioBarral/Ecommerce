@@ -84,6 +84,8 @@ create table Pedidos(
 	Importe money not null check(importe>0),
 	Fecha date not null check(Fecha<=getdate()) default getdate(),
 	Estado int not null default 1 check(Estado>0 and Estado<6),
+	NumeroEnvio varchar(200) null default 'retiro en tienda',
+	Proveedor varchar(200) null default 'retiro en tienda',
 	foreign key(ID_Usuario) references Usuarios(ID_Usuario)
 )
 go

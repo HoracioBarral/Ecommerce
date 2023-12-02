@@ -18,6 +18,8 @@ namespace dominio
 
         public int cantidad { get; set; }
 
+        public string numeroEnvio { get; set; }
 
+        public string proveedor { get; set; }
     }
 }

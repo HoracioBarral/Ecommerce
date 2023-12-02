@@ -120,6 +120,15 @@
                             </li>
 
                             <% } %>
+
+                            <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).rolUsuario.idRol == 2)
+                                {  %>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="HistorialPedidos.aspx">Mis pedidos</a>
+                            </li>
+
+                            <% } %>
                         </ul>
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">

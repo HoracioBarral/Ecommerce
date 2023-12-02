@@ -27,7 +27,7 @@
 </thead>
 <tbody>
     <% if (((List<dominio.Articulo>)(Session["carrito"])).Count == 0)
-            { %>
+        { %>
     <asp:Image ID="imgMostrar" runat="server" ImageUrl="Imagen/carritoVacio.png" AlternateText="Carrito Vacio" />
      <div class="texto">
         <asp:Label ID="carritoVacio" runat="server" Text="Tu Carrito esta  Vacio"></asp:Label>
@@ -63,6 +63,13 @@
             
     </tfoot>
 </table>
-                    <td><asp:Button ID="btnComprar" runat="server" CssClass="btn btn-primary" OnClick="btnComprar_Click" CommandName="Comprar" Text="Realizar Compra" /></td>
+                    <td><asp:Button ID="btnComprar" runat="server" CssClass="btn btn-primary" OnClientClick="return confirmarCompra();" OnClick="btnComprar_Click" CommandName="Comprar" Text="Realizar Compra" /></td>
                     <td><asp:Button ID="btnVolver" runat="server" CssClass="btn btn-primary" OnClick="btnVolver_Click" CommandName="Volver" Text="Volver" /></td>
+
+    <script>
+        function confirmarCompra() {
+            var confirmar = confirm("¿Estás seguro de realizar esta compra?");
+            return confirmar;
+            }
+    </script>
 </asp:Content>
